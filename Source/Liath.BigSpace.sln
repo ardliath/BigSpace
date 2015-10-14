@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liath.BigSpace", "Liath.Big
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liath.BigSpace.UI.Web", "Liath.BigSpace.UI.Web\Liath.BigSpace.UI.Web.csproj", "{CC8A878E-24D7-4499-8479-CEF9594C9FDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liath.BigSpace.Domain", "Liath.BigSpace.Domain\Liath.BigSpace.Domain.csproj", "{D3A392F7-2C69-4A75-85C0-3D1D6000A320}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CC8A878E-24D7-4499-8479-CEF9594C9FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC8A878E-24D7-4499-8479-CEF9594C9FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC8A878E-24D7-4499-8479-CEF9594C9FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3A392F7-2C69-4A75-85C0-3D1D6000A320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A392F7-2C69-4A75-85C0-3D1D6000A320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A392F7-2C69-4A75-85C0-3D1D6000A320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A392F7-2C69-4A75-85C0-3D1D6000A320}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
