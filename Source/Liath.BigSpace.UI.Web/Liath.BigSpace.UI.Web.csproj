@@ -153,6 +153,10 @@
     <Folder Include="Areas\OuterSpace\Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Liath.BigSpace.Domain\Liath.BigSpace.Domain.csproj">
+      <Project>{d3a392f7-2c69-4a75-85c0-3d1d6000a320}</Project>
+      <Name>Liath.BigSpace.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Liath.BigSpace\Liath.BigSpace.csproj">
       <Project>{09925a29-0703-4b51-8bb3-f50755217c27}</Project>
       <Name>Liath.BigSpace</Name>

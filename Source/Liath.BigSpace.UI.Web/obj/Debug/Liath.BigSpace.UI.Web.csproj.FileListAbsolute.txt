@@ -30,3 +30,5 @@ C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bi
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Microsoft.Practices.Unity.Configuration.xml
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Microsoft.Practices.Unity.Mvc.xml
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Liath.BigSpace.Domain.dll
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Liath.BigSpace.Domain.pdb

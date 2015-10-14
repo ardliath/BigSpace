@@ -1,6 +1,8 @@
 using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
+using Liath.BigSpace.Definitions;
+using Liath.BigSpace.Implementations;
 
 namespace Liath.BigSpace.UI.Web.App_Start
 {
@@ -37,6 +39,7 @@ namespace Liath.BigSpace.UI.Web.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<INavigationManager, NavigationManager>();
         }
     }
 }
