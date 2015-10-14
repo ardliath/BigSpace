@@ -15,8 +15,8 @@ namespace Liath.BigSpace.UI.Web
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{area}/{controller}/{action}/{id}",
+                defaults: new { area = "LocalArea", controller = "Home", action = "View", id = UrlParameter.Optional }
             );
         }
     }
