@@ -1,0 +1,5 @@
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace\bin\Debug\Liath.BigSpace.dll
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace\bin\Debug\Liath.BigSpace.pdb
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace\obj\Debug\Liath.BigSpace.csprojResolveAssemblyReference.cache
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace\obj\Debug\Liath.BigSpace.dll
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace\obj\Debug\Liath.BigSpace.pdb
