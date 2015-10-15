@@ -25,7 +25,10 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
         [HttpGet]
         public ActionResult Display()
         {
-            return View();
+            using (var uow = _sessionManager.GetUnitOfWork())
+            {                
+                return View();
+            }
         }
     }
 }

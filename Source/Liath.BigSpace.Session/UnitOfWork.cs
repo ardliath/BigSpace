@@ -5,8 +5,10 @@ using System.Text;
 
 namespace Liath.BigSpace.Session
 {
-    public interface ISessionManager
+    public class UnitOfWork : IUnitOfWork
     {
-        IUnitOfWork GetUnitOfWork();
+        public void Dispose()
+        {            
+        }
     }
 }

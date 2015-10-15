@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Liath.BigSpace.Session
 {
-    public interface ISessionManager
+    public interface IUnitOfWork : IDisposable
     {
-        IUnitOfWork GetUnitOfWork();
     }
 }
