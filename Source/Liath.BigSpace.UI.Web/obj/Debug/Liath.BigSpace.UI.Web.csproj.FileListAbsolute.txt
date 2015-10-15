@@ -34,3 +34,7 @@ C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bi
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Liath.BigSpace.Domain.pdb
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Liath.BigSpace.Session.dll
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Liath.BigSpace.Session.pdb
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\NLog.dll
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Liath.BigSpace.Configuration.dll
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\NLog.xml
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Liath.BigSpace.Configuration.pdb
