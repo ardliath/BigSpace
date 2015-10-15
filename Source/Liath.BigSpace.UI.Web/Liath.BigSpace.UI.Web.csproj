@@ -54,6 +54,10 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.4.1.2\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -153,6 +157,10 @@
     <Folder Include="Areas\OuterSpace\Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Liath.BigSpace.Configuration\Liath.BigSpace.Configuration.csproj">
+      <Project>{cb0a1853-e483-4a56-ad95-c26aed4dfcb8}</Project>
+      <Name>Liath.BigSpace.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Liath.BigSpace.Domain\Liath.BigSpace.Domain.csproj">
       <Project>{d3a392f7-2c69-4a75-85c0-3d1d6000a320}</Project>
       <Name>Liath.BigSpace.Domain</Name>

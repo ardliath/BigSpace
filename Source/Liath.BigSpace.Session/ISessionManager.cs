@@ -7,6 +7,7 @@ namespace Liath.BigSpace.Session
 {
     public interface ISessionManager
     {
-        IUnitOfWork GetUnitOfWork();
+        IUnitOfWork CreateUnitOfWork();
+        IUnitOfWork GetCurrentUnitOfWork();
     }
 }

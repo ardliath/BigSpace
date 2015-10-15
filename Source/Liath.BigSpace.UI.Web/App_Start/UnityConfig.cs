@@ -4,6 +4,7 @@ using Microsoft.Practices.Unity.Configuration;
 using Liath.BigSpace.Definitions;
 using Liath.BigSpace.Implementations;
 using Liath.BigSpace.Session;
+using Liath.BigSpace.Configuration;
 
 namespace Liath.BigSpace.UI.Web.App_Start
 {
@@ -40,7 +41,8 @@ namespace Liath.BigSpace.UI.Web.App_Start
 
             container.RegisterTypes(AllClasses.FromAssemblies(
                     typeof(ISessionManager).Assembly,
-                    typeof(INavigationManager).Assembly),
+                    typeof(INavigationManager).Assembly,
+                    typeof(IConfigurationManager).Assembly),
                 WithMappings.FromMatchingInterface,
                 WithName.Default,
                 WithLifetime.ContainerControlled);

@@ -25,8 +25,9 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
         [HttpGet]
         public ActionResult Display()
         {
-            using (var uow = _sessionManager.GetUnitOfWork())
-            {                
+            using (var uow = _sessionManager.CreateUnitOfWork())
+            {
+                _navigationManager.FindLocalSystems();
                 return View();
             }
         }

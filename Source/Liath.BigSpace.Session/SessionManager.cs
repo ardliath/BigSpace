@@ -12,6 +12,7 @@ namespace Liath.BigSpace.Session
     {
         private static ILogger logger = LogManager.GetCurrentClassLogger();
         private IConfigurationManager _configurationManager;
+        private IUnitOfWork _unitOfWork;
 
         public SessionManager(IConfigurationManager configurationManager)
         {
@@ -19,10 +20,21 @@ namespace Liath.BigSpace.Session
             _configurationManager = configurationManager;
         }
 
-        public IUnitOfWork GetUnitOfWork()
+        public IUnitOfWork GetCurrentUnitOfWork()
         {
             logger.Trace("Getting UnitOfWork");
-            return new UnitOfWork(_configurationManager.ConnectionString);
+            if (_unitOfWork == null)
+            {
+                throw new NoUnitOfWorkException();                
+            }
+            return _unitOfWork;
+        }
+
+        public IUnitOfWork CreateUnitOfWork()
+        {
+            logger.Trace("Creating a new UnitOfWork");
+            _unitOfWork = new UnitOfWork(_configurationManager.ConnectionString);
+            return _unitOfWork;
         }
     }
 }

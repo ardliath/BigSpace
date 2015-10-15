@@ -47,6 +47,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="NoUnitOfWorkException.cs" />
     <Compile Include="SessionManager.cs" />
     <Compile Include="ISessionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
