@@ -1,2 +1,2 @@
 # BigSpace
-A space game to help learn me learn new techs
+This project is a space game I'm playing with as an excuse to help me learn some new techniques and technologies.
