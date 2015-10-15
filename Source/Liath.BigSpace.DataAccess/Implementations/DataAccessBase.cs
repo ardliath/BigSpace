@@ -8,7 +8,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 {
     public abstract class DataAccessBase
     {
-        protected readonly ISessionManager SessionManager { get; protected set; }
+        protected ISessionManager SessionManager { get; private set; }
 
         public DataAccessBase(ISessionManager sessionManager)
         {

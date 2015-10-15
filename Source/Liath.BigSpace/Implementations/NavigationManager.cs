@@ -11,18 +11,18 @@ namespace Liath.BigSpace.Implementations
 {
     public class NavigationManager : INavigationManager
     {
-        private ISessionManager _sessionManager;
+        private ISecurityManager _securityManager;
         private static ILogger logger = LogManager.GetCurrentClassLogger();
 
-        public NavigationManager(ISessionManager sessionManager)
+        public NavigationManager(ISecurityManager securityManager)
         {
-            if (sessionManager == null) throw new ArgumentNullException("sessionManager");
-            _sessionManager = sessionManager;
+            if (securityManager == null) throw new ArgumentNullException("securityManager");
+            _securityManager = securityManager;
         }
 
         public void FindLocalSystems()
         {
-            var uow = _sessionManager.GetCurrentUnitOfWork();
+            var currentUser = _securityManager.GetCurrentUserAccount();
         }
     }
 }

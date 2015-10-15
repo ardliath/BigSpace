@@ -28,7 +28,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
                 conn.Open();
                 using(var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT UserAccountID, Username, X, Y, X WHERE Username = @Username";
+                    cmd.CommandText = "SELECT UserAccountID, Username, X, Y, Z FROM UserAccounts WHERE Username = @Username";
                     cmd.AddParameter("Username", System.Data.DbType.String, username);
                     using(var dr = cmd.ExecuteReader())
                     {
