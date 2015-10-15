@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Liath.BigSpace.Domain
+namespace Liath.BigSpace.Session
 {
-    public class Class1
+    public class SessionManager : ISessionManager
     {
     }
 }

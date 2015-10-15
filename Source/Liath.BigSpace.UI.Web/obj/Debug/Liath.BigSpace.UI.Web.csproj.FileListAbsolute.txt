@@ -32,3 +32,5 @@ C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bi
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Liath.BigSpace.Domain.dll
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Liath.BigSpace.Domain.pdb
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Liath.BigSpace.Session.dll
+C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.UI.Web\bin\Liath.BigSpace.Session.pdb

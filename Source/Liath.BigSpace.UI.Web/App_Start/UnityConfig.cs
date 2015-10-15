@@ -3,6 +3,7 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using Liath.BigSpace.Definitions;
 using Liath.BigSpace.Implementations;
+using Liath.BigSpace.Session;
 
 namespace Liath.BigSpace.UI.Web.App_Start
 {
@@ -37,9 +38,12 @@ namespace Liath.BigSpace.UI.Web.App_Start
             // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
             // container.LoadConfiguration();
 
-            // TODO: Register your types here
-            // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<INavigationManager, NavigationManager>();
+            container.RegisterTypes(AllClasses.FromAssemblies(
+                    typeof(ISessionManager).Assembly,
+                    typeof(INavigationManager).Assembly),
+                WithMappings.FromMatchingInterface,
+                WithName.Default,
+                WithLifetime.ContainerControlled);
         }
     }
 }
