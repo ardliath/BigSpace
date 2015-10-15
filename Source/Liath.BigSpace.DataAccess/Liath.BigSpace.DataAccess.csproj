@@ -45,14 +45,30 @@
     <Compile Include="..\Liath.BigSpace\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Definitions\IUsers.cs" />
+    <Compile Include="Extensions\IDataReaderExtensions.cs" />
+    <Compile Include="Extensions\IDbCommandExtensions.cs" />
+    <Compile Include="Implementations\DataAccessBase.cs" />
+    <Compile Include="Implementations\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Definitions\" />
-    <Folder Include="Implementations\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Liath.BigSpace.Configuration\Liath.BigSpace.Configuration.csproj">
+      <Project>{cb0a1853-e483-4a56-ad95-c26aed4dfcb8}</Project>
+      <Name>Liath.BigSpace.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Liath.BigSpace.Domain\Liath.BigSpace.Domain.csproj">
+      <Project>{d3a392f7-2c69-4a75-85c0-3d1d6000a320}</Project>
+      <Name>Liath.BigSpace.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Liath.BigSpace.Session\Liath.BigSpace.Session.csproj">
+      <Project>{1fa6dcd6-1b0c-4aba-a227-4efede9bf1f4}</Project>
+      <Name>Liath.BigSpace.Session</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

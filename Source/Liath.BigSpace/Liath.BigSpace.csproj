@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Definitions\INavigationManager.cs" />
+    <Compile Include="Definitions\ISecurityManager.cs" />
     <Compile Include="Implementations\NavigationManager.cs" />
+    <Compile Include="Implementations\SecurityManager.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
