@@ -8,6 +8,6 @@ namespace Liath.BigSpace.Session
 {
     public interface IUnitOfWork : IDisposable
     {
-        IDbConnection GetConnection();
+        IDbCommand CreateCommand(string query);
     }
 }

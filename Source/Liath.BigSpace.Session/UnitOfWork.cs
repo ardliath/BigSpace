@@ -33,7 +33,16 @@ namespace Liath.BigSpace.Session
             }
         }
 
-        public IDbConnection GetConnection()
+	    public IDbCommand CreateCommand(string query)
+	    {
+		    if (query == null) throw new ArgumentNullException("query");
+		    var conn = GetConnection();
+		    var cmd = conn.CreateCommand();
+		    cmd.CommandText = query;
+		    return cmd;
+	    }
+
+	    private IDbConnection GetConnection()
         {
             logger.Trace("Getting Connection");
             if(_connection == null)
@@ -44,10 +53,12 @@ namespace Liath.BigSpace.Session
             return _connection;
         }
 
-        private IDbConnection CreateConnection()
-        {
-            logger.Trace("Creating a new connection");
-            return new SqlConnection(_connectionStringSettings.ConnectionString);
-        }
+	    private IDbConnection CreateConnection()
+	    {
+		    logger.Trace("Creating a new connection");
+		    var conn = new SqlConnection(_connectionStringSettings.ConnectionString);
+		    conn.Open();
+		    return conn;
+	    }
     }
 }

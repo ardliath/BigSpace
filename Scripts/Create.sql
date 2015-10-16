@@ -1,6 +1,6 @@
 create table SolarSystems
 (
-	SolarSystemID int not null identity(1,1),
+	SolarSystemID bigint not null identity(1,1),
 	Name nvarchar(255),
 	X bigint not null,
 	Y bigint not null,
