@@ -5,10 +5,3 @@ C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.Domain\ob
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.Domain\obj\Debug\Liath.BigSpace.Domain.pdb
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.Domain\bin\Debug\NLog.dll
 C:\Users\Adam\Documents\GitHub\BigSpace\BigSpace\Source\Liath.BigSpace.Domain\bin\Debug\NLog.xml
-C:\Users\agriffiths\Documents\GitHub\BigSpace\Source\Liath.BigSpace.Domain\bin\Debug\Liath.BigSpace.Domain.dll
-C:\Users\agriffiths\Documents\GitHub\BigSpace\Source\Liath.BigSpace.Domain\bin\Debug\Liath.BigSpace.Domain.pdb
-C:\Users\agriffiths\Documents\GitHub\BigSpace\Source\Liath.BigSpace.Domain\bin\Debug\NLog.dll
-C:\Users\agriffiths\Documents\GitHub\BigSpace\Source\Liath.BigSpace.Domain\bin\Debug\NLog.xml
-C:\Users\agriffiths\Documents\GitHub\BigSpace\Source\Liath.BigSpace.Domain\obj\Debug\Liath.BigSpace.Domain.csprojResolveAssemblyReference.cache
-C:\Users\agriffiths\Documents\GitHub\BigSpace\Source\Liath.BigSpace.Domain\obj\Debug\Liath.BigSpace.Domain.dll
-C:\Users\agriffiths\Documents\GitHub\BigSpace\Source\Liath.BigSpace.Domain\obj\Debug\Liath.BigSpace.Domain.pdb
