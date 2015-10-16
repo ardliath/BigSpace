@@ -45,10 +45,12 @@
     <Compile Include="..\Liath.BigSpace\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Definitions\ISolarSystems.cs" />
     <Compile Include="Definitions\IUsers.cs" />
     <Compile Include="Extensions\IDataReaderExtensions.cs" />
     <Compile Include="Extensions\IDbCommandExtensions.cs" />
     <Compile Include="Implementations\DataAccessBase.cs" />
+    <Compile Include="Implementations\SolarSystems.cs" />
     <Compile Include="Implementations\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
