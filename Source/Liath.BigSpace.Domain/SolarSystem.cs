@@ -8,7 +8,7 @@ namespace Liath.BigSpace.Domain
 {
     public class SolarSystem
     {
-        public int SolarSystemID { get; set; }
+        public Int64 SolarSystemID { get; set; }
         public Coordinates Coordinates { get; set; }
         public string Name { get; set; }
     }

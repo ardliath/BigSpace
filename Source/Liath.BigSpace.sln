@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liath.BigSpace", "Liath.BigSpace\Liath.BigSpace.csproj", "{09925A29-0703-4B51-8BB3-F50755217C27}"
 EndProject
@@ -16,6 +16,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liath.BigSpace.Session", "Liath.BigSpace.Session\Liath.BigSpace.Session.csproj", "{1FA6DCD6-1B0C-4ABA-A227-4EFEDE9BF1F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liath.BigSpace.Configuration", "Liath.BigSpace.Configuration\Liath.BigSpace.Configuration.csproj", "{CB0A1853-E483-4A56-AD95-C26AED4DFCB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{220ECF2C-6089-4FFA-9812-423FC5DC235B}"
+	ProjectSection(SolutionItems) = preProject
+		..\Scripts\Create.sql = ..\Scripts\Create.sql
+		..\Scripts\Data.sql = ..\Scripts\Data.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
