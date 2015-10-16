@@ -5,31 +5,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Liath.BigSpace.Domain;
 
 namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 {
-    public class LocalAreaController : Controller
-    {
-        private INavigationManager _navigationManager;
-        private ISessionManager _sessionManager;
+	public class LocalAreaController : Controller
+	{
+		private INavigationManager _navigationManager;
+		private ISessionManager _sessionManager;
 
-        public LocalAreaController(ISessionManager sessionManager, INavigationManager navigationManager)
-        {
-            if (navigationManager == null) throw new ArgumentNullException("navigationManager");
-            if (sessionManager == null) throw new ArgumentNullException("sessionManager");
+		public LocalAreaController(ISessionManager sessionManager, INavigationManager navigationManager)
+		{
+			if (navigationManager == null) throw new ArgumentNullException("navigationManager");
+			if (sessionManager == null) throw new ArgumentNullException("sessionManager");
 
-            _navigationManager = navigationManager;
-            _sessionManager = sessionManager;
-        }
+			_navigationManager = navigationManager;
+			_sessionManager = sessionManager;
+		}
 
-        [HttpGet]
-        public ActionResult Display()
-        {
-            using (var uow = _sessionManager.CreateUnitOfWork())
-            {
-                _navigationManager.FindLocalSystems(new ScreenSize());
-                return View();
-            }
-        }
-    }
+		[HttpGet]
+		public ActionResult Display()
+		{
+			using (var uow = _sessionManager.CreateUnitOfWork())
+			{
+				_navigationManager.FindLocalSystems(new ScreenSize());
+				return View();
+			}
+		}
+	}
 }

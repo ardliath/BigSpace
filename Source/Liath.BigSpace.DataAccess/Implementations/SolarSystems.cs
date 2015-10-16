@@ -15,7 +15,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 		{
 		}
 
-		public LocalAreaViewResult FindSystemsInLocalArea(LocalAreaView localAreaView)
+		public IEnumerable<SolarSystem> FindSystemsInLocalArea(LocalAreaView localAreaView)
 		{
 			if (localAreaView == null) throw new ArgumentNullException("localAreaView");
 

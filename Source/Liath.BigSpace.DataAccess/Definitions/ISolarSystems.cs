@@ -9,6 +9,6 @@ namespace Liath.BigSpace.DataAccess.Definitions
 {
 	public interface ISolarSystems
 	{
-		LocalAreaViewResult FindSystemsInLocalArea(LocalAreaView localAreaView);
+		IEnumerable<SolarSystem> FindSystemsInLocalArea(LocalAreaView localAreaView);
 	}
 }
