@@ -46,7 +46,9 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Coordinates.cs" />
+    <Compile Include="LocalAreaView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScreenSize.cs" />
     <Compile Include="SolarSystem.cs" />
     <Compile Include="UserAccount.cs" />
   </ItemGroup>

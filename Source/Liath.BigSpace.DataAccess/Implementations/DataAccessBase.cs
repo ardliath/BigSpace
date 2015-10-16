@@ -10,7 +10,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
     {
         protected ISessionManager SessionManager { get; private set; }
 
-        public DataAccessBase(ISessionManager sessionManager)
+	    protected DataAccessBase(ISessionManager sessionManager)
         {
             if (sessionManager == null) throw new ArgumentNullException("sessionManager");
             this.SessionManager = sessionManager;

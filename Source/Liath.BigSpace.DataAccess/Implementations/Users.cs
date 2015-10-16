@@ -35,9 +35,12 @@ namespace Liath.BigSpace.DataAccess.Implementations
 						{
 							UserAccountID = dr.GetInt32("UserAccountID"),
 							Username = dr.GetString("Username"),
-							X = dr.GetInt64("X"),
-							Y = dr.GetInt64("Y"),
-							Z = dr.GetInt64("Z")
+							FocusCoordinates = new Coordinates
+							{
+								X = dr.GetInt64("X"),
+								Y = dr.GetInt64("Y"),
+								Z = dr.GetInt64("Z")
+							}
 						};
 					}
 

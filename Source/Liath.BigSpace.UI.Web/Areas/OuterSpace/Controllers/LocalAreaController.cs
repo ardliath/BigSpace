@@ -27,7 +27,7 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
         {
             using (var uow = _sessionManager.CreateUnitOfWork())
             {
-                _navigationManager.FindLocalSystems();
+                _navigationManager.FindLocalSystems(new ScreenSize());
                 return View();
             }
         }

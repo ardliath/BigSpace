@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace Liath.BigSpace.Domain
 {
-    public class UserAccount
-    {
-        public int UserAccountID { get; set; }
+	public class UserAccount
+	{
+		public int UserAccountID { get; set; }
 
-        public string Username { get; set; }
-
-        public Int64 X { get; set; }
-
-        public Int64 Z { get; set; }
-
-        public Int64 Y { get; set; }
-    }
+		public string Username { get; set; }
+		public Coordinates FocusCoordinates { get; set; }
+	}
 }
