@@ -132,6 +132,7 @@
     <Compile Include="Areas\OuterSpace\Controllers\LocalAreaController.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\Display.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\ScreenSize.cs" />
+    <Compile Include="Areas\OuterSpace\Models\LocalArea\SystemSummary.cs" />
     <Compile Include="Areas\OuterSpace\OuterSpaceAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

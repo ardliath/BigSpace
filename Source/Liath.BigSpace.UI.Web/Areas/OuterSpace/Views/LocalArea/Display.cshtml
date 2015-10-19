@@ -5,14 +5,20 @@
 
 <h2>Display Local Area</h2>
 
-<table>
-    @for (int i = 0; i < Model.ScreenSize.Height; i++)
+<table style="border: 1px solid black;">
+    @for (int row = 0; row < Model.ScreenSize.Height; row++)
     {
         <tr>
-            @for (int j = 0; j < Model.ScreenSize.Width; j++)
+            @for (int column = 0; column < Model.ScreenSize.Width; column++)
             {
-                <td style="width: 25px; height: 25px;">
-                    .
+                <td style="width: 25px; height: 25px">
+                    @{
+                        var system = Model.Systems.SingleOrDefault(s => s.X == column && s.Y == row);
+                        if (system != null)
+                        {
+                            <img src="http://cdn-2.freeclipartnow.com/d/41631-1/smooth-star.jpg" height="25" width="25" title="@system.Name" />
+                        }
+                    }
                 </td>
             }
         </tr>

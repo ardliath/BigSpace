@@ -35,7 +35,22 @@ namespace Liath.BigSpace.Implementations
 		    var localAreaView = new LocalAreaView(currentUser.FocusCoordinates, screenSize);
 		    var solarSystems = _solarSystems.FindSystemsInLocalArea(localAreaView);
 
-		    return new LocalAreaViewResult(currentUser.FocusCoordinates, screenSize, solarSystems);
+            var screenCornerX = localAreaView.FocusCoordinates.X - ((screenSize.Width - 1) / 2);
+            var screenCornerY = localAreaView.FocusCoordinates.Y - ((screenSize.Height - 1) / 2);
+
+            var relative = solarSystems.Select(s => new RelativeSolarSystem
+                {
+                    Coordinates = s.Coordinates,
+                    Name = s.Name,
+                    SolarSystemID = s.SolarSystemID,
+                    ScreenOffset = new ScreenOffSet
+                    {
+                        X = (int)(s.Coordinates.X - screenCornerX),
+                        Y = (int)(s.Coordinates.Y - screenCornerY)
+                    }
+                });
+
+		    return new LocalAreaViewResult(currentUser.FocusCoordinates, screenSize, relative);
 	    }
     }
 }

@@ -8,5 +8,6 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.LocalArea
     public class Display
     {
         public ScreenSize ScreenSize { get; set; }
+        public IEnumerable<SystemSummary> Systems { get; set; }
     }
 }

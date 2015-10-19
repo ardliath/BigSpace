@@ -49,6 +49,8 @@
     <Compile Include="LocalAreaView.cs" />
     <Compile Include="LocalAreaViewResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelativeSolarSystem.cs" />
+    <Compile Include="ScreenOffSet.cs" />
     <Compile Include="ScreenSize.cs" />
     <Compile Include="SolarSystem.cs" />
     <Compile Include="UserAccount.cs" />

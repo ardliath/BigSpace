@@ -36,7 +36,13 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
                         {
                             Height = 21,
                             Width = 21
-                        }
+                        },
+                        Systems = localSystems.SolarSystems.Select(s => new SystemSummary
+                        {
+                            Name = s.Name,
+                            X = s.ScreenOffset.X,
+                            Y = s.ScreenOffset.Y
+                        })
                     });
 			}
 		}
