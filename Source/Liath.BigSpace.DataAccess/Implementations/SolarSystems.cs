@@ -36,6 +36,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 				cmd.AddParameter("MaxX", DbType.Int64, maxX);
 				cmd.AddParameter("MinY", DbType.Int64, minY);
 				cmd.AddParameter("MaxY", DbType.Int64, maxY);
+                cmd.AddParameter("Z", DbType.Int64, 0);
 
 				using (var dr = cmd.ExecuteReader())
 				{
