@@ -32,7 +32,7 @@ create table Ships
 (
 	ShipID int not null identity(1,1),
 	Name nvarchar(255) not null,
-	SolarSystemID int null,
+	SolarSystemID bigint null,
 	UserAccountID int not null,
 	TS timestamp not null,
 	constraint PK_Ships primary key (ShipID),
