@@ -130,6 +130,8 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\LocalAreaController.cs" />
+    <Compile Include="Areas\OuterSpace\Models\LocalArea\Display.cs" />
+    <Compile Include="Areas\OuterSpace\Models\LocalArea\ScreenSize.cs" />
     <Compile Include="Areas\OuterSpace\OuterSpaceAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -154,7 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\OuterSpace\Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Liath.BigSpace.Configuration\Liath.BigSpace.Configuration.csproj">

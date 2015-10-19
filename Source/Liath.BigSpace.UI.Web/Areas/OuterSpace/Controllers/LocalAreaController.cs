@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Liath.BigSpace.Domain;
+using Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.LocalArea;
 
 namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 {
@@ -28,8 +29,15 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 		{
 			using (_sessionManager.CreateUnitOfWork())
 			{
-				var localSystems = _navigationManager.FindLocalSystems(new ScreenSize(21, 21));
-				return View();
+				var localSystems = _navigationManager.FindLocalSystems(new Liath.BigSpace.Domain.ScreenSize(21, 21));
+                return View(new Display
+                    {
+                        ScreenSize = new Models.LocalArea.ScreenSize
+                        {
+                            Height = 21,
+                            Width = 21
+                        }
+                    });
 			}
 		}
 	}

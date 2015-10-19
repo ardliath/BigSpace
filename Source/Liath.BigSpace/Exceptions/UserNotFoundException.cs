@@ -12,7 +12,7 @@ namespace Liath.BigSpace.Exceptions
 
 		public UserNotFoundException(string username)
 		{
-			if (username == null) throw new ArgumentNullException(nameof(username));
+			if (username == null) throw new ArgumentNullException("username");
 
 			Username = username;
 		}

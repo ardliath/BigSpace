@@ -28,7 +28,7 @@ namespace Liath.BigSpace.Implementations
 
 	    public LocalAreaViewResult FindLocalSystems(ScreenSize screenSize)
 	    {
-		    if (screenSize == null) throw new ArgumentNullException(nameof(screenSize));
+		    if (screenSize == null) throw new ArgumentNullException("screenSize");
 
 		    var currentUser = _securityManager.GetCurrentUserAccount();
 		    if (currentUser == null) throw new CurrentUserNotFoundException();
