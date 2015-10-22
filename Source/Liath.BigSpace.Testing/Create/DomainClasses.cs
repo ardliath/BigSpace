@@ -32,5 +32,15 @@ namespace Liath.BigSpace.Testing.Create
                 Coordinates = coordinates ?? new Coordinates()
             };
         }
+
+        public static Coordinates Coordinates(int x = 12, int y = 150, int z = -3)
+        {
+            return new Coordinates
+            {
+                X = x,
+                Y = y,
+                Z = z
+            };
+        }
     }
 }

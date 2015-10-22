@@ -55,8 +55,6 @@ namespace Liath.BigSpace.Tests.NavigationManagerTests
             Assert.AreEqual(number, result.SolarSystems.Count());
         }
 
-
-
         [Test]
         public void SolarSystem_ID_is_returned_correctly()
         {
@@ -77,6 +75,24 @@ namespace Liath.BigSpace.Tests.NavigationManagerTests
             var result = manager.FindLocalSystems(Create.DomainClasses.ScreenSize());
 
             Assert.AreEqual(solarSystem.Name, result.SolarSystems.Single().Name);
+        }
+
+        [Test]
+        public void SolarSystem_coordinates_are_returned_correctly()
+        {
+            var solarSystem = Create.DomainClasses.SolarSystem(coordinates: Create.DomainClasses.Coordinates(7, 4, 8));
+            var manager = CreateNavigationManagerToReturnSolarSystem(solarSystem);
+
+            var result = manager.FindLocalSystems(Create.DomainClasses.ScreenSize());
+
+            AssertCoordinatesAreCorrect(solarSystem, result);
+        }
+
+        private static void AssertCoordinatesAreCorrect(SolarSystem solarSystem, LocalAreaViewResult result)
+        {
+            Assert.AreEqual(solarSystem.Coordinates.X, result.SolarSystems.Single().Coordinates.X);
+            Assert.AreEqual(solarSystem.Coordinates.Y, result.SolarSystems.Single().Coordinates.Y);
+            Assert.AreEqual(solarSystem.Coordinates.Z, result.SolarSystems.Single().Coordinates.Z);
         }
 
         private static NavigationManager CreateNavigationManagerToReturnSolarSystem(SolarSystem solarSystem)
