@@ -88,6 +88,63 @@ namespace Liath.BigSpace.Tests.NavigationManagerTests
             AssertCoordinatesAreCorrect(solarSystem, result);
         }
 
+        [Test]
+        public void ScreenOffset_coordinates_should_be_calculated_correctly_tiny_screen_at_origin()
+        {
+            var origin = Create.DomainClasses.Coordinates(0, 0, 0);
+            var userAccount = Create.DomainClasses.UserAccount(focusCoordinates: origin);
+            var solarSystem = Create.DomainClasses.SolarSystem(coordinates: origin);
+            var manager = CreateNavigationManagerToReturnSolarSystem(solarSystem, userAccount);
+
+            var result = manager.FindLocalSystems(Create.DomainClasses.ScreenSize(3, 3));
+
+            AssertOffsetCoordinatesAreCorrect(1, 1, result);
+        }
+
+        [Test]
+        public void ScreenOffset_coordinates_should_be_calculated_correctly_normal_screen_at_origin()
+        {
+            var origin = Create.DomainClasses.Coordinates(5, 2, 0);
+            var userAccount = Create.DomainClasses.UserAccount(focusCoordinates: origin);
+            var solarSystem = Create.DomainClasses.SolarSystem(coordinates: origin);
+            var manager = CreateNavigationManagerToReturnSolarSystem(solarSystem, userAccount);
+
+            var result = manager.FindLocalSystems(Create.DomainClasses.ScreenSize(21, 21));
+
+            AssertOffsetCoordinatesAreCorrect(10, 10, result);
+        }
+
+        [Test]
+        public void ScreenOffset_coordinates_should_be_calculated_correctly()
+        {
+            var userAccount = Create.DomainClasses.UserAccount(focusCoordinates: Create.DomainClasses.Coordinates(11, 11, 0));
+            var solarSystem = Create.DomainClasses.SolarSystem(coordinates: Create.DomainClasses.Coordinates(12, 17, -3));
+            var manager = CreateNavigationManagerToReturnSolarSystem(solarSystem, userAccount);
+
+            var result = manager.FindLocalSystems(Create.DomainClasses.ScreenSize(21, 21));
+
+            AssertOffsetCoordinatesAreCorrect(11, 16, result);
+        }
+
+        [Test]
+        public void ScreenOffset_coordinates_should_be_calculated_correctly2()
+        {
+            var userAccount = Create.DomainClasses.UserAccount(focusCoordinates: Create.DomainClasses.Coordinates(100, 150, 0));
+            var solarSystem = Create.DomainClasses.SolarSystem(coordinates: Create.DomainClasses.Coordinates(98, 155, 0));
+            var manager = CreateNavigationManagerToReturnSolarSystem(solarSystem, userAccount);
+
+            var result = manager.FindLocalSystems(Create.DomainClasses.ScreenSize(21, 21));
+
+            AssertOffsetCoordinatesAreCorrect(8, 15, result);
+        }
+
+        private static void AssertOffsetCoordinatesAreCorrect(int x, int y, LocalAreaViewResult result)
+        {
+            var screenOffset = result.SolarSystems.Single().ScreenOffset;
+            Assert.AreEqual(x, screenOffset.X, "ScreenOffset X was incorrect");
+            Assert.AreEqual(y, screenOffset.Y, "ScreenOffset Y was incorrect");
+        }
+
         private static void AssertCoordinatesAreCorrect(SolarSystem solarSystem, LocalAreaViewResult result)
         {
             Assert.AreEqual(solarSystem.Coordinates.X, result.SolarSystems.Single().Coordinates.X);
@@ -95,10 +152,10 @@ namespace Liath.BigSpace.Tests.NavigationManagerTests
             Assert.AreEqual(solarSystem.Coordinates.Z, result.SolarSystems.Single().Coordinates.Z);
         }
 
-        private static NavigationManager CreateNavigationManagerToReturnSolarSystem(SolarSystem solarSystem)
+        private static NavigationManager CreateNavigationManagerToReturnSolarSystem(SolarSystem solarSystem, UserAccount userAccount = null)
         {
             var securityManager = new Mock<ISecurityManager>();
-            securityManager.SetupGetCurrentUserAccountToReturnUserAccount();
+            securityManager.SetupGetCurrentUserAccountToReturnUserAccount(userAccount);
             var solarSystems = new Mock<ISolarSystems>();
             solarSystems.SetupFindSystemsInLocalArea(solarSystem);
             var manager = Create.BusinessLogicClass.NavigationManager(securityManager.Object, solarSystems.Object);

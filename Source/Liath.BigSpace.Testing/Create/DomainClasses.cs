@@ -15,11 +15,11 @@ namespace Liath.BigSpace.Testing.Create
                 width.HasValue ? width.Value : 21);
         }
 
-        public static UserAccount UserAccount()
+        public static UserAccount UserAccount(Coordinates focusCoordinates = null)
         {
             return new UserAccount
             {
-                FocusCoordinates = new Coordinates()
+                FocusCoordinates = focusCoordinates ?? new Coordinates()
             };
         }
 

@@ -17,9 +17,9 @@ namespace Liath.BigSpace.Testing.Extensions.BusinessLogicExtensions
             return securityManager;
         }
 
-        public static Mock<ISecurityManager> SetupGetCurrentUserAccountToReturnUserAccount(this Mock<ISecurityManager> securityManager)
+        public static Mock<ISecurityManager> SetupGetCurrentUserAccountToReturnUserAccount(this Mock<ISecurityManager> securityManager, UserAccount userAccountResult = null)
         {
-            var userAccount = Create.DomainClasses.UserAccount();
+            var userAccount = userAccountResult ?? Create.DomainClasses.UserAccount();
             securityManager.Setup(x => x.GetCurrentUserAccount()).Returns(userAccount);
             return securityManager;
         }
