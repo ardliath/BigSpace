@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{220E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liath.BigSpace.Tests", "Liath.BigSpace.Tests\Liath.BigSpace.Tests.csproj", "{D5F888D1-4E15-4C7C-A87A-484C753DEE44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liath.BigSpace.Testing", "Liath.BigSpace.Testing\Liath.BigSpace.Testing.csproj", "{7F98EB4F-8A06-40D8-B430-A24D77E6B73E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,11 +61,16 @@ Global
 		{D5F888D1-4E15-4C7C-A87A-484C753DEE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5F888D1-4E15-4C7C-A87A-484C753DEE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5F888D1-4E15-4C7C-A87A-484C753DEE44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F98EB4F-8A06-40D8-B430-A24D77E6B73E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F98EB4F-8A06-40D8-B430-A24D77E6B73E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F98EB4F-8A06-40D8-B430-A24D77E6B73E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F98EB4F-8A06-40D8-B430-A24D77E6B73E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D5F888D1-4E15-4C7C-A87A-484C753DEE44} = {042ADBF4-4ED4-45EA-AF7B-4132D7A0FEDC}
+		{7F98EB4F-8A06-40D8-B430-A24D77E6B73E} = {042ADBF4-4ED4-45EA-AF7B-4132D7A0FEDC}
 	EndGlobalSection
 EndGlobal
