@@ -12,6 +12,7 @@ using Liath.BigSpace.Exceptions;
 using Liath.BigSpace.Testing.Extensions.BusinessLogicExtensions;
 using Liath.BigSpace.Testing.Extensions.DataAccessExtensions;
 using Liath.BigSpace.DataAccess.Definitions;
+using Liath.BigSpace.Implementations;
 
 namespace Liath.BigSpace.Tests.NavigationManagerTests
 {
@@ -52,6 +53,40 @@ namespace Liath.BigSpace.Tests.NavigationManagerTests
             var result = manager.FindLocalSystems(Create.DomainClasses.ScreenSize());
 
             Assert.AreEqual(number, result.SolarSystems.Count());
+        }
+
+
+
+        [Test]
+        public void SolarSystem_ID_is_returned_correctly()
+        {
+            var solarSystem = Create.DomainClasses.SolarSystem(7);
+            var manager = CreateNavigationManagerToReturnSolarSystem(solarSystem);
+
+            var result = manager.FindLocalSystems(Create.DomainClasses.ScreenSize());
+
+            Assert.AreEqual(solarSystem.SolarSystemID, result.SolarSystems.Single().SolarSystemID);
+        }
+
+        [Test]
+        public void SolarSystem_name_is_returned_correctly()
+        {            
+            var solarSystem = Create.DomainClasses.SolarSystem(name: Guid.NewGuid().ToString());
+            var manager = CreateNavigationManagerToReturnSolarSystem(solarSystem);
+
+            var result = manager.FindLocalSystems(Create.DomainClasses.ScreenSize());
+
+            Assert.AreEqual(solarSystem.Name, result.SolarSystems.Single().Name);
+        }
+
+        private static NavigationManager CreateNavigationManagerToReturnSolarSystem(SolarSystem solarSystem)
+        {
+            var securityManager = new Mock<ISecurityManager>();
+            securityManager.SetupGetCurrentUserAccountToReturnUserAccount();
+            var solarSystems = new Mock<ISolarSystems>();
+            solarSystems.SetupFindSystemsInLocalArea(solarSystem);
+            var manager = Create.BusinessLogicClass.NavigationManager(securityManager.Object, solarSystems.Object);
+            return manager;
         }
     }
 }

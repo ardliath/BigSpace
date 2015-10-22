@@ -21,5 +21,11 @@ namespace Liath.BigSpace.Testing.Extensions.DataAccessExtensions
             solarSystems.Setup(x => x.FindSystemsInLocalArea(It.IsAny<LocalAreaView>())).Returns(responses);
             return solarSystems;
         }
+
+        public static Mock<ISolarSystems> SetupFindSystemsInLocalArea(this Mock<ISolarSystems> solarSystems, params SolarSystem[] solarSystemsToReturn)
+        {
+            solarSystems.Setup(x => x.FindSystemsInLocalArea(It.IsAny<LocalAreaView>())).Returns(solarSystemsToReturn);
+            return solarSystems;
+        }
     }
 }

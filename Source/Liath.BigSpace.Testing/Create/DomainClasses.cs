@@ -23,11 +23,13 @@ namespace Liath.BigSpace.Testing.Create
             };
         }
 
-        public static SolarSystem SolarSystem()
+        public static SolarSystem SolarSystem(int id = 5, string name = null, Coordinates coordinates = null)
         {
             return new SolarSystem
             {
-                Coordinates = new Coordinates()
+                SolarSystemID = id,
+                Name = name ?? Guid.NewGuid().ToString(),
+                Coordinates = coordinates ?? new Coordinates()
             };
         }
     }
