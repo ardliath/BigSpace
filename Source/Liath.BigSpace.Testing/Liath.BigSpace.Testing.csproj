@@ -47,6 +47,8 @@
     </Compile>
     <Compile Include="Create\BusinessLogicClass.cs" />
     <Compile Include="Create\DomainClasses.cs" />
+    <Compile Include="Extensions\BusinessLogicExtensions\SecurityManagerExtensions.cs" />
+    <Compile Include="Extensions\DataAccessExtensions\SolarSystemExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

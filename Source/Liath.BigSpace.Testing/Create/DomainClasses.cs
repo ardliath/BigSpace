@@ -14,5 +14,21 @@ namespace Liath.BigSpace.Testing.Create
             return new ScreenSize(height.HasValue ? height.Value : 21,
                 width.HasValue ? width.Value : 21);
         }
+
+        public static UserAccount UserAccount()
+        {
+            return new UserAccount
+            {
+                FocusCoordinates = new Coordinates()
+            };
+        }
+
+        public static SolarSystem SolarSystem()
+        {
+            return new SolarSystem
+            {
+                Coordinates = new Coordinates()
+            };
+        }
     }
 }

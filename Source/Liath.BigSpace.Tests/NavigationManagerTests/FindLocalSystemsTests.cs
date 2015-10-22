@@ -9,6 +9,9 @@ using Moq;
 using Liath.BigSpace.Definitions;
 using Liath.BigSpace.Domain;
 using Liath.BigSpace.Exceptions;
+using Liath.BigSpace.Testing.Extensions.BusinessLogicExtensions;
+using Liath.BigSpace.Testing.Extensions.DataAccessExtensions;
+using Liath.BigSpace.DataAccess.Definitions;
 
 namespace Liath.BigSpace.Tests.NavigationManagerTests
 {
@@ -27,10 +30,28 @@ namespace Liath.BigSpace.Tests.NavigationManagerTests
         public void CurrentUserNotFoundException_is_thrown_if_current_user_cannot_be_found()
         {
             var securityManager = new Mock<ISecurityManager>();
-            securityManager.Setup(x => x.GetCurrentUserAccount()).Returns<UserAccount>(null);
+            securityManager.SetupGetCurrentUserAccountToReturnNoUserAccount();
             var manager = Create.BusinessLogicClass.NavigationManager(securityManager.Object);
 
             Assert.Throws<CurrentUserNotFoundException>(() => manager.FindLocalSystems(Create.DomainClasses.ScreenSize()));
+        }
+
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(5)]
+        [TestCase(20)]
+        [TestCase(100)]
+        public void All_located_solarSystems_are_returned(int number)
+        {
+            var securityManager = new Mock<ISecurityManager>();
+            securityManager.SetupGetCurrentUserAccountToReturnUserAccount();
+            var solarSystems = new Mock<ISolarSystems>();
+            solarSystems.SetupFindSystemsInLocalArea(number);
+            var manager = Create.BusinessLogicClass.NavigationManager(securityManager.Object, solarSystems.Object);
+
+            var result = manager.FindLocalSystems(Create.DomainClasses.ScreenSize());
+
+            Assert.AreEqual(number, result.SolarSystems.Count());
         }
     }
 }
