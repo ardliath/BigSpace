@@ -59,5 +59,35 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
 			return solarSystems;
 		}
-	}
+
+
+        public SolarSystem GetSolarSystem(int id)
+        {
+            var query = "SELECT SolarSystemID, Name, X, Y, Z FROM SolarSystems WHERE SolarSystemID = @ID";
+
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
+            {
+                cmd.AddParameter("ID", DbType.Int64, id);
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        return new SolarSystem
+                        {
+                            SolarSystemID = dr.GetInt64("SolarSystemID"),
+                            Name = dr.GetString("Name"),
+                            Coordinates = new Coordinates
+                            {
+                                X = dr.GetInt64("X"),
+                                Y = dr.GetInt64("Y"),
+                                Z = dr.GetInt64("Z")
+                            }
+                        };
+                    }
+                    return null;
+                }
+            }
+        }
+    }
 }
