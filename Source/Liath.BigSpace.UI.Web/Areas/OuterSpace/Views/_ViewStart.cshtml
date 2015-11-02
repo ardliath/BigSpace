@@ -1,3 +1,6 @@
 ﻿@{
-    Layout = "~/Areas/OuterSpace/Views/Shared/_Layout.cshtml";
+    if(!this.IsAjax)
+    {
+        Layout = "~/Areas/OuterSpace/Views/Shared/_Layout.cshtml";
+    }
 }

@@ -115,6 +115,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\OuterSpace\Views\SolarSystem\Summary.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -130,9 +131,11 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\LocalAreaController.cs" />
+    <Compile Include="Areas\OuterSpace\Controllers\SolarSystemController.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\Display.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\ScreenSize.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\SystemSummary.cs" />
+    <Compile Include="Areas\OuterSpace\Models\SolarSystem\SolarSystemSummary.cs" />
     <Compile Include="Areas\OuterSpace\OuterSpaceAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

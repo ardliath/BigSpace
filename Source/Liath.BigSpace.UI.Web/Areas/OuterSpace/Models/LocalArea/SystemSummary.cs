@@ -10,5 +10,6 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.LocalArea
         public int X { get; set; }
         public int Y { get; set; }
         public string Name { get; set; }
+        public Int64 ID { get; set; }
     }
 }

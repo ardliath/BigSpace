@@ -39,6 +39,7 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
                         },
                         Systems = localSystems.SolarSystems.Select(s => new SystemSummary
                         {
+                            ID = s.SolarSystemID,
                             Name = s.Name,
                             X = s.ScreenOffset.X,
                             Y = s.ScreenOffset.Y
