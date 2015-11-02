@@ -13,15 +13,15 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
     public class SolarSystemController : Controller
     {
         private ISessionManager _sessionManager;
-        private ISolarSystems _solarSystemDataAccess;
+        private INavigationManager _navigationManager;
 
-        public SolarSystemController(ISessionManager sessionManager, ISolarSystems solarSystemDataAccess)
+        public SolarSystemController(ISessionManager sessionManager, INavigationManager navigationManager)
         {
             if (sessionManager == null) throw new ArgumentNullException("sessionManager");
-            if (solarSystemDataAccess == null) throw new ArgumentNullException("solarSystemDataAccess");
+            if (navigationManager == null) throw new ArgumentNullException("navigationManager");
 
             _sessionManager = sessionManager;
-            _solarSystemDataAccess = solarSystemDataAccess;
+            _navigationManager = navigationManager;
         }
 
         [HttpGet]
@@ -29,11 +29,16 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
         {
             using (_sessionManager.CreateUnitOfWork())
             {
-                var solarSystem = _solarSystemDataAccess.GetSolarSystem(id);
+                var solarSystem = _navigationManager.GetSolarSystemDetails(id);
 
                 return View(new SolarSystemSummary
                 {
-                    Name = solarSystem.Name
+                    Name = solarSystem.Name,
+                    Ships = solarSystem.Ships.Select(s => new ShipSummary
+                    {
+                        ID = s.ShipID,
+                        Name = s.Name
+                    })
                 });
             }
         }

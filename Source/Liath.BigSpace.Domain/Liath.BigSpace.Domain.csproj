@@ -52,7 +52,9 @@
     <Compile Include="RelativeSolarSystem.cs" />
     <Compile Include="ScreenOffSet.cs" />
     <Compile Include="ScreenSize.cs" />
+    <Compile Include="Ship.cs" />
     <Compile Include="SolarSystem.cs" />
+    <Compile Include="SolarSystemDetails.cs" />
     <Compile Include="UserAccount.cs" />
   </ItemGroup>
   <ItemGroup>

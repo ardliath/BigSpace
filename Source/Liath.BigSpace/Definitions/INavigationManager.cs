@@ -9,6 +9,7 @@ namespace Liath.BigSpace.Definitions
 {
     public interface INavigationManager
     {
-		LocalAreaViewResult FindLocalSystems(ScreenSize screenSize);        
+		LocalAreaViewResult FindLocalSystems(ScreenSize screenSize);
+        SolarSystemDetails GetSolarSystemDetails(int id);
     }
 }

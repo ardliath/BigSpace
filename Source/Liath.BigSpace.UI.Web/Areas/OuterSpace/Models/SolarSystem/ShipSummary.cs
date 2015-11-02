@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.SolarSystem
 {
-    public class SolarSystemSummary
+    public class ShipSummary
     {
+        public int ID { get; set; }
         public string Name { get; set; }
-        public IEnumerable<ShipSummary> Ships { get; set; }
     }
 }

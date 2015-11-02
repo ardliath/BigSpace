@@ -17,13 +17,17 @@ namespace Liath.BigSpace.Implementations
         private ISecurityManager _securityManager;
 	    private readonly ISolarSystems _solarSystems;
 	    private static ILogger logger = LogManager.GetCurrentClassLogger();
+        private IShips _ships;
 
-        public NavigationManager(ISecurityManager securityManager, ISolarSystems solarSystems)
+        public NavigationManager(ISecurityManager securityManager, ISolarSystems solarSystems, IShips ships)
         {
             if (securityManager == null) throw new ArgumentNullException("securityManager");
 	        if (solarSystems == null) throw new ArgumentNullException("solarSystems");
+            if (ships == null) throw new ArgumentNullException("ships");
+
 	        _securityManager = securityManager;
 	        _solarSystems = solarSystems;
+            _ships = ships;
         }
 
 	    public LocalAreaViewResult FindLocalSystems(ScreenSize screenSize)
@@ -52,5 +56,22 @@ namespace Liath.BigSpace.Implementations
 
 		    return new LocalAreaViewResult(currentUser.FocusCoordinates, screenSize, relative);
 	    }
+
+        public SolarSystemDetails GetSolarSystemDetails(int id)
+        {
+            var solarSystem = _solarSystems.GetSolarSystem(id);
+            if(solarSystem != null)
+            {                
+                return new SolarSystemDetails
+                {
+                    Coordinates = solarSystem.Coordinates,
+                    Name = solarSystem.Name,
+                    SolarSystemID = solarSystem.SolarSystemID,
+                    Ships = _ships.ListShipsAtSolarSystem(id)
+                };
+            }
+
+            return null;
+        }
     }
 }
