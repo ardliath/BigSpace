@@ -70,7 +70,14 @@ namespace Liath.BigSpace.DataAccess.Implementations
         {
             if (ship == null) throw new ArgumentNullException("ship");
 
-            throw new NotImplementedException();
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("UPDATE Ships SET Name = @Name, IsSelected = @IsSelected WHERE ShipID = @ID"))
+            {
+                cmd.AddParameter("ID", DbType.Int32, ship.ShipID);
+                cmd.AddParameter("Name", DbType.String, ship.Name);
+                cmd.AddParameter("IsSelected", DbType.Boolean, ship.IsSelected);
+
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }
