@@ -34,6 +34,7 @@ create table Ships
 	Name nvarchar(255) not null,
 	SolarSystemID bigint null,
 	UserAccountID int not null,
+	IsSelected bit not null,
 	TS timestamp not null,
 	constraint PK_Ships primary key (ShipID),
 	constraint FK_Ships_SolarSystems foreign key (SolarSystemID) references SolarSystems(SolarSystemID),

@@ -6,7 +6,9 @@
     @foreach (var ship in @Model.Ships)
     {
         <tr>
-            <td>@ship.Name</td>
+            <td class="@ship.CellClass">
+                @ship.Name
+            </td>
         </tr>
     }
 </table>

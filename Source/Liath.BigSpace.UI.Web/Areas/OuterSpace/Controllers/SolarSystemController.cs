@@ -37,7 +37,8 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
                     Ships = solarSystem.Ships.Select(s => new ShipSummary
                     {
                         ID = s.ShipID,
-                        Name = s.Name
+                        Name = s.Name,
+                        IsSelected = s.IsSelected
                     })
                 });
             }

@@ -14,7 +14,7 @@
                     <tr>
                         @for (int column = 0; column < Model.ScreenSize.Width; column++)
                         {
-                            <td style="width: 25px; height: 25px">
+                            <td style="width: 25px; height: 25px;">
                                 @{
                             var system = Model.Systems.SingleOrDefault(s => s.X == column && s.Y == row);
                             if (system != null)

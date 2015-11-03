@@ -23,5 +23,10 @@ namespace Liath.BigSpace.DataAccess.Extensions
         {
             return dr.GetInt64(dr.GetOrdinal(name));
         }
+
+        public static bool GetBoolean(this IDataReader dr, string name)
+        {
+            return dr.GetBoolean(dr.GetOrdinal(name));
+        }
     }
 }
