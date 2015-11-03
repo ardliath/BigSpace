@@ -41,5 +41,19 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
             return ships;
         }
+
+
+        public Ship GetShip(int shipID)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void Save(Ship ship)
+        {
+            if (ship == null) throw new ArgumentNullException("ship");
+
+            throw new NotImplementedException();
+        }
     }
 }

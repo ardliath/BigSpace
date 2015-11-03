@@ -20,12 +20,22 @@ namespace Liath.BigSpace.Implementations
 
         public void SelectShip(int id)
         {
-            throw new NotImplementedException();
+            this.LoadShipAndSetSelectedTo(true, id);
+        }
+
+        private void LoadShipAndSetSelectedTo(bool newSelectedValue, int shipID)
+        {
+            var ship = _ships.GetShip(shipID);
+            if(ship != null)
+            {
+                ship.IsSelected = newSelectedValue;
+                _ships.Save(ship);
+            }
         }
 
         public void DeSelectShip(int id)
         {
-            throw new NotImplementedException();
+            this.LoadShipAndSetSelectedTo(false, id);
         }
     }
 }

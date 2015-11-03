@@ -10,5 +10,9 @@ namespace Liath.BigSpace.DataAccess.Definitions
     public interface IShips
     {
         IEnumerable<Ship> ListShipsAtSolarSystem(Int64 solarSystemID);
+
+        Ship GetShip(int shipID);
+
+        void Save(Ship ship);
     }
 }
