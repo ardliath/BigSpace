@@ -22,7 +22,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
         {
             var ships = new List<Ship>();
 
-            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("SELECT ShipID, Name, SolarSystemID, UserAccountID, IsSelected FROM Ships WHERE ShipID = @ID"))
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("SELECT ShipID, Name, SolarSystemID, UserAccountID, IsSelected FROM Ships WHERE SolarSystemID = @ID"))
             {
                 cmd.AddParameter("ID", DbType.Int64, solarSystemID);
                 using (var dr = cmd.ExecuteReader())
@@ -45,7 +45,24 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
         public Ship GetShip(int shipID)
         {
-            throw new NotImplementedException();
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("SELECT ShipID, Name, SolarSystemID, UserAccountID, IsSelected FROM Ships WHERE ShipID = @ID"))
+            {
+                cmd.AddParameter("ID", DbType.Int32, shipID);
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        return new Ship
+                        {
+                            ShipID = dr.GetInt32("ShipID"),
+                            Name = dr.GetString("Name"),
+                            IsSelected = dr.GetBoolean("IsSelected")
+                        };
+                    }
+
+                    return null;
+                }
+            }
         }
 
 
