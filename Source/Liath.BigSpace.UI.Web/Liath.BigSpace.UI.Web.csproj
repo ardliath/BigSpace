@@ -131,6 +131,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\LocalAreaController.cs" />
+    <Compile Include="Areas\OuterSpace\Controllers\ShipController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\SolarSystemController.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\Display.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\ScreenSize.cs" />
@@ -161,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\OuterSpace\Views\Ship\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Liath.BigSpace.Configuration\Liath.BigSpace.Configuration.csproj">

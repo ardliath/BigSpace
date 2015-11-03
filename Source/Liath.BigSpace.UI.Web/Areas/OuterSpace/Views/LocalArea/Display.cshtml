@@ -51,11 +51,21 @@
             });
 
             $('#Details').on('click', '.ShipSummary', function () {
+                var shipID = $(this).attr('ShipID');
+                var url = '';
                 if($(this).hasClass('SelectedShip')){
                     $(this).removeClass('SelectedShip');
+                    url = '@Url.RouteUrl("Default", new {Area = "OuterSpace", Controller = "Ship", Action = "DeSelectShip"})';
                 } else {
                     $(this).addClass('SelectedShip');
+                    url = '@Url.RouteUrl("Default", new { Area = "OuterSpace", Controller = "Ship", Action = "SelectShip" })';
                 }
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: { id: shipID }
+                });
             });
         });
     </script>
