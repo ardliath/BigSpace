@@ -15,7 +15,8 @@ namespace Liath.BigSpace.Testing.Create
         public static NavigationManager NavigationManager(ISecurityManager securityManager = null, ISolarSystems solarSystems = null)
         {
             return new NavigationManager(securityManager ?? Mock.Of<ISecurityManager>(),
-                solarSystems ?? Mock.Of<ISolarSystems>());
+                solarSystems ?? Mock.Of<ISolarSystems>(),
+                Mock.Of<IShips>());
         }
     }
 }
