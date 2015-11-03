@@ -40,17 +40,24 @@
 @section Scripts
 {
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('.star').click(function () {
                 var id = $(this).attr('SolarSystemID');
                 var route = '@Url.RouteUrl("Default", new { Area = "OuterSpace", Controller = "SolarSystem", Action = "Summary" })';
                 var url = route + '/' + id;
-                $.get(url, function (data) {                    
+                $.get(url, function (data) {
                     $('#Details').html(data);
                 });
-                
             });
-        })
+
+            $('#Details').on('click', '.ShipSummary', function () {
+                if($(this).hasClass('SelectedShip')){
+                    $(this).removeClass('SelectedShip');
+                } else {
+                    $(this).addClass('SelectedShip');
+                }
+            });
+        });
     </script>
     <style type="text/css">
         .SelectedShip{text-decoration: underline;}

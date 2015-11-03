@@ -15,7 +15,7 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.SolarSystem
         {
             get
             {
-                return this.IsSelected ? "SelectedShip" : "NotSelectedShip";
+                return this.IsSelected ? "SelectedShip" : "";
             }
         }
     }
