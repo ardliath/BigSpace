@@ -28,5 +28,10 @@ namespace Liath.BigSpace.DataAccess.Extensions
         {
             return dr.GetBoolean(dr.GetOrdinal(name));
         }
+
+        public static DateTime GetDateTime(this IDataReader dr, string name)
+        {
+            return dr.GetDateTime(dr.GetOrdinal(name));
+        }
     }
 }
