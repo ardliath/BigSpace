@@ -1,31 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Liath.BigSpace.DataAccess.Extensions;
 
 namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 {
     public class BuildShipRepository : IJobChildRepository
     {
+        private ISolarSystems _solarSystems;
+        public BuildShipRepository(ISolarSystems solarSystems)
+        {
+            if (solarSystems == null) throw new ArgumentNullException("solarSystems");
+            _solarSystems = solarSystems;
+        }
+
         public IEnumerable<string> ColumnNames
         {
-            get { throw new NotImplementedException(); }
+            get { return new string[] { "SolarSystemID" }; }
         }
 
         public string TableName
         {
-            get { throw new NotImplementedException(); }
+            get { return "ShipBuilds"; }
         }
 
         public string PrimaryKeyColumnName
         {
-            get { throw new NotImplementedException(); }
+            get { return "JobID"; }
         }
 
-        public Job Create(System.Data.IDataReader dr, string alias)
+        public Job Create(IDataReader dr, string alias)
         {
-            throw new NotImplementedException();
+            var job = new BuildShip();
+
+            var solarSystemID = dr.GetInt64(string.Concat(alias, ".SolarSystemID"));
+            job.SolarSystem = _solarSystems.GetSolarSystem(solarSystemID);
+
+            return job;
         }
     }
 }

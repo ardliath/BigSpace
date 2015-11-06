@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Liath.BigSpace.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 {
     public class BuildShip : Job
     {
+        public SolarSystem SolarSystem { get; set; }
     }    
 }
