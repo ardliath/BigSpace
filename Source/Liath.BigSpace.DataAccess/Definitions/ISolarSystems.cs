@@ -10,6 +10,6 @@ namespace Liath.BigSpace.DataAccess.Definitions
 	public interface ISolarSystems
 	{
 		IEnumerable<SolarSystem> FindSystemsInLocalArea(LocalAreaView localAreaView);
-        SolarSystem GetSolarSystem(int id);
+        SolarSystem GetSolarSystem(Int64 id);
 	}
 }

@@ -61,7 +61,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 		}
 
 
-        public SolarSystem GetSolarSystem(int id)
+        public SolarSystem GetSolarSystem(Int64 id)
         {
             var query = "SELECT SolarSystemID, Name, X, Y, Z FROM SolarSystems WHERE SolarSystemID = @ID";
 

@@ -10,11 +10,11 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
     {
         IEnumerable<IJobChildRepository> _childJobRepositories;
 
-        public JobRepository()
+        public JobRepository(ISolarSystems solarSystems)
         {
             _childJobRepositories = new IJobChildRepository[] {
-                new BuildShipRepository(),
-                new JourneyRepository()
+                //new BuildShipRepository(),
+                new JourneyRepository(solarSystems)
             };
         }
 
