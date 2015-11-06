@@ -33,5 +33,10 @@ namespace Liath.BigSpace.DataAccess.Extensions
         {
             return dr.GetDateTime(dr.GetOrdinal(name));
         }
+
+        public static bool IsDBNull(this IDataReader dr, string name)
+        {
+            return dr.IsDBNull(dr.GetOrdinal(name));
+        }
     }
 }

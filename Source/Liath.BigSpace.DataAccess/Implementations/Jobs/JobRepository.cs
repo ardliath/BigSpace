@@ -68,7 +68,16 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 
         private IJobChildRepository LoadChildRepository(IDataReader dr)
         {
-            throw new NotImplementedException();
+            foreach(var childRepository in _childJobRepositories)
+            {
+                var pkColumn = string.Concat(this.CreateAlias(childRepository), ".", childRepository.PrimaryKeyColumnName);
+                if(!dr.IsDBNull(pkColumn))
+                {
+                    return childRepository;
+                }
+            }
+
+            return null;
         }
 
         private string CreateQuery()
