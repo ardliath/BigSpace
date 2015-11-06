@@ -80,9 +80,33 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
             return null;
         }
 
-        private string CreateQuery()
+        private string CreateQuery(string filter = null)
         {
-            throw new NotImplementedException();
+            var selectSB = new StringBuilder();
+            var joinSB = new StringBuilder();
+
+            selectSB.Append("SELECT b.JobID, b.StartTime, b.Duration");
+
+            foreach(var childRepository in _childJobRepositories)
+            {
+                var alias = this.CreateAlias(childRepository);
+                selectSB.AppendFormat(", {0}.{1}", alias, childRepository.PrimaryKeyColumnName);
+                foreach(var field in childRepository.ColumnNames)
+                {
+                    selectSB.AppendFormat(", {0}.{1}", alias, field);
+                }
+
+                joinSB.AppendLine();
+                joinSB.AppendFormat("JOIN {0} ON b.JobID = {1}.{2}", childRepository.TableName, alias, childRepository.PrimaryKeyColumnName);
+            }
+
+            joinSB.AppendLine();
+            selectSB.Append(" FROM Jobs b ");
+
+            var filterQuery = filter == null
+                ? null
+                : string.Concat(" WHERE ", filter);
+            return string.Concat(selectSB, joinSB, filterQuery);
         }
     }    
 }
