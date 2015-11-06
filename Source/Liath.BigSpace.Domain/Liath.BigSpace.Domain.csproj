@@ -46,6 +46,9 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Coordinates.cs" />
+    <Compile Include="Jobs\Job.cs" />
+    <Compile Include="Jobs\BuildShip.cs" />
+    <Compile Include="Jobs\Journey.cs" />
     <Compile Include="LocalAreaView.cs" />
     <Compile Include="LocalAreaViewResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

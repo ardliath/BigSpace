@@ -15,7 +15,7 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 		private INavigationManager _navigationManager;
 		private ISessionManager _sessionManager;
 
-		public LocalAreaController(ISessionManager sessionManager, INavigationManager navigationManager)
+        public LocalAreaController(ISessionManager sessionManager, INavigationManager navigationManager)
 		{
 			if (navigationManager == null) throw new ArgumentNullException("navigationManager");
 			if (sessionManager == null) throw new ArgumentNullException("sessionManager");

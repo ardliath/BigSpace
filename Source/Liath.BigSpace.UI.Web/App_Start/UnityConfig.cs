@@ -6,6 +6,7 @@ using Liath.BigSpace.Implementations;
 using Liath.BigSpace.Session;
 using Liath.BigSpace.Configuration;
 using Liath.BigSpace.DataAccess.Definitions;
+using Liath.BigSpace.DataAccess.Definitions.Jobs;
 
 namespace Liath.BigSpace.UI.Web.App_Start
 {
@@ -48,6 +49,10 @@ namespace Liath.BigSpace.UI.Web.App_Start
                 WithMappings.FromMatchingInterface,
                 WithName.Default,
                 WithLifetime.ContainerControlled);
+
+            //var allJobRepositories = container.ResolveAll<IJobRepository>();
+            //var parameter = new InjectionConstructor(allJobRepositories);
+            //container.RegisterType<IJobManager, JobManager>(parameter);
         }
     }
 }
