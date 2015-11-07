@@ -46,7 +46,7 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 
         private void LoadCoreProperties(Job job, IDataReader dr)
         {
-            job.JobID = dr.GetInt32("b.JobID");
+            job.JobID = dr.GetInt64("b.JobID");
             job.StartTime = dr.GetDateTime("b.StartTime");
             job.Duration = new TimeSpan(dr.GetInt64("b.Duration"));
         }

@@ -28,11 +28,36 @@ create table SolarSystems
 	constraint PK_SolarSystems primary key (SolarSystemID)
 )
 
+GO
+
+create table Jobs
+(
+	JobID bigint not null identity(1,1),
+	StartTime DateTime not null,
+	Duration bigint not null,
+	TS timestamp not null
+	constraint PK_Jobs primary key (JobID)
+)
+
+go
+
+create table Journeys
+(
+	JobID bigint not null,
+	StartSolarSystemID bigint not null,
+	EndSolarSystemID bigint not null,
+	constraint PK_Journeys primary key (JobID),
+	constraint FK_Journeys_Jobs foreign key (JobID) references Jobs(JobID),
+	constraint FK_Journeys_Start foreign key (StartSolarSystemID) references SolarSystems(SolarSystemID),
+	constraint FK_Journeys_End foreign key (EndSolarSystemID) references SolarSystems(SolarSystemID)
+)
+
 create table Ships
 (
 	ShipID int not null identity(1,1),
 	Name nvarchar(255) not null,
 	SolarSystemID bigint null,
+	JobID bigint null,
 	UserAccountID int not null,
 	IsSelected bit not null,
 	TS timestamp not null,
