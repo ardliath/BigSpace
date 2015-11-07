@@ -141,7 +141,22 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
         public IEnumerable<Ship> ListSelectedShips(int userAccountID)
         {
-            throw new NotImplementedException();
+            var ships = new List<Ship>();
+            var query = this.CreateSelectQuery("IsSelected = 1 and UserAccountID = @UserAccountID");
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
+            {
+                cmd.AddParameter("UserAccountID", DbType.Int32, userAccountID);
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ships.Add(this.InflateShip(dr));
+                    }
+                }
+            }
+
+            return ships;
         }
     }
 }
