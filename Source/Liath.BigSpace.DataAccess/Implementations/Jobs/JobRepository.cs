@@ -10,6 +10,7 @@ using Liath.BigSpace.DataAccess.Extensions;
 using Liath.BigSpace.Domain.Jobs;
 using Liath.BigSpace.Domain.DataAccessDefinitions.Jobs;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
+using Liath.BigSpace.DataAccess.Implementations.Jobs;
 
 namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 {
@@ -22,7 +23,7 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
         {
             _childJobRepositories = new IJobChildRepository[] {
                 //new BuildShipRepository(),
-                new JourneyRepository(ships)
+                new JourneyRepository(sessionManager, ships)
             };
         }
 

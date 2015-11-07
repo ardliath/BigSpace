@@ -8,13 +8,17 @@ using Liath.BigSpace.DataAccess.Extensions;
 using Liath.BigSpace.Domain.DataAccessDefinitions.Jobs;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
 using Liath.BigSpace.Domain.Jobs;
+using Liath.BigSpace.DataAccess.Implementations;
+using Liath.BigSpace.Session;
+using Liath.BigSpace.Domain;
 
-namespace Liath.BigSpace.DataAccess.Definitions.Jobs
+namespace Liath.BigSpace.DataAccess.Implementations.Jobs
 {
-    public class JourneyRepository : IJobChildRepository
+    public class JourneyRepository : JobChildRepositoryBase, IJobChildRepository, IJourneyRepository
     {        
         private IShips _ships;
-        public JourneyRepository(IShips ships)
+        public JourneyRepository(ISessionManager sessionManager, IShips ships)
+            :base(sessionManager)
         {     
             if (ships == null) throw new ArgumentNullException("ships");
 
@@ -45,5 +49,20 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 
             return journey;
         }
+
+        public Int64 CreateJourney(SolarSystem from, SolarSystem to, IEnumerable<Ship> ships, DateTime start, TimeSpan duration)
+        {
+            var jobID = this.CreateJob(start, duration);
+            using(var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("INSERT INTO Journeys (JobID, StartSolarSystemID, EndSolarSystemID) VALUES (@JobID, @StartSolarSystemID, @EndSolarSystemID)"))
+            {
+                cmd.AddParameter("JobID", DbType.Int64, jobID);
+                cmd.AddParameter("StartSolarSystemID", DbType.Int64, from.SolarSystemID);
+                cmd.AddParameter("EndSolarSystemID", DbType.Int64, to.SolarSystemID);
+
+                cmd.ExecuteNonQuery();
+
+                return jobID;
+            }
+        }        
     }
 }

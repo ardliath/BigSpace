@@ -49,6 +49,7 @@
     <Compile Include="Extensions\IDbCommandExtensions.cs" />
     <Compile Include="Implementations\DataAccessBase.cs" />
     <Compile Include="Implementations\Jobs\BuildShipRepository.cs" />
+    <Compile Include="Implementations\Jobs\JobChildRepositoryBase.cs" />
     <Compile Include="Implementations\Jobs\JobRepository.cs" />
     <Compile Include="Implementations\Jobs\JourneyRepository.cs" />
     <Compile Include="Implementations\Ships.cs" />

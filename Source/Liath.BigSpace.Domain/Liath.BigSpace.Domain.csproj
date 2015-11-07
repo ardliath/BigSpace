@@ -51,6 +51,7 @@
     <Compile Include="DataAccessDefinitions\IUsers.cs" />
     <Compile Include="DataAccessDefinitions\Jobs\IJobChildRepository.cs" />
     <Compile Include="DataAccessDefinitions\Jobs\IJobRepository.cs" />
+    <Compile Include="DataAccessDefinitions\Jobs\IJourneyRepository.cs" />
     <Compile Include="Jobs\Job.cs" />
     <Compile Include="Jobs\BuildShip.cs" />
     <Compile Include="Jobs\Journey.cs" />
