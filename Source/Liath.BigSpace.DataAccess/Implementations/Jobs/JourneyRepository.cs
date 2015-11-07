@@ -24,7 +24,7 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 
         public string TableName
         {
-            get { return "Journies"; }
+            get { return "Journeys"; }
         }
 
         public string PrimaryKeyColumnName

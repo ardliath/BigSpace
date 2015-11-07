@@ -17,5 +17,10 @@ namespace Liath.BigSpace.Implementations
             if (jobRepository == null) throw new ArgumentNullException("jobRepository");
             _jobRepositories = jobRepository;
         }
+
+        public void CompleteJobs()
+        {
+            var completedJobs = _jobRepositories.LoadCompletedJobs();
+        }
     }
 }

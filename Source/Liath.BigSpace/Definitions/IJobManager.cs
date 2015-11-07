@@ -8,5 +8,6 @@ namespace Liath.BigSpace.Definitions
 {
     public interface IJobManager
     {
+        void CompleteJobs();
     }
 }

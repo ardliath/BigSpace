@@ -23,7 +23,7 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
             };
         }
 
-        public IEnumerable<Job> LoadJobs()
+        public IEnumerable<Job> LoadCompletedJobs()
         {
             var jobs = new List<Job>();
             var query = this.CreateQuery();
@@ -97,7 +97,7 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
                 }
 
                 joinSB.AppendLine();
-                joinSB.AppendFormat("JOIN {0} ON b.JobID = {1}.{2}", childRepository.TableName, alias, childRepository.PrimaryKeyColumnName);
+                joinSB.AppendFormat("JOIN {0} {1} ON b.JobID = {1}.{2}", childRepository.TableName, alias, childRepository.PrimaryKeyColumnName);
             }
 
             joinSB.AppendLine();

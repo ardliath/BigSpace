@@ -8,6 +8,6 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 {
     public interface IJobRepository
     {
-        IEnumerable<Job> LoadJobs();
+        IEnumerable<Job> LoadCompletedJobs();
     }
 }
