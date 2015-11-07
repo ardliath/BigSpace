@@ -71,7 +71,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
         private string CreateSelectQuery(string filter = null)
         {
-            var sb = new StringBuilder("SELECT ShipID, Name, SolarSystemID, UserAccountID, IsSelected, SolarSystemID, ShipID FROM Ships ");
+            var sb = new StringBuilder("SELECT ShipID, Name, SolarSystemID, UserAccountID, IsSelected, SolarSystemID, JobID FROM Ships ");
             if(filter != null)
             {
                 sb.AppendFormat("WHERE {0}", filter);
