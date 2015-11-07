@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Liath.BigSpace.Domain;
 
-namespace Liath.BigSpace.DataAccess.Definitions
+namespace Liath.BigSpace.Domain.DataAccessDefinitions
 {
 	public interface ISolarSystems
 	{

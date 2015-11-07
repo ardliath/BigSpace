@@ -7,6 +7,8 @@ using Liath.BigSpace.Session;
 using Liath.BigSpace.Configuration;
 using Liath.BigSpace.DataAccess.Definitions;
 using Liath.BigSpace.DataAccess.Definitions.Jobs;
+using Liath.BigSpace.Domain.DataAccessDefinitions;
+using Liath.BigSpace.DataAccess.Implementations;
 
 namespace Liath.BigSpace.UI.Web.App_Start
 {
@@ -44,6 +46,7 @@ namespace Liath.BigSpace.UI.Web.App_Start
             container.RegisterTypes(AllClasses.FromAssemblies(
                     typeof(ISessionManager).Assembly,
                     typeof(INavigationManager).Assembly,
+                    typeof(Users).Assembly,
                     typeof(IUsers).Assembly,
                     typeof(IConfigurationManager).Assembly),
                 WithMappings.FromMatchingInterface,

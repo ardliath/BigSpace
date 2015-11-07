@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Liath.BigSpace.DataAccess.Extensions;
+using Liath.BigSpace.Domain.DataAccessDefinitions;
 
 namespace Liath.BigSpace.DataAccess.Implementations
 {

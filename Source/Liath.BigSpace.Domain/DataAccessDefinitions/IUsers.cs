@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Liath.BigSpace.DataAccess.Definitions
+namespace Liath.BigSpace.Domain.DataAccessDefinitions
 {
     public interface IUsers
     {

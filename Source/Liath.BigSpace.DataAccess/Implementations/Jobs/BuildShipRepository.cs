@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Liath.BigSpace.DataAccess.Extensions;
+using Liath.BigSpace.Domain.DataAccessDefinitions.Jobs;
+using Liath.BigSpace.Domain.DataAccessDefinitions;
+using Liath.BigSpace.Domain.Jobs;
 
 namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 {

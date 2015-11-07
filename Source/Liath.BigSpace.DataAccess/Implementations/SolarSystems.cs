@@ -8,6 +8,7 @@ using Liath.BigSpace.DataAccess.Definitions;
 using Liath.BigSpace.DataAccess.Extensions;
 using Liath.BigSpace.Domain;
 using Liath.BigSpace.Session;
+using Liath.BigSpace.Domain.DataAccessDefinitions;
 
 namespace Liath.BigSpace.DataAccess.Implementations
 {

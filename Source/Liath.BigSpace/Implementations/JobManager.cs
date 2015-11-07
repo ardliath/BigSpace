@@ -1,5 +1,6 @@
 ﻿using Liath.BigSpace.DataAccess.Definitions.Jobs;
 using Liath.BigSpace.Definitions;
+using Liath.BigSpace.Domain.DataAccessDefinitions.Jobs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,10 @@ namespace Liath.BigSpace.Implementations
         public void CompleteJobs()
         {
             var completedJobs = _jobRepositories.LoadCompletedJobs();
+            foreach(var job in completedJobs)
+            {
+                job.Complete();
+            }
         }
     }
 }

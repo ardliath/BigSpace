@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Liath.BigSpace.DataAccess.Definitions;
 using Liath.BigSpace.Domain;
 using Liath.BigSpace.Exceptions;
+using Liath.BigSpace.Domain.DataAccessDefinitions;
 
 namespace Liath.BigSpace.Implementations
 {

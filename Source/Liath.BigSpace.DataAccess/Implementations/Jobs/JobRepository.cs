@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Liath.BigSpace.DataAccess.Extensions;
+using Liath.BigSpace.Domain.Jobs;
+using Liath.BigSpace.Domain.DataAccessDefinitions.Jobs;
+using Liath.BigSpace.Domain.DataAccessDefinitions;
 
 namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 {
@@ -14,12 +17,12 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
     {
         IEnumerable<IJobChildRepository> _childJobRepositories;
 
-        public JobRepository(ISessionManager sessionManager, ISolarSystems solarSystems)
+        public JobRepository(ISessionManager sessionManager, ISolarSystems solarSystems, IShips ships)
             : base(sessionManager)
         {
             _childJobRepositories = new IJobChildRepository[] {
                 //new BuildShipRepository(),
-                new JourneyRepository(solarSystems)
+                new JourneyRepository(solarSystems, ships)
             };
         }
 

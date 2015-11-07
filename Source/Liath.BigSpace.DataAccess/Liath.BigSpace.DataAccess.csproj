@@ -45,11 +45,6 @@
     <Compile Include="..\Liath.BigSpace\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Definitions\IShips.cs" />
-    <Compile Include="Definitions\ISolarSystems.cs" />
-    <Compile Include="Definitions\IUsers.cs" />
-    <Compile Include="Definitions\Jobs\IJobChildRepository.cs" />
-    <Compile Include="Definitions\Jobs\IJobRepository.cs" />
     <Compile Include="Extensions\IDataReaderExtensions.cs" />
     <Compile Include="Extensions\IDbCommandExtensions.cs" />
     <Compile Include="Implementations\DataAccessBase.cs" />

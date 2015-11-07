@@ -13,6 +13,7 @@ using Liath.BigSpace.Testing.Extensions.BusinessLogicExtensions;
 using Liath.BigSpace.Testing.Extensions.DataAccessExtensions;
 using Liath.BigSpace.DataAccess.Definitions;
 using Liath.BigSpace.Implementations;
+using Liath.BigSpace.Domain.DataAccessDefinitions;
 
 namespace Liath.BigSpace.Tests.NavigationManagerTests
 {

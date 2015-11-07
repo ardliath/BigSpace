@@ -1,6 +1,7 @@
 ﻿using Liath.BigSpace.DataAccess.Definitions;
 using Liath.BigSpace.Definitions;
 using Liath.BigSpace.Domain;
+using Liath.BigSpace.Domain.DataAccessDefinitions;
 using NLog;
 using System;
 using System.Collections.Generic;
