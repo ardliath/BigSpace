@@ -22,20 +22,15 @@ namespace Liath.BigSpace.DataAccess.Implementations
         public IEnumerable<Ship> ListShipsAtSolarSystem(long solarSystemID)
         {
             var ships = new List<Ship>();
-
-            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("SELECT ShipID, Name, SolarSystemID, UserAccountID, IsSelected FROM Ships WHERE SolarSystemID = @ID"))
+            var query = this.CreateSelectQuery("SolarSystemID = @ID");
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
             {
                 cmd.AddParameter("ID", DbType.Int64, solarSystemID);
                 using (var dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        ships.Add(new Ship
-                        {
-                            ShipID = dr.GetInt32("ShipID"),
-                            Name = dr.GetString("Name"),
-                            IsSelected = dr.GetBoolean("IsSelected")
-                        });
+                        ships.Add(this.InflateShip(dr));
                     }
                 }
             }
@@ -46,19 +41,15 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
         public Ship GetShip(int shipID)
         {
-            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("SELECT ShipID, Name, SolarSystemID, UserAccountID, IsSelected FROM Ships WHERE ShipID = @ID"))
+            var query = this.CreateSelectQuery("ShipID = @ID");
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
             {
                 cmd.AddParameter("ID", DbType.Int32, shipID);
                 using (var dr = cmd.ExecuteReader())
                 {
                     if (dr.Read())
                     {
-                        return new Ship
-                        {
-                            ShipID = dr.GetInt32("ShipID"),
-                            Name = dr.GetString("Name"),
-                            IsSelected = dr.GetBoolean("IsSelected")
-                        };
+                        return this.InflateShip(dr);
                     }
 
                     return null;
@@ -66,6 +57,26 @@ namespace Liath.BigSpace.DataAccess.Implementations
             }
         }
 
+        private Ship InflateShip(IDataReader dr)
+        {
+            return new Ship
+            {
+                ShipID = dr.GetInt32("ShipID"),
+                Name = dr.GetString("Name"),
+                IsSelected = dr.GetBoolean("IsSelected")
+            };
+        }
+
+        private string CreateSelectQuery(string filter = null)
+        {
+            var sb = new StringBuilder("SELECT ShipID, Name, SolarSystemID, UserAccountID, IsSelected FROM Ships ");
+            if(filter != null)
+            {
+                sb.AppendFormat("WHERE {0}", filter);
+            }
+
+            return sb.ToString();
+        }
 
         public void Save(Ship ship)
         {
@@ -79,6 +90,27 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
                 cmd.ExecuteNonQuery();
             }
+        }
+
+
+        public IEnumerable<Ship> ListShipsDoingJob(long jobID)
+        {
+            var ships = new List<Ship>();
+            var query = this.CreateSelectQuery("JobID = @JobID");
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
+            {
+                cmd.AddParameter("JobID", DbType.Int64, jobID);
+
+                using(var dr = cmd.ExecuteReader())
+                {
+                    while(dr.Read())
+                    {
+                        ships.Add(this.InflateShip(dr));
+                    }
+                }
+            }
+
+            return ships;
         }
     }
 }

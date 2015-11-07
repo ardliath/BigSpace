@@ -11,6 +11,7 @@ namespace Liath.BigSpace.Domain.Jobs
     public class Journey : Job
     {
         private IShips _ships;
+
         public SolarSystem From { get; set; }
         public SolarSystem To { get; set; }
 
@@ -22,7 +23,7 @@ namespace Liath.BigSpace.Domain.Jobs
 
         public override void Complete()
         {
-            throw new NotImplementedException();
+            var shipsOnJourney = _ships.ListShipsDoingJob(this.JobID);
         }
     }
 }
