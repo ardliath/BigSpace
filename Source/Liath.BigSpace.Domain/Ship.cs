@@ -10,6 +10,8 @@ namespace Liath.BigSpace.Domain
         public int ShipID { get; set; }
         public string Name { get; set; }
         public bool IsSelected { get; set; }
+        public Int64? SolarSystemID { get; set; }
+        public Int64? JobID { get; set; }
 
         public override string ToString()
         {

@@ -80,12 +80,34 @@ namespace Liath.BigSpace.Implementations
         }
 
 
-        public void CreateJourneyToSendSelectedShipsToSolarSystem(int id)
+        public void CreateJourneyToSendSelectedShipsToSolarSystem(int destinationSolarSystemID)
         {
             var me = _securityManager.GetCurrentUserAccount();
             var selectedShips = _ships.ListSelectedShips(me.UserAccountID);
+            var distinctLocations = selectedShips.Where(s => s.SolarSystemID.HasValue)
+                .Select(s => s.SolarSystemID.Value)
+                .Distinct();
 
-            throw new NotImplementedException();
+            var destinationSolarSystem = _solarSystems.GetSolarSystem(destinationSolarSystemID);
+
+            foreach(var startLocationID in distinctLocations)
+            {
+                var shipsAtThatLocation = selectedShips.Where(s => s.SolarSystemID == startLocationID);
+                var startSolarSystem = _solarSystems.GetSolarSystem(startLocationID);
+                var duration = this.GetDurationOfJourney(startSolarSystem, destinationSolarSystem, shipsAtThatLocation);
+
+                var job = _journeyRepository.CreateJourney(startSolarSystem, destinationSolarSystem, DateTime.UtcNow, duration);
+                foreach(var ship in shipsAtThatLocation)
+                {
+                    _ships.SetShipJob(ship.ShipID, job);
+                    _ships.SetShipLocation(ship.ShipID, null); // we're now leaving the solar system
+                }
+            }
+        }
+
+        private TimeSpan GetDurationOfJourney(SolarSystem startSolarSystem, SolarSystem destinationSolarSystem, IEnumerable<Ship> shipsAtThatLocation)
+        {
+            return new TimeSpan(0, 1, 0);
         }
     }
 }

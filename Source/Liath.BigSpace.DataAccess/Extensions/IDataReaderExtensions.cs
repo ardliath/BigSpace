@@ -24,6 +24,14 @@ namespace Liath.BigSpace.DataAccess.Extensions
             return dr.GetInt64(dr.GetOrdinal(name));
         }
 
+        public static Int64? GetNullableInt64(this IDataReader dr, string name)
+        {
+            var ordinal = dr.GetOrdinal(name);
+            return dr.IsDBNull(ordinal)
+                ? null
+                : (Int64?)dr.GetInt64(ordinal);
+        }
+
         public static bool GetBoolean(this IDataReader dr, string name)
         {
             return dr.GetBoolean(dr.GetOrdinal(name));

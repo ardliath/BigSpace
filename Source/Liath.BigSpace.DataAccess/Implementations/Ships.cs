@@ -63,13 +63,15 @@ namespace Liath.BigSpace.DataAccess.Implementations
             {
                 ShipID = dr.GetInt32("ShipID"),
                 Name = dr.GetString("Name"),
-                IsSelected = dr.GetBoolean("IsSelected")
+                IsSelected = dr.GetBoolean("IsSelected"),
+                SolarSystemID = dr.GetNullableInt64("SolarSystemID"),
+                JobID = dr.GetNullableInt64("JobID")
             };
         }
 
         private string CreateSelectQuery(string filter = null)
         {
-            var sb = new StringBuilder("SELECT ShipID, Name, SolarSystemID, UserAccountID, IsSelected FROM Ships ");
+            var sb = new StringBuilder("SELECT ShipID, Name, SolarSystemID, UserAccountID, IsSelected, SolarSystemID, ShipID FROM Ships ");
             if(filter != null)
             {
                 sb.AppendFormat("WHERE {0}", filter);
