@@ -24,6 +24,11 @@ namespace Liath.BigSpace.Domain.Jobs
         public override void Complete()
         {
             var shipsOnJourney = _ships.ListShipsDoingJob(this.JobID);
+            foreach(var ship in shipsOnJourney)
+            {
+                _ships.SetShipLocation(ship.ShipID, this.To.SolarSystemID);
+                _ships.SetShipJob(ship.ShipID, null);
+            }
         }
     }
 }

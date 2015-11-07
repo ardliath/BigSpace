@@ -16,5 +16,9 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
         void Save(Ship ship);
 
         IEnumerable<Ship> ListShipsDoingJob(long jobID);
+
+        void SetShipLocation(int shipID, Int64? solarSystemID);
+
+        void SetShipJob(int shipID, Int64? jobID);
     }
 }

@@ -112,5 +112,24 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
             return ships;
         }
+
+
+        public void SetShipLocation(int shipID, Int64? solarSystemID)
+        {
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("UPDATE Ships SET SolarSystemID = @SolarSystemID WHERE ShipID = @ShipID"))
+            {
+                cmd.AddParameter("ShipID", DbType.Int32, shipID);
+                cmd.AddParameter("SolarSystemID", DbType.Int64, (object)solarSystemID ?? DBNull.Value);
+            }
+        }
+
+        public void SetShipJob(int shipID, Int64? jobID)
+        {
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("UPDATE Ships SET JobID = @JobID WHERE ShipID = @ShipID"))
+            {
+                cmd.AddParameter("ShipID", DbType.Int32, shipID);
+                cmd.AddParameter("JobID", DbType.Int64, (object)jobID ?? DBNull.Value);
+            }
+        }
     }
 }
