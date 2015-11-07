@@ -20,5 +20,7 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
         void SetShipLocation(int shipID, Int64? solarSystemID);
 
         void SetShipJob(int shipID, Int64? jobID);
+
+        IEnumerable<Ship> ListSelectedShips(int userAccountID);
     }
 }

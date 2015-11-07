@@ -135,5 +135,11 @@ namespace Liath.BigSpace.DataAccess.Implementations
                 cmd.ExecuteNonQuery();
             }
         }
+
+
+        public IEnumerable<Ship> ListSelectedShips(int userAccountID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

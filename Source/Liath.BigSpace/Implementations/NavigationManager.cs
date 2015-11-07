@@ -10,6 +10,7 @@ using Liath.BigSpace.DataAccess.Definitions;
 using Liath.BigSpace.Domain;
 using Liath.BigSpace.Exceptions;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
+using Liath.BigSpace.Domain.DataAccessDefinitions.Jobs;
 
 namespace Liath.BigSpace.Implementations
 {
@@ -19,16 +20,19 @@ namespace Liath.BigSpace.Implementations
 	    private readonly ISolarSystems _solarSystems;
 	    private static ILogger logger = LogManager.GetCurrentClassLogger();
         private IShips _ships;
+        private IJourneyRepository _journeyRepository;
 
-        public NavigationManager(ISecurityManager securityManager, ISolarSystems solarSystems, IShips ships)
+        public NavigationManager(ISecurityManager securityManager, ISolarSystems solarSystems, IShips ships, IJourneyRepository journeyRepository)
         {
             if (securityManager == null) throw new ArgumentNullException("securityManager");
 	        if (solarSystems == null) throw new ArgumentNullException("solarSystems");
             if (ships == null) throw new ArgumentNullException("ships");
+            if (journeyRepository == null) throw new ArgumentNullException("journeyRepository");
 
 	        _securityManager = securityManager;
 	        _solarSystems = solarSystems;
             _ships = ships;
+            _journeyRepository = journeyRepository;
         }
 
 	    public LocalAreaViewResult FindLocalSystems(ScreenSize screenSize)
@@ -73,6 +77,15 @@ namespace Liath.BigSpace.Implementations
             }
 
             return null;
+        }
+
+
+        public void CreateJourneyToSendSelectedShipsToSolarSystem(int id)
+        {
+            var me = _securityManager.GetCurrentUserAccount();
+            var selectedShips = _ships.ListSelectedShips(me.UserAccountID);
+
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Liath.BigSpace.DataAccess.Definitions;
 using Liath.BigSpace.Definitions;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
+using Liath.BigSpace.Domain.DataAccessDefinitions.Jobs;
 using Liath.BigSpace.Implementations;
 using Moq;
 using System;
@@ -17,7 +18,8 @@ namespace Liath.BigSpace.Testing.Create
         {
             return new NavigationManager(securityManager ?? Mock.Of<ISecurityManager>(),
                 solarSystems ?? Mock.Of<ISolarSystems>(),
-                Mock.Of<IShips>());
+                Mock.Of<IShips>(),
+                Mock.Of<IJourneyRepository>());
         }
     }
 }

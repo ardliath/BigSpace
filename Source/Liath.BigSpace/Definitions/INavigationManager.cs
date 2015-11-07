@@ -11,5 +11,6 @@ namespace Liath.BigSpace.Definitions
     {
 		LocalAreaViewResult FindLocalSystems(ScreenSize screenSize);
         SolarSystemDetails GetSolarSystemDetails(int id);
+        void CreateJourneyToSendSelectedShipsToSolarSystem(int id);
     }
 }
