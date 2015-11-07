@@ -40,7 +40,6 @@ namespace Liath.BigSpace.Services.Console
             using (var uow = sessionManager.CreateUnitOfWork())
             {
                 var jobManager = new JobManager(new JobRepository(sessionManager,
-                    new SolarSystems(sessionManager),
                     new Ships(sessionManager)));
                 jobManager.CompleteJobs();
             }

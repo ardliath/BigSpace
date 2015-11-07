@@ -10,5 +10,10 @@ namespace Liath.BigSpace.Domain
         public int ShipID { get; set; }
         public string Name { get; set; }
         public bool IsSelected { get; set; }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

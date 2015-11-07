@@ -12,15 +12,12 @@ using Liath.BigSpace.Domain.Jobs;
 namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 {
     public class JourneyRepository : IJobChildRepository
-    {
-        private ISolarSystems _solarSystems;
+    {        
         private IShips _ships;
-        public JourneyRepository(ISolarSystems solarSystems, IShips ships)
-        {
-            if (solarSystems == null) throw new ArgumentNullException("solarSystems");
+        public JourneyRepository(IShips ships)
+        {     
             if (ships == null) throw new ArgumentNullException("ships");
 
-            _solarSystems = solarSystems;
             _ships = ships;
         }
 
@@ -43,11 +40,8 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
         {
             var journey = new Journey(_ships);
             
-            var fromID = dr.GetInt64(string.Concat(alias, ".StartSolarSystemID"));
-            var endID = dr.GetInt64(string.Concat(alias, ".EndSolarSystemID"));
-
-            journey.From = _solarSystems.GetSolarSystem(fromID);
-            journey.To = _solarSystems.GetSolarSystem(endID);
+            journey.FromSolarSystemID = dr.GetInt64(string.Concat(alias, "_StartSolarSystemID"));
+            journey.ToSolarSystemID = dr.GetInt64(string.Concat(alias, "_EndSolarSystemID"));
 
             return journey;
         }

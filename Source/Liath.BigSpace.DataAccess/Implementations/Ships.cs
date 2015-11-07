@@ -120,6 +120,8 @@ namespace Liath.BigSpace.DataAccess.Implementations
             {
                 cmd.AddParameter("ShipID", DbType.Int32, shipID);
                 cmd.AddParameter("SolarSystemID", DbType.Int64, (object)solarSystemID ?? DBNull.Value);
+
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -129,6 +131,8 @@ namespace Liath.BigSpace.DataAccess.Implementations
             {
                 cmd.AddParameter("ShipID", DbType.Int32, shipID);
                 cmd.AddParameter("JobID", DbType.Int64, (object)jobID ?? DBNull.Value);
+
+                cmd.ExecuteNonQuery();
             }
         }
     }

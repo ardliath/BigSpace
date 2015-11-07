@@ -17,12 +17,12 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
     {
         IEnumerable<IJobChildRepository> _childJobRepositories;
 
-        public JobRepository(ISessionManager sessionManager, ISolarSystems solarSystems, IShips ships)
+        public JobRepository(ISessionManager sessionManager, IShips ships)
             : base(sessionManager)
         {
             _childJobRepositories = new IJobChildRepository[] {
                 //new BuildShipRepository(),
-                new JourneyRepository(solarSystems, ships)
+                new JourneyRepository(ships)
             };
         }
 
@@ -53,9 +53,9 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
 
         private void LoadCoreProperties(Job job, IDataReader dr)
         {
-            job.JobID = dr.GetInt64("b.JobID");
-            job.StartTime = dr.GetDateTime("b.StartTime");
-            job.Duration = new TimeSpan(dr.GetInt64("b.Duration"));
+            job.JobID = dr.GetInt64("JobID");
+            job.StartTime = dr.GetDateTime("StartTime");
+            job.Duration = new TimeSpan(dr.GetInt64("Duration"));
         }
 
         private string CreateAlias(IJobChildRepository childRepository)
@@ -77,7 +77,7 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
         {
             foreach(var childRepository in _childJobRepositories)
             {
-                var pkColumn = string.Concat(this.CreateAlias(childRepository), ".", childRepository.PrimaryKeyColumnName);
+                var pkColumn = string.Concat(this.CreateAlias(childRepository), "_", childRepository.PrimaryKeyColumnName);
                 if(!dr.IsDBNull(pkColumn))
                 {
                     return childRepository;
@@ -97,10 +97,10 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
             foreach(var childRepository in _childJobRepositories)
             {
                 var alias = this.CreateAlias(childRepository);
-                selectSB.AppendFormat(", {0}.{1}", alias, childRepository.PrimaryKeyColumnName);
+                selectSB.AppendFormat(", {0}.{1} as {0}_{1}", alias, childRepository.PrimaryKeyColumnName);
                 foreach(var field in childRepository.ColumnNames)
                 {
-                    selectSB.AppendFormat(", {0}.{1}", alias, field);
+                    selectSB.AppendFormat(", {0}.{1} as {0}_{1}", alias, field);
                 }
 
                 joinSB.AppendLine();

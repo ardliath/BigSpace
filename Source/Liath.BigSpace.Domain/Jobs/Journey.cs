@@ -12,8 +12,8 @@ namespace Liath.BigSpace.Domain.Jobs
     {
         private IShips _ships;
 
-        public SolarSystem From { get; set; }
-        public SolarSystem To { get; set; }
+        public Int64 FromSolarSystemID { get; set; }
+        public Int64 ToSolarSystemID { get; set; }
 
         public Journey(IShips ships)
         {
@@ -26,7 +26,7 @@ namespace Liath.BigSpace.Domain.Jobs
             var shipsOnJourney = _ships.ListShipsDoingJob(this.JobID);
             foreach(var ship in shipsOnJourney)
             {
-                _ships.SetShipLocation(ship.ShipID, this.To.SolarSystemID);
+                _ships.SetShipLocation(ship.ShipID, this.ToSolarSystemID);
                 _ships.SetShipJob(ship.ShipID, null);
             }
         }
