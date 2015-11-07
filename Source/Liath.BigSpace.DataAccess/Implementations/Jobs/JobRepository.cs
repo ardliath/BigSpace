@@ -26,9 +26,13 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
         public IEnumerable<Job> LoadCompletedJobs()
         {
             var jobs = new List<Job>();
-            var query = this.CreateQuery();
+
+            var whereAddition = string.Concat("DATEADD(second, (Duration / ", TimeSpan.TicksPerSecond, "), StartTime ) < @Now");
+
+            var query = this.CreateQuery(whereAddition);
             using(var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
             {
+                cmd.AddParameter("Now", DbType.DateTime, DateTime.UtcNow);
                 using(var dr = cmd.ExecuteReader())
                 {
                     while(dr.Read())
