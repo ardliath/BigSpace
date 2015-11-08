@@ -5,6 +5,7 @@ using Liath.BigSpace.Implementations;
 using Liath.BigSpace.Session;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,15 +16,17 @@ namespace Liath.BigSpace.Services.Console
     class Program
     {
         static void Main(string[] args)
-        {            
-
-            // Uncomment this to run app in the background
-            //var timer = new Timer(5000);
-            //timer.Elapsed += timer_Elapsed;
-            //timer.Start();
-
-            // Run once
-            UpdateJobs();
+        {
+            if (Debugger.IsAttached)
+            {
+                UpdateJobs();
+            }
+            else
+            {
+                var timer = new Timer(5000);
+                timer.Elapsed += timer_Elapsed;
+                timer.Start();
+            }
 
             System.Console.WriteLine("Press any key to end...");
             System.Console.ReadKey();
@@ -31,6 +34,7 @@ namespace Liath.BigSpace.Services.Console
 
         public static void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            System.Console.WriteLine("Running Jobs...");
             UpdateJobs();
         }
 
