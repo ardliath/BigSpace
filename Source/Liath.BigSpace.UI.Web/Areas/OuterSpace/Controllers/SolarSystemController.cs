@@ -33,6 +33,7 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 
                 return View(new SolarSystemSummary
                 {
+                    SolarSystemID = solarSystem.SolarSystemID,
                     Name = solarSystem.Name,
                     Ships = solarSystem.Ships.Select(s => new ShipSummary
                     {

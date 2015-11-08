@@ -67,6 +67,17 @@
                     data: { id: shipID }
                 });
             });
+
+            $('#Details').on('click', '.SendShips', function () {
+                var solarSystemID = $(this).attr('SolarSystemID');
+                var url = '@Url.RouteUrl("Default", new { area = "OuterSpace", controller = "Commands", action = "SendShips" })';               
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: { id: solarSystemID }
+                });
+            });
         });
     </script>
     <style type="text/css">

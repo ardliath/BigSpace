@@ -1,6 +1,7 @@
 ﻿@model Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.SolarSystem.SolarSystemSummary
 
 <h4>@Model.Name</h4>
+<a class="SendShips" SolarSystemID="@Model.SolarSystemID">Send selected ships here</a>
 
 <table>
     @foreach (var ship in @Model.Ships)

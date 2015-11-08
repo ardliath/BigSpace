@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Areas\OuterSpace\Controllers\CommandsController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\LocalAreaController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\ShipController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\SolarSystemController.cs" />
@@ -162,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\OuterSpace\Views\Commands\" />
     <Folder Include="Areas\OuterSpace\Views\Ship\" />
   </ItemGroup>
   <ItemGroup>
