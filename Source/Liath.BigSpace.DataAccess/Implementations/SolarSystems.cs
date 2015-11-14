@@ -90,5 +90,25 @@ namespace Liath.BigSpace.DataAccess.Implementations
                 }
             }
         }
+
+
+        public SolarSystem CreateSolarSystem(SolarSystem solarSystem)
+        {
+            if(solarSystem == null) throw new ArgumentNullException("solarSystem");
+
+            var query = "INSERT INTO SolarSystems (Name, X, Y, Z) VALUES (@Name, @X, @Y, @Z) select scope_identity()";
+
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
+            {
+                cmd.AddParameter("Name", DbType.String, solarSystem.Name);
+                cmd.AddParameter("X", DbType.Int64, solarSystem.Coordinates.X);
+                cmd.AddParameter("Y", DbType.Int64, solarSystem.Coordinates.Y);
+                cmd.AddParameter("Z", DbType.Int64, solarSystem.Coordinates.Z);
+
+                solarSystem.SolarSystemID = (long)(decimal)cmd.ExecuteScalar();
+
+                return solarSystem;
+            }
+        }
     }
 }

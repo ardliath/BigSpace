@@ -11,5 +11,6 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
 	{
 		IEnumerable<SolarSystem> FindSystemsInLocalArea(LocalAreaView localAreaView);
         SolarSystem GetSolarSystem(Int64 id);
-	}
+        SolarSystem CreateSolarSystem(SolarSystem solarSystem);
+    }
 }

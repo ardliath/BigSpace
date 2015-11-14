@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Definitions\IFleetManager.cs" />
+    <Compile Include="Definitions\IGalaxyManager.cs" />
     <Compile Include="Definitions\IJobManager.cs" />
     <Compile Include="Definitions\INavigationManager.cs" />
     <Compile Include="Definitions\ISecurityManager.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Exceptions\SecurityException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Implementations\FleetManager.cs" />
+    <Compile Include="Implementations\GalaxyManager.cs" />
     <Compile Include="Implementations\JobManager.cs" />
     <Compile Include="Implementations\NavigationManager.cs" />
     <Compile Include="Implementations\SecurityManager.cs" />
