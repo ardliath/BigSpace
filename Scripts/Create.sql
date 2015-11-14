@@ -1,11 +1,28 @@
+create table Empires
+(
+	EmpireID int not null identity(1,1),
+	Name nvarchar(255) not null,
+	TS timestamp not null,
+	constraint PK_Empires primary key (EmpireID)
+)
 
-CREATE TABLE [UserAccounts](
+GO
+
+USE [BigSpace]
+GO
+/****** Object:  Table [dbo].[UserAccounts]    Script Date: 14/11/2015 16:45:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserAccounts](
 	[UserAccountID] [int] IDENTITY(1,1) NOT NULL,
+	[EmpireID] [int] NOT NULL,
 	[Username] [nvarchar](255) NULL,
 	[X] [bigint] NOT NULL,
 	[Y] [bigint] NOT NULL,
 	[Z] [bigint] NOT NULL,
-	[TS] [timestamp] NOT NULL,
+	[TS] [timestamp] NOT NULL,	
  CONSTRAINT [PK_UserAccounts] PRIMARY KEY CLUSTERED 
 (
 	[UserAccountID] ASC
@@ -15,6 +32,13 @@ CREATE TABLE [UserAccounts](
 	[Username] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+
+GO
+ALTER TABLE [dbo].[UserAccounts]  WITH CHECK ADD  CONSTRAINT [FK_UserAccounts_Empires] FOREIGN KEY([EmpireID])
+REFERENCES [dbo].[Empires] ([EmpireID])
+GO
+ALTER TABLE [dbo].[UserAccounts] CHECK CONSTRAINT [FK_UserAccounts_Empires]
+GO
 
 
 create table SolarSystems
@@ -59,9 +83,11 @@ create table Ships
 	SolarSystemID bigint null,
 	JobID bigint null,
 	UserAccountID int not null,
+	EmpireID int not null,
 	IsSelected bit not null,
 	TS timestamp not null,
 	constraint PK_Ships primary key (ShipID),
 	constraint FK_Ships_SolarSystems foreign key (SolarSystemID) references SolarSystems(SolarSystemID),
-	constraint FK_Ships_UserAccounts foreign key (UserAccountID) references UserAccounts(UserAccountID)
+	constraint FK_Ships_UserAccounts foreign key (UserAccountID) references UserAccounts(UserAccountID),
+	constraint FK_Ships_Empires foreign key (EmpireID) references Empires(EmpireID)
 )
