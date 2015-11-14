@@ -36,9 +36,12 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $.ajaxSetup({ cache: false });
+    </script>
     @if(IsSectionDefined("Scripts"))
     {
         @RenderSection("Scripts");
-    }
+    }    
 </body>
 </html>
