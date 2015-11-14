@@ -17,5 +17,13 @@ namespace Liath.BigSpace.Domain
         {
             return this.Name;
         }
+
+        public int Speed
+        {
+            get
+            {
+                return 10;
+            }
+        }
     }
 }

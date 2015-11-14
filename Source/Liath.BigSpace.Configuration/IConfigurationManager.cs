@@ -10,5 +10,6 @@ namespace Liath.BigSpace.Configuration
     public interface IConfigurationManager
     {
         ConnectionStringSettings ConnectionString { get; }
+        int GameSpeed { get; }
     }
 }

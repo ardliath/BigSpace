@@ -12,5 +12,11 @@ namespace Liath.BigSpace.Configuration
         {
             get { return System.Configuration.ConfigurationManager.ConnectionStrings["Liath.BigSpace"]; }
         }
+
+
+        public int GameSpeed
+        {
+            get { return 1; }
+        }
     }
 }

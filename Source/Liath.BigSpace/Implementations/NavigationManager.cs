@@ -11,6 +11,7 @@ using Liath.BigSpace.Domain;
 using Liath.BigSpace.Exceptions;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
 using Liath.BigSpace.Domain.DataAccessDefinitions.Jobs;
+using Liath.BigSpace.Configuration;
 
 namespace Liath.BigSpace.Implementations
 {
@@ -21,18 +22,21 @@ namespace Liath.BigSpace.Implementations
 	    private static ILogger logger = LogManager.GetCurrentClassLogger();
         private IShips _ships;
         private IJourneyRepository _journeyRepository;
+        private IConfigurationManager _configurationManager;
 
-        public NavigationManager(ISecurityManager securityManager, ISolarSystems solarSystems, IShips ships, IJourneyRepository journeyRepository)
+        public NavigationManager(ISecurityManager securityManager, IConfigurationManager configurationManager, ISolarSystems solarSystems, IShips ships, IJourneyRepository journeyRepository)
         {
             if (securityManager == null) throw new ArgumentNullException("securityManager");
 	        if (solarSystems == null) throw new ArgumentNullException("solarSystems");
             if (ships == null) throw new ArgumentNullException("ships");
             if (journeyRepository == null) throw new ArgumentNullException("journeyRepository");
+            if (configurationManager == null) throw new ArgumentNullException("configurationManager");
 
 	        _securityManager = securityManager;
 	        _solarSystems = solarSystems;
             _ships = ships;
             _journeyRepository = journeyRepository;
+            _configurationManager = configurationManager;
         }
 
 	    public LocalAreaViewResult FindLocalSystems(ScreenSize screenSize)
@@ -107,7 +111,23 @@ namespace Liath.BigSpace.Implementations
 
         private TimeSpan GetDurationOfJourney(SolarSystem startSolarSystem, SolarSystem destinationSolarSystem, IEnumerable<Ship> shipsAtThatLocation)
         {
-            return new TimeSpan(0, 1, 0);
+            const int timeItTakesToCrossASquare = 5; // how long does it take to cross one square
+            var diffX = startSolarSystem.Coordinates.X - destinationSolarSystem.Coordinates.X;
+            var diffY = startSolarSystem.Coordinates.Y - destinationSolarSystem.Coordinates.Y;
+            var diffZ = startSolarSystem.Coordinates.Z - destinationSolarSystem.Coordinates.Z;
+            var flatDistance = Math.Sqrt(Math.Pow(diffX, 2) + Math.Pow(diffY, 2));
+            var threeDDistance = Math.Sqrt(Math.Pow(flatDistance, 2) + Math.Pow(diffZ, 2)); // the distance we're travelling
+
+            // Working out the various speeds (ship and game)
+            var minSpeed = (double)shipsAtThatLocation.Min(s => s.Speed);
+            var gameSpeed = (double)decimal.Divide(1, _configurationManager.GameSpeed);
+
+            // How long will the trip take?
+            var minutes = (timeItTakesToCrossASquare * threeDDistance) / (gameSpeed * minSpeed);
+            var roundedMinutes = (int)Math.Floor(minutes);
+            var seconds = (int)(60 * (minutes - roundedMinutes));
+
+            return new TimeSpan(0, roundedMinutes, seconds);
         }
     }
 }
