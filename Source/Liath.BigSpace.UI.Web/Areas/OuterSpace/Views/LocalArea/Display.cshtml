@@ -33,6 +33,23 @@
     <tr>
         <td id="Navigation" style="height: 100px;">
             Navigation Panel
+            <table>
+                <tr>
+                    <td></td>
+                    <td><img src="" class="NavigationControl" alt="^" x="" y="-1" z="0" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><img src="" class="NavigationControl" alt="<" x="-1" y="0" z="0" /></td>
+                    <td></td>
+                    <td><img src="" class="NavigationControl" alt=">" x="1" y="0" z="0" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><img src="" class="NavigationControl" alt="V" x="0" y="1" z="0" /></td>
+                    <td></td>
+                </tr>
+            </table>                                       
         </td>
     </tr>
 </table>
@@ -40,44 +57,59 @@
 @section Scripts
 {
     <script>
-        $(document).ready(function () {
-            $('.star').click(function () {
-                var id = $(this).attr('SolarSystemID');
-                var route = '@Url.RouteUrl("Default", new { Area = "OuterSpace", Controller = "SolarSystem", Action = "Summary" })';
-                var url = route + '/' + id;
-                $.get(url, function (data) {
-                    $('#Details').html(data);
-                });
+    $(document).ready(function () {
+        $('.star').click(function () {
+            var id = $(this).attr('SolarSystemID');
+            var route = '@Url.RouteUrl("Default", new { Area = "OuterSpace", Controller = "SolarSystem", Action = "Summary" })';
+            var url = route + '/' + id;
+            $.get(url, function (data) {
+                $('#Details').html(data);
             });
+        });
 
-            $('#Details').on('click', '.ShipSummary', function () {
-                var shipID = $(this).attr('ShipID');
-                var url = '';
-                if($(this).hasClass('SelectedShip')){
-                    $(this).removeClass('SelectedShip');
-                    url = '@Url.RouteUrl("Default", new {Area = "OuterSpace", Controller = "Ship", Action = "DeSelectShip"})';
-                } else {
-                    $(this).addClass('SelectedShip');
-                    url = '@Url.RouteUrl("Default", new { Area = "OuterSpace", Controller = "Ship", Action = "SelectShip" })';
-                }
+        $('#Details').on('click', '.ShipSummary', function () {
+            var shipID = $(this).attr('ShipID');
+            var url = '';
+            if ($(this).hasClass('SelectedShip')) {
+                $(this).removeClass('SelectedShip');
+                url = '@Url.RouteUrl("Default", new {Area = "OuterSpace", Controller = "Ship", Action = "DeSelectShip"})';
+            } else {
+                $(this).addClass('SelectedShip');
+                url = '@Url.RouteUrl("Default", new { Area = "OuterSpace", Controller = "Ship", Action = "SelectShip" })';
+            }
 
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: { id: shipID }
-                });
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: { id: shipID }
             });
+        });
 
-            $('#Details').on('click', '.SendShips', function () {
-                var solarSystemID = $(this).attr('SolarSystemID');
-                var url = '@Url.RouteUrl("Default", new { area = "OuterSpace", controller = "Commands", action = "SendShips" })';               
+        $('#Details').on('click', '.SendShips', function () {
+            var solarSystemID = $(this).attr('SolarSystemID');
+            var url = '@Url.RouteUrl("Default", new { area = "OuterSpace", controller = "Commands", action = "SendShips" })';
 
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: { id: solarSystemID }
-                });
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: { id: solarSystemID }
             });
+        });
+
+        $('.NavigationControl').click(function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.RouteUrl("Default", new {area = "OuterSpace", controller = "LocalArea", action = "UpdateFocusedCoordinates"})',
+                    data: {
+                        ChangeX: $(this).attr('x'),
+                        ChangeY: $(this).attr('y'),
+                        ChangeZ: $(this).attr('z')
+                    },
+                    success: function () {
+                        location.href = '@Url.RouteUrl("Default", new { area = "OuterSpace", controller = "LocalArea", action = "Display" })';
+                    }
+                });
+            })
         });
     </script>
     <style type="text/css">

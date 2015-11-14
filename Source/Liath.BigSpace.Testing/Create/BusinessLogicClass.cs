@@ -21,5 +21,11 @@ namespace Liath.BigSpace.Testing.Create
                 Mock.Of<IShips>(),
                 Mock.Of<IJourneyRepository>());
         }
+
+        public static UserManager UserManager(ISecurityManager securityManager = null, IUsers userDataAccess = null)
+        {
+            return new UserManager(securityManager ?? Mock.Of<ISecurityManager>(),
+                userDataAccess ?? Mock.Of<IUsers>());
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
     public interface IUsers
     {
         UserAccount GetUserByUsername(string username);
+        UserAccount Update(UserAccount userAccount);
     }
 }

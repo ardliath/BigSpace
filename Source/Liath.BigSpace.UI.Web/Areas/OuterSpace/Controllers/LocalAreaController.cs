@@ -7,21 +7,27 @@ using System.Web;
 using System.Web.Mvc;
 using Liath.BigSpace.Domain;
 using Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.LocalArea;
+using NLog;
+using System.Net;
 
 namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 {
 	public class LocalAreaController : Controller
 	{
+        private static ILogger logger = LogManager.GetCurrentClassLogger();
 		private INavigationManager _navigationManager;
 		private ISessionManager _sessionManager;
+        private IUserManager _userManager;
 
-        public LocalAreaController(ISessionManager sessionManager, INavigationManager navigationManager)
+        public LocalAreaController(ISessionManager sessionManager, INavigationManager navigationManager, IUserManager userManager)
 		{
 			if (navigationManager == null) throw new ArgumentNullException("navigationManager");
 			if (sessionManager == null) throw new ArgumentNullException("sessionManager");
+            if (userManager == null) throw new ArgumentNullException("userManager");
 
 			_navigationManager = navigationManager;
 			_sessionManager = sessionManager;
+            _userManager = userManager;
 		}
 
 		[HttpGet]
@@ -47,5 +53,23 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
                     });
 			}
 		}
+
+        [HttpPost]
+        public ActionResult UpdateFocusedCoordinates(UpdateView updateView)
+        {
+            try
+            {
+                using(_sessionManager.CreateUnitOfWork())
+                {
+                    _userManager.UpdateFocusedCoordinates(updateView.ChangeX, updateView.ChangeY, updateView.ChangeZ);
+                }
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch(Exception ex)
+            {
+                logger.Error(ex, "There was an error updating the view");
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
+        }
 	}
 }
