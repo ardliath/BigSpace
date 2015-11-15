@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Liath.BigSpace.Configuration;
 
 namespace Liath.BigSpace.Testing.Create
 {
@@ -17,6 +18,7 @@ namespace Liath.BigSpace.Testing.Create
         public static NavigationManager NavigationManager(ISecurityManager securityManager = null, ISolarSystems solarSystems = null)
         {
             return new NavigationManager(securityManager ?? Mock.Of<ISecurityManager>(),
+                Mock.Of<IConfigurationManager>(),
                 solarSystems ?? Mock.Of<ISolarSystems>(),
                 Mock.Of<IShips>(),
                 Mock.Of<IJourneyRepository>());

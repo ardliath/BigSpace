@@ -52,6 +52,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Liath.BigSpace.Configuration\Liath.BigSpace.Configuration.csproj">
+      <Project>{cb0a1853-e483-4a56-ad95-c26aed4dfcb8}</Project>
+      <Name>Liath.BigSpace.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Liath.BigSpace.DataAccess\Liath.BigSpace.DataAccess.csproj">
       <Project>{05554460-7fb3-4001-9201-731e903fd4dd}</Project>
       <Name>Liath.BigSpace.DataAccess</Name>
