@@ -120,6 +120,10 @@
     <Content Include="Areas\Setup\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Setup\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Setup\Views\Galaxy\Create.cshtml" />
+    <Content Include="Areas\Account\Views\web.config" />
+    <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Account\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Account\Views\Authentication\Login.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -131,9 +135,13 @@
     <Compile Include="..\Liath.BigSpace\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
+    <Compile Include="Areas\Account\Controllers\AuthenticationController.cs" />
+    <Compile Include="Areas\Account\Models\Authentication\Login.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\CommandsController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\LocalAreaController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\ShipController.cs" />

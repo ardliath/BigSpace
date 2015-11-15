@@ -1,0 +1,19 @@
+﻿@model Liath.BigSpace.UI.Web.Areas.Account.Models.Authentication.Login
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="Article">
+    <h2>Login</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.LabelFor(x => x.EmailAddress)
+        @Html.TextBoxFor(x => x.EmailAddress)
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(x => x.Password)
+        <input type="submit" id="LogInButton" value="Log In" />
+    }
+</div>

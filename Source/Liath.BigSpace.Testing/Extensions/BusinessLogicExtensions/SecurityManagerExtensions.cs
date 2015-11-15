@@ -1,5 +1,6 @@
 ﻿using Liath.BigSpace.Definitions;
 using Liath.BigSpace.Domain;
+using Liath.BigSpace.Domain.UserAccountDomain;
 using Moq;
 using System;
 using System.Collections.Generic;

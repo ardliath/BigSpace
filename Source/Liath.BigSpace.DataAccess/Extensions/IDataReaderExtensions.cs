@@ -19,6 +19,11 @@ namespace Liath.BigSpace.DataAccess.Extensions
             return dr.GetString(dr.GetOrdinal(name));
         }
 
+        public static byte[] GetBytes(this IDataReader dr, string name)
+        {
+            return (byte[])dr[dr.GetOrdinal(name)];
+        }
+
         public static Int64 GetInt64(this IDataReader dr, string name)
         {
             return dr.GetInt64(dr.GetOrdinal(name));

@@ -14,6 +14,7 @@ using Liath.BigSpace.Testing.Extensions.DataAccessExtensions;
 using Liath.BigSpace.DataAccess.Definitions;
 using Liath.BigSpace.Implementations;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
+using Liath.BigSpace.Domain.UserAccountDomain;
 
 namespace Liath.BigSpace.Tests.NavigationManagerTests
 {

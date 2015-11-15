@@ -13,6 +13,7 @@ using Liath.BigSpace.Exceptions;
 using Liath.BigSpace.Domain;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
 using Liath.BigSpace.Testing.Extensions.DataAccessExtensions;
+using Liath.BigSpace.Domain.UserAccountDomain;
 
 namespace Liath.BigSpace.Tests.UserManagerTests
 {

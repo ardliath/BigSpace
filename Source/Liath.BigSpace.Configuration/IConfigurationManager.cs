@@ -11,5 +11,7 @@ namespace Liath.BigSpace.Configuration
     {
         ConnectionStringSettings ConnectionString { get; }
         int GameSpeed { get; }
+
+        string HashConstant { get; }
     }
 }

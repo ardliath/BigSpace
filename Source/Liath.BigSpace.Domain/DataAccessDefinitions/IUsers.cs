@@ -1,4 +1,5 @@
 ﻿using Liath.BigSpace.Domain;
+using Liath.BigSpace.Domain.UserAccountDomain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
     {
         UserAccount GetUserByUsername(string username);
         UserAccount Update(UserAccount userAccount);
+
+        SecurityUserAccount GetUserAccount(string emailAddress);
     }
 }

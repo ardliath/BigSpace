@@ -64,7 +64,8 @@
     <Compile Include="Ship.cs" />
     <Compile Include="SolarSystem.cs" />
     <Compile Include="SolarSystemDetails.cs" />
-    <Compile Include="UserAccount.cs" />
+    <Compile Include="UserAccountDomain\SecurityUserAccount.cs" />
+    <Compile Include="UserAccountDomain\UserAccount.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

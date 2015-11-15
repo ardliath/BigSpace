@@ -18,5 +18,14 @@ namespace Liath.BigSpace.Configuration
         {
             get { return 1; }
         }
+
+
+        public string HashConstant
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["Security.HashConstant"];
+            }
+        }
     }
 }

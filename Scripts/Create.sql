@@ -7,22 +7,25 @@ create table Empires
 )
 
 GO
-
-USE [BigSpace]
-GO
-/****** Object:  Table [dbo].[UserAccounts]    Script Date: 14/11/2015 16:45:37 ******/
+/****** Object:  Table [dbo].[UserAccounts]    Script Date: 15/11/2015 15:57:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[UserAccounts](
 	[UserAccountID] [int] IDENTITY(1,1) NOT NULL,
 	[EmpireID] [int] NOT NULL,
 	[Username] [nvarchar](255) NULL,
+	[EmailAddress] [nvarchar](512) NOT NULL,
+	[PasswordSalt] [varchar](32) NOT NULL,
+	[PasswordHash] [binary](64) NOT NULL,
+	[CreateTS] [datetime] NOT NULL,
 	[X] [bigint] NOT NULL,
 	[Y] [bigint] NOT NULL,
 	[Z] [bigint] NOT NULL,
-	[TS] [timestamp] NOT NULL,	
+	[TS] [timestamp] NOT NULL,
  CONSTRAINT [PK_UserAccounts] PRIMARY KEY CLUSTERED 
 (
 	[UserAccountID] ASC
@@ -33,6 +36,8 @@ CREATE TABLE [dbo].[UserAccounts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+SET ANSI_PADDING OFF
 GO
 ALTER TABLE [dbo].[UserAccounts]  WITH CHECK ADD  CONSTRAINT [FK_UserAccounts_Empires] FOREIGN KEY([EmpireID])
 REFERENCES [dbo].[Empires] ([EmpireID])

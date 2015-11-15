@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Liath.BigSpace.DataAccess.Extensions;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
 using System.Data;
+using Liath.BigSpace.Domain.UserAccountDomain;
 
 namespace Liath.BigSpace.DataAccess.Implementations
 {
@@ -66,6 +67,35 @@ namespace Liath.BigSpace.DataAccess.Implementations
                 cmd.ExecuteNonQuery();
 
                 return userAccount;
+            }
+        }
+
+
+        public SecurityUserAccount GetUserAccount(string emailAddress)
+        {
+            if (emailAddress == null) throw new ArgumentNullException("emailAddress");
+
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("SELECT UserAccountID, Username, EmailAddress, PasswordHash, PasswordSalt, CreateTS from UserAccounts WHERE EmailAddress = @EmailAddress"))
+            {
+                cmd.AddParameter("EmailAddress", DbType.String, emailAddress);
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        return new SecurityUserAccount
+                        {
+                            UserAccountID = dr.GetInt32("UserAccountID"),
+                            Username = dr.GetString("Username"),
+                            EmailAddress = dr.GetString("EmailAddress"),
+                            PasswordHash = dr.GetBytes("PasswordHash"),
+                            PasswordSalt = dr.GetString("PasswordSalt"),
+                            CreateTS = dr.GetDateTime("CreateTS")
+                        };
+                    }
+
+                    return null;
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Liath.BigSpace.Domain;
+using Liath.BigSpace.Domain.UserAccountDomain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace Liath.BigSpace.Definitions
     public interface ISecurityManager
     {
         UserAccount GetCurrentUserAccount();
+
+        bool Login(string emailAddress, string password, out SecurityUserAccount currentUser);
     }
 }
