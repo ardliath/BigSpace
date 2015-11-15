@@ -49,7 +49,7 @@ namespace Liath.BigSpace.UI.Web.Areas.Account.Controllers
                     // We'll have all sorts of issues if we try and set auths/redirects without http contexts
                     if (this.HttpContext != null)
                     {
-                        FormsAuthentication.SetAuthCookie(login.EmailAddress, false);
+                        FormsAuthentication.SetAuthCookie(currentUser.Username, false);
                         if (returnUrl != null)
                         {
                             return Redirect(returnUrl);

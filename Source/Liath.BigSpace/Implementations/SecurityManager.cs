@@ -42,7 +42,7 @@ namespace Liath.BigSpace.Implementations
         {
             get
             {
-                return Environment.UserName;
+                return Thread.CurrentPrincipal.Identity.Name;
             }
         }
 
@@ -70,7 +70,7 @@ namespace Liath.BigSpace.Implementations
                 return false;
             }
 
-            Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(emailAddress), new string[] { });
+            Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(userAccountFromRepository.Username), new string[] { });
             currentUserAccount = userAccountFromRepository;
             return true;
         }
