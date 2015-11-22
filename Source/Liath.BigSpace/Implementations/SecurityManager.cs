@@ -82,6 +82,7 @@ namespace Liath.BigSpace.Implementations
             if(this.Validate(username, emailAddress, password, confirmPassword, out validatedErrors))
             {
                 var created = DateTime.UtcNow;
+                created = created.AddMilliseconds(created.Millisecond); // strip off milliseconds so SQL doesn't do it for us
                 var salt = _cryptographyManager.CreateSalt();
                 var hash = _cryptographyManager.CreateHash(created, password, salt);
 
@@ -109,7 +110,20 @@ namespace Liath.BigSpace.Implementations
 
         private bool Validate(string username, string emailAddress, string password, string confirmPassword, out string errors)
         {
-            throw new NotImplementedException();
+            if(!password.Equals(confirmPassword))
+            {
+                errors = "Passwords do not match";
+                return false;
+            }
+
+            if(_users.GetUserAccount(emailAddress) != null)
+            {
+                errors = "Email address already in use";
+                return false;
+            }
+            
+            errors = null;
+            return true;
         }
     }
 }

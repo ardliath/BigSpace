@@ -25,12 +25,15 @@ namespace Liath.BigSpace.UI.Web.Areas.Account.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult CreateAccount()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateAccount(CreateAccount createAccount)
         {
             if (createAccount == null) throw new ArgumentNullException("CreateAccount");

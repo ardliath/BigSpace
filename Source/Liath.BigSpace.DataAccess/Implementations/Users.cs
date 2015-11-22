@@ -102,7 +102,18 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
         public void CreateUserAccount(SecurityUserAccount securityUser)
         {
-            throw new NotImplementedException();
+            if (securityUser == null) throw new ArgumentNullException("securityUser");
+
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("INSERT INTO UserAccounts (Username, EmailAddress, PasswordHash, PasswordSalt, CreateTS) VALUES (:Username, @EmailAddress, @PasswordHash, @PasswordSalt, @CreateTS) SELECT Scope_Identity()"))
+            {
+                cmd.AddParameter("Username", DbType.String, securityUser.Username);
+                cmd.AddParameter("EmailAddress", DbType.String, securityUser.EmailAddress);
+                cmd.AddParameter("PasswordHash", DbType.Binary, securityUser.PasswordHash);
+                cmd.AddParameter("PasswordSalt", DbType.String, securityUser.PasswordSalt);
+                cmd.AddParameter("CreateTS", DbType.DateTime, securityUser.CreateTS);
+
+                securityUser.UserAccountID = (int)(decimal)cmd.ExecuteScalar();
+            }
         }
     }
 }
