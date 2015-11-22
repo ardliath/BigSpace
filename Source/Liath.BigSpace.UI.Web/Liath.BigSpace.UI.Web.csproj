@@ -141,7 +141,9 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
     <Compile Include="Areas\Account\Controllers\AuthenticationController.cs" />
+    <Compile Include="Areas\Account\Controllers\RegistrationController.cs" />
     <Compile Include="Areas\Account\Models\Authentication\Login.cs" />
+    <Compile Include="Areas\Account\Models\Registration\CreateAccount.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\CommandsController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\LocalAreaController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\ShipController.cs" />
@@ -179,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Account\Views\Registration\" />
     <Folder Include="Areas\OuterSpace\Views\Commands\" />
     <Folder Include="Areas\OuterSpace\Views\Ship\" />
   </ItemGroup>

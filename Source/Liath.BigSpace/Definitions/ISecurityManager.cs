@@ -13,5 +13,7 @@ namespace Liath.BigSpace.Definitions
         UserAccount GetCurrentUserAccount();
 
         bool Login(string emailAddress, string password, out SecurityUserAccount currentUser);
+
+        bool CreateUserAccount(string username, string emailAddress, string password, string confirmPassword, out UserAccount user, out string errors);
     }
 }

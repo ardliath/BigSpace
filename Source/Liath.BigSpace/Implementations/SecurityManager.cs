@@ -74,5 +74,11 @@ namespace Liath.BigSpace.Implementations
             currentUserAccount = userAccountFromRepository;
             return true;
         }
+
+
+        public bool CreateUserAccount(string username, string emailAddress, string password, string confirmPassword, out UserAccount user, out string errors)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
