@@ -82,7 +82,7 @@ namespace Liath.BigSpace.Implementations
             if(this.Validate(username, emailAddress, password, confirmPassword, out validatedErrors))
             {
                 var created = DateTime.UtcNow;
-                created = created.AddMilliseconds(created.Millisecond); // strip off milliseconds so SQL doesn't do it for us
+                created = created.AddMilliseconds(-created.Millisecond); // strip off milliseconds so SQL doesn't do it for us
                 var salt = _cryptographyManager.CreateSalt();
                 var hash = _cryptographyManager.CreateHash(created, password, salt);
 

@@ -28,7 +28,7 @@ namespace Liath.BigSpace.UI.Web.Areas.Account.Controllers
         [AllowAnonymous]
         public ActionResult CreateAccount()
         {
-            return View();
+            return View(new CreateAccount());
         }
 
         [HttpPost]

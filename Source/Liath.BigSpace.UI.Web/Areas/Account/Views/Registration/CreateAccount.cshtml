@@ -1,1 +1,28 @@
-﻿
+﻿@model Liath.BigSpace.UI.Web.Areas.Account.Models.Registration.CreateAccount
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="Article">
+    <h2>Register</h2>
+
+    @if (Model.Errors != null)
+    {
+        @Html.Raw(Model.Errors);
+    }
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.LabelFor(x => x.Username)
+        @Html.TextBoxFor(x => x.Username)
+        @Html.LabelFor(x => x.EmailAddress)
+        @Html.TextBoxFor(x => x.EmailAddress)
+        @Html.LabelFor(x => x.Password)
+        @Html.PasswordFor(x => x.Password)
+        @Html.LabelFor(x => x.ConfirmPassword)
+        @Html.PasswordFor(x => x.ConfirmPassword)
+        <input type="submit" id="RegisterButton" value="Register" />
+    }
+</div>

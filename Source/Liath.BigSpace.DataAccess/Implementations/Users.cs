@@ -104,13 +104,18 @@ namespace Liath.BigSpace.DataAccess.Implementations
         {
             if (securityUser == null) throw new ArgumentNullException("securityUser");
 
-            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("INSERT INTO UserAccounts (Username, EmailAddress, PasswordHash, PasswordSalt, CreateTS) VALUES (:Username, @EmailAddress, @PasswordHash, @PasswordSalt, @CreateTS) SELECT Scope_Identity()"))
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("INSERT INTO UserAccounts (Username, EmailAddress, PasswordHash, PasswordSalt, CreateTS, EmpireID, X, Y, Z) VALUES (@Username, @EmailAddress, @PasswordHash, @PasswordSalt, @CreateTS, @Empire, @X, @Y, @Z) SELECT Scope_Identity()"))
             {
                 cmd.AddParameter("Username", DbType.String, securityUser.Username);
                 cmd.AddParameter("EmailAddress", DbType.String, securityUser.EmailAddress);
                 cmd.AddParameter("PasswordHash", DbType.Binary, securityUser.PasswordHash);
                 cmd.AddParameter("PasswordSalt", DbType.String, securityUser.PasswordSalt);
                 cmd.AddParameter("CreateTS", DbType.DateTime, securityUser.CreateTS);
+
+                cmd.AddParameter("Empire", DbType.Int32, 2); // TODO: put them in the other empire for now
+                cmd.AddParameter("X", DbType.Int64, 0);
+                cmd.AddParameter("Y", DbType.Int64, 0);
+                cmd.AddParameter("Z", DbType.Int64, 0);
 
                 securityUser.UserAccountID = (int)(decimal)cmd.ExecuteScalar();
             }
