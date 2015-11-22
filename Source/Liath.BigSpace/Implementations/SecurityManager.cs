@@ -78,6 +78,37 @@ namespace Liath.BigSpace.Implementations
 
         public bool CreateUserAccount(string username, string emailAddress, string password, string confirmPassword, out UserAccount user, out string errors)
         {
+            string validatedErrors;
+            if(this.Validate(username, emailAddress, password, confirmPassword, out validatedErrors))
+            {
+                var created = DateTime.UtcNow;
+                var salt = _cryptographyManager.CreateSalt();
+                var hash = _cryptographyManager.CreateHash(created, password, salt);
+
+                var securityUser = new SecurityUserAccount
+                {
+                    CreateTS = created,
+                    EmailAddress = emailAddress,
+                    PasswordSalt = salt,
+                    PasswordHash = hash,
+                    Username = username
+                };
+
+                _users.CreateUserAccount(securityUser);
+                user = _users.GetUserByUsername(username);
+                errors = null;
+                return true;
+            }
+            else
+            {
+                errors = validatedErrors;
+                user = null;
+                return false;
+            }
+        }
+
+        private bool Validate(string username, string emailAddress, string password, string confirmPassword, out string errors)
+        {
             throw new NotImplementedException();
         }
     }

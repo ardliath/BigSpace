@@ -98,5 +98,11 @@ namespace Liath.BigSpace.DataAccess.Implementations
                 }
             }
         }
+
+
+        public void CreateUserAccount(SecurityUserAccount securityUser)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

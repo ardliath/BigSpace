@@ -14,5 +14,7 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
         UserAccount Update(UserAccount userAccount);
 
         SecurityUserAccount GetUserAccount(string emailAddress);
+
+        void CreateUserAccount(SecurityUserAccount securityUser);
     }
 }
