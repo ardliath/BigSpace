@@ -29,7 +29,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 			var maxY = (localAreaView.FocusCoordinates.Y + localAreaView.ScreenSize.Height + 1) / 2;
 
 			// This will need to change once we consider three dimensional space
-			var query = "SELECT SolarSystemID, Name, X, Y, Z FROM SolarSystems WHERE X BETWEEN @MinX AND @MaxX and Y BETWEEN @MinY AND @MaxY AND Z = @Z";
+			var query = this.CreateQuery("X BETWEEN @MinX AND @MaxX and Y BETWEEN @MinY AND @MaxY AND Z = @Z");
 
 			using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
 			{				
@@ -43,17 +43,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 				{
 					while (dr.Read())
 					{
-						solarSystems.Add(new SolarSystem
-						{
-							SolarSystemID = dr.GetInt64("SolarSystemID"),
-							Name = dr.GetString("Name"),
-							Coordinates = new Coordinates
-							{
-								X = dr.GetInt64("X"),
-								Y = dr.GetInt64("Y"),
-								Z = dr.GetInt64("Z")
-							}
-						});
+						solarSystems.Add(this.InflateSolarSystem(dr));
 					}
 				}
 			}
@@ -61,10 +51,34 @@ namespace Liath.BigSpace.DataAccess.Implementations
 			return solarSystems;
 		}
 
+        private SolarSystem InflateSolarSystem(IDataReader dr)
+        {
+            return new SolarSystem
+            {
+                SolarSystemID = dr.GetInt64("SolarSystemID"),
+                Name = dr.GetString("Name"),
+                Coordinates = new Coordinates
+                {
+                    X = dr.GetInt64("X"),
+                    Y = dr.GetInt64("Y"),
+                    Z = dr.GetInt64("Z")
+                }
+            };
+        }
+
+        private string CreateQuery(string filter = null, int? top = null)
+        {
+            return string.Concat("SELECT ",
+                top.HasValue ? string.Concat("TOP ", top.Value, " ") : null,
+               "SolarSystemID, Name, X, Y, Z FROM SolarSystems",
+                filter == null ? null : " WHERE ",
+                filter);
+        }
+
 
         public SolarSystem GetSolarSystem(Int64 id)
         {
-            var query = "SELECT SolarSystemID, Name, X, Y, Z FROM SolarSystems WHERE SolarSystemID = @ID";
+            var query = this.CreateQuery("SolarSystemID = @ID");
 
             using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
             {
@@ -74,17 +88,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
                 {
                     if (dr.Read())
                     {
-                        return new SolarSystem
-                        {
-                            SolarSystemID = dr.GetInt64("SolarSystemID"),
-                            Name = dr.GetString("Name"),
-                            Coordinates = new Coordinates
-                            {
-                                X = dr.GetInt64("X"),
-                                Y = dr.GetInt64("Y"),
-                                Z = dr.GetInt64("Z")
-                            }
-                        };
+                        return this.InflateSolarSystem(dr);
                     }
                     return null;
                 }
