@@ -118,7 +118,18 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
         public SolarSystem GetRandomUnoccupiedSolarSystem()
         {
-            throw new NotImplementedException();
+            var query = this.CreateQuery("1=1 ORDER BY newid()", 1);
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
+            {
+                using(var dr = cmd.ExecuteReader())
+                {
+                    if(dr.Read())
+                    {
+                        return this.InflateSolarSystem(dr);
+                    }
+                    return null;
+                }
+            }
         }
     }
 }
