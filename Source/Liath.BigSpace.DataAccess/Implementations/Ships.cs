@@ -70,12 +70,16 @@ namespace Liath.BigSpace.DataAccess.Implementations
             };
         }
 
+        public static string[] RequiredFields = new string[] { "Name", "SolarSystemID", "UserAccountID", "IsSelected", "JobID" };
+
         private string CreateSelectQuery(string filter = null)
         {
-            var sb = new StringBuilder("SELECT ShipID, Name, SolarSystemID, UserAccountID, IsSelected, SolarSystemID, JobID FROM Ships ");
+            var sb = new StringBuilder("SELECT ShipID, ");
+            sb.Append(string.Join(", ", RequiredFields));
+            sb.Append(" FROM Ships");
             if(filter != null)
             {
-                sb.AppendFormat("WHERE {0}", filter);
+                sb.AppendFormat(" WHERE {0}", filter);
             }
 
             return sb.ToString();
@@ -163,7 +167,20 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
         public Ship CreateShip(SolarSystem located, UserAccount owner, string name)
         {
-            throw new NotImplementedException();
+            int id;
+            var query = string.Concat("INSERT INTO Ships (", string.Join(", ", RequiredFields), ") VALUES (", string.Join(", ", RequiredFields.Select(f => string.Concat("@", f))), ") SELECT Scope_Identity()");
+            using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
+            {
+                cmd.AddParameter("UserAccountID", DbType.Int32, owner.UserAccountID);
+                cmd.AddParameter("Name", DbType.String, name);
+                cmd.AddParameter("SolarSystemID", DbType.Int64, located.SolarSystemID);
+                cmd.AddParameter("IsSelected", DbType.Boolean, 0);
+                cmd.AddParameter("JobID", DbType.Int64, DBNull.Value);
+
+                id = (int)(decimal)cmd.ExecuteScalar();                
+            }
+
+            return this.GetShip(id);
         }
     }
 }
