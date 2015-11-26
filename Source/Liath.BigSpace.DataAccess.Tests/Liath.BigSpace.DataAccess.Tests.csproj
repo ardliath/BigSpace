@@ -30,6 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,6 +50,28 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SolarSystemRepositoryTests\FindSystemsInLocalAreaTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Liath.BigSpace.DataAccess\Liath.BigSpace.DataAccess.csproj">
+      <Project>{05554460-7fb3-4001-9201-731e903fd4dd}</Project>
+      <Name>Liath.BigSpace.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Liath.BigSpace.Domain\Liath.BigSpace.Domain.csproj">
+      <Project>{d3a392f7-2c69-4a75-85c0-3d1d6000a320}</Project>
+      <Name>Liath.BigSpace.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Liath.BigSpace.Session\Liath.BigSpace.Session.csproj">
+      <Project>{1fa6dcd6-1b0c-4aba-a227-4efede9bf1f4}</Project>
+      <Name>Liath.BigSpace.Session</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Liath.BigSpace.Testing\Liath.BigSpace.Testing.csproj">
+      <Project>{7f98eb4f-8a06-40d8-b430-a24d77e6b73e}</Project>
+      <Name>Liath.BigSpace.Testing</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -33,6 +33,9 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,9 +49,12 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Create\BusinessLogicClass.cs" />
+    <Compile Include="Create\DataAccessClasses.cs" />
     <Compile Include="Create\DomainClasses.cs" />
+    <Compile Include="Extensions\Assertions\IDbCommandAssertionExtensions.cs" />
     <Compile Include="Extensions\BusinessLogicExtensions\SecurityManagerExtensions.cs" />
     <Compile Include="Extensions\DataAccessExtensions\SolarSystemExtensions.cs" />
+    <Compile Include="Extensions\SessionManagerExtensions\GetUnitOfWorkAndCreateCommandExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +69,10 @@
     <ProjectReference Include="..\Liath.BigSpace.Domain\Liath.BigSpace.Domain.csproj">
       <Project>{d3a392f7-2c69-4a75-85c0-3d1d6000a320}</Project>
       <Name>Liath.BigSpace.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Liath.BigSpace.Session\Liath.BigSpace.Session.csproj">
+      <Project>{1fa6dcd6-1b0c-4aba-a227-4efede9bf1f4}</Project>
+      <Name>Liath.BigSpace.Session</Name>
     </ProjectReference>
     <ProjectReference Include="..\Liath.BigSpace\Liath.BigSpace.csproj">
       <Project>{09925a29-0703-4b51-8bb3-f50755217c27}</Project>
