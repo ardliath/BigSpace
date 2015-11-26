@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Liath.BigSpace
+namespace Liath.BigSpace.Implementations
 {
     public class RegistrationManager : IRegistrationManager
     {
