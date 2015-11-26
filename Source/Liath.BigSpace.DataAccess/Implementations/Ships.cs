@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Liath.BigSpace.DataAccess.Extensions;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
+using Liath.BigSpace.Domain.UserAccountDomain;
 
 namespace Liath.BigSpace.DataAccess.Implementations
 {
@@ -160,7 +161,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
         }
 
 
-        public object CreateShip(object randomSolarSystem, Domain.UserAccountDomain.UserAccount user, string p)
+        public Ship CreateShip(SolarSystem located, UserAccount owner, string name)
         {
             throw new NotImplementedException();
         }

@@ -23,6 +23,6 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
 
         IEnumerable<Ship> ListSelectedShips(int userAccountID);
 
-        object CreateShip(object randomSolarSystem, UserAccountDomain.UserAccount user, string p);
+        Ship CreateShip(SolarSystem located, UserAccount owner, string name);
     }
 }
