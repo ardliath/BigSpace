@@ -46,12 +46,14 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Coordinates.cs" />
+    <Compile Include="DataAccessDefinitions\IEmpires.cs" />
     <Compile Include="DataAccessDefinitions\IShips.cs" />
     <Compile Include="DataAccessDefinitions\ISolarSystems.cs" />
     <Compile Include="DataAccessDefinitions\IUsers.cs" />
     <Compile Include="DataAccessDefinitions\Jobs\IJobChildRepository.cs" />
     <Compile Include="DataAccessDefinitions\Jobs\IJobRepository.cs" />
     <Compile Include="DataAccessDefinitions\Jobs\IJourneyRepository.cs" />
+    <Compile Include="Empire.cs" />
     <Compile Include="Jobs\Job.cs" />
     <Compile Include="Jobs\BuildShip.cs" />
     <Compile Include="Jobs\Journey.cs" />

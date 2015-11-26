@@ -15,6 +15,6 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
 
         SecurityUserAccount GetUserAccount(string emailAddress);
 
-        void CreateUserAccount(SecurityUserAccount securityUser);
+        void CreateUserAccount(SecurityUserAccount securityUser, int empireID, Coordinates coordinates);
     }
 }

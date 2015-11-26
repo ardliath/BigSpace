@@ -45,6 +45,7 @@
     <Compile Include="..\Liath.BigSpace\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Implementations\Empires.cs" />
     <Compile Include="Extensions\IDataReaderExtensions.cs" />
     <Compile Include="Extensions\IDbCommandExtensions.cs" />
     <Compile Include="Implementations\DataAccessBase.cs" />

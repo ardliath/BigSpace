@@ -158,5 +158,11 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
             return ships;
         }
+
+
+        public object CreateShip(object randomSolarSystem, Domain.UserAccountDomain.UserAccount user, string p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

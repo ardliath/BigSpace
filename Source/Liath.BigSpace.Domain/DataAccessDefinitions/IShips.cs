@@ -22,5 +22,7 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
         void SetShipJob(int shipID, Int64? jobID);
 
         IEnumerable<Ship> ListSelectedShips(int userAccountID);
+
+        object CreateShip(object randomSolarSystem, UserAccountDomain.UserAccount user, string p);
     }
 }

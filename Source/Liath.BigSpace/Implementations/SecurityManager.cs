@@ -76,7 +76,7 @@ namespace Liath.BigSpace.Implementations
         }
 
 
-        public bool CreateUserAccount(string username, string emailAddress, string password, string confirmPassword, out UserAccount user, out string errors)
+        public bool CreateUserAccount(string username, string emailAddress, string password, string confirmPassword, int empireID, Coordinates focus, out UserAccount user, out string errors)
         {
             string validatedErrors;
             if(this.Validate(username, emailAddress, password, confirmPassword, out validatedErrors))
@@ -95,7 +95,7 @@ namespace Liath.BigSpace.Implementations
                     Username = username
                 };
 
-                _users.CreateUserAccount(securityUser);
+                _users.CreateUserAccount(securityUser, empireID, focus);
                 user = _users.GetUserByUsername(username);
                 errors = null;
                 return true;

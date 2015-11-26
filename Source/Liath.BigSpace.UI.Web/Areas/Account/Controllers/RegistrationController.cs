@@ -13,15 +13,15 @@ namespace Liath.BigSpace.UI.Web.Areas.Account.Controllers
 {
     public class RegistrationController : Controller
     {
-        private ISecurityManager _securityManager;
+        private IRegistrationManager _registrationManager;
         private ISessionManager _sessionManager;
-        public RegistrationController(ISessionManager sessionManager, ISecurityManager securityManager)
+        public RegistrationController(ISessionManager sessionManager, IRegistrationManager registrationManager)
         {
             if (sessionManager == null) throw new ArgumentNullException("sessionManager");
-            if (securityManager == null) throw new ArgumentNullException("securityManager");
+            if (registrationManager == null) throw new ArgumentNullException("registrationManager");
 
             _sessionManager = sessionManager;
-            _securityManager = securityManager;
+            _registrationManager = registrationManager;
         }
 
         [HttpGet]
@@ -42,7 +42,7 @@ namespace Liath.BigSpace.UI.Web.Areas.Account.Controllers
             {
                 string error;
                 UserAccount user;
-                if (_securityManager.CreateUserAccount(createAccount.Username, createAccount.EmailAddress, createAccount.Password, createAccount.ConfirmPassword, out user, out error))
+                if (_registrationManager.RegisterUser(createAccount.Username, createAccount.EmailAddress, createAccount.Password, createAccount.ConfirmPassword, out user, out error))
                 {
                     // We'll have all sorts of issues if we try and set auths/redirects without http contexts
                     if (this.HttpContext != null)

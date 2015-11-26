@@ -14,6 +14,6 @@ namespace Liath.BigSpace.Definitions
 
         bool Login(string emailAddress, string password, out SecurityUserAccount currentUser);
 
-        bool CreateUserAccount(string username, string emailAddress, string password, string confirmPassword, out UserAccount user, out string errors);
+        bool CreateUserAccount(string username, string emailAddress, string password, string confirmPassword, int empireID, Coordinates focusCoordinates, out UserAccount user, out string errors);
     }
 }

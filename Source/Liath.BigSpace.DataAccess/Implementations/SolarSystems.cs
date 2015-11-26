@@ -110,5 +110,11 @@ namespace Liath.BigSpace.DataAccess.Implementations
                 return solarSystem;
             }
         }
+
+
+        public SolarSystem GetRandomUnoccupiedSolarSystem()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

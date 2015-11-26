@@ -100,7 +100,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
         }
 
 
-        public void CreateUserAccount(SecurityUserAccount securityUser)
+        public void CreateUserAccount(SecurityUserAccount securityUser, int empireID, Coordinates coordinates)
         {
             if (securityUser == null) throw new ArgumentNullException("securityUser");
 
@@ -112,10 +112,10 @@ namespace Liath.BigSpace.DataAccess.Implementations
                 cmd.AddParameter("PasswordSalt", DbType.String, securityUser.PasswordSalt);
                 cmd.AddParameter("CreateTS", DbType.DateTime, securityUser.CreateTS);
 
-                cmd.AddParameter("Empire", DbType.Int32, 2); // TODO: put them in the other empire for now
-                cmd.AddParameter("X", DbType.Int64, 0);
-                cmd.AddParameter("Y", DbType.Int64, 0);
-                cmd.AddParameter("Z", DbType.Int64, 0);
+                cmd.AddParameter("Empire", DbType.Int32, empireID);
+                cmd.AddParameter("X", DbType.Int64, coordinates.X);
+                cmd.AddParameter("Y", DbType.Int64, coordinates.Y);
+                cmd.AddParameter("Z", DbType.Int64, coordinates.Z);
 
                 securityUser.UserAccountID = (int)(decimal)cmd.ExecuteScalar();
             }
