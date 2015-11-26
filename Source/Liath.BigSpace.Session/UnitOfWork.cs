@@ -15,6 +15,7 @@ namespace Liath.BigSpace.Session
 
         private IDbConnection _connection;
         private ConnectionStringSettings _connectionStringSettings;
+        private IDbTransaction _transaction;
 
         public UnitOfWork(ConnectionStringSettings connectionStringSettings)
         {
@@ -38,6 +39,7 @@ namespace Liath.BigSpace.Session
 		    if (query == null) throw new ArgumentNullException("query");
 		    var conn = GetConnection();
 		    var cmd = conn.CreateCommand();
+            cmd.Transaction = _transaction;
 		    cmd.CommandText = query;
 		    return cmd;
 	    }
@@ -56,9 +58,19 @@ namespace Liath.BigSpace.Session
 	    private IDbConnection CreateConnection()
 	    {
 		    logger.Trace("Creating a new connection");
-		    var conn = new SqlConnection(_connectionStringSettings.ConnectionString);
-		    conn.Open();
-		    return conn;
+		    _connection = new SqlConnection(_connectionStringSettings.ConnectionString);            
+            _connection.Open();
+            _transaction = _connection.BeginTransaction();
+            return _connection;
 	    }
+
+
+        public void Rollback()
+        {
+            if(_transaction != null)
+            {
+                _transaction.Rollback();
+            }
+        }
     }
 }

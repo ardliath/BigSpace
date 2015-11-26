@@ -9,5 +9,7 @@ namespace Liath.BigSpace.Session
     public interface IUnitOfWork : IDisposable
     {
         IDbCommand CreateCommand(string query);
+
+        void Rollback();
     }
 }

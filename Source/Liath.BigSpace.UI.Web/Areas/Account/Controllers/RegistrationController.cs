@@ -2,6 +2,7 @@
 using Liath.BigSpace.Domain.UserAccountDomain;
 using Liath.BigSpace.Session;
 using Liath.BigSpace.UI.Web.Areas.Account.Models.Registration;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Liath.BigSpace.UI.Web.Areas.Account.Controllers
     {
         private IRegistrationManager _registrationManager;
         private ISessionManager _sessionManager;
+        private static ILogger logger = LogManager.GetCurrentClassLogger();
+
         public RegistrationController(ISessionManager sessionManager, IRegistrationManager registrationManager)
         {
             if (sessionManager == null) throw new ArgumentNullException("sessionManager");
@@ -40,25 +43,33 @@ namespace Liath.BigSpace.UI.Web.Areas.Account.Controllers
 
             using(_sessionManager.CreateUnitOfWork())
             {
-                string error;
-                UserAccount user;
-                if (_registrationManager.RegisterUser(createAccount.Username, createAccount.EmailAddress, createAccount.Password, createAccount.ConfirmPassword, out user, out error))
+                try
                 {
-                    // We'll have all sorts of issues if we try and set auths/redirects without http contexts
-                    if (this.HttpContext != null)
+                    string error;
+                    UserAccount user;
+                    if (_registrationManager.RegisterUser(createAccount.Username, createAccount.EmailAddress, createAccount.Password, createAccount.ConfirmPassword, out user, out error))
                     {
-                        FormsAuthentication.SetAuthCookie(createAccount.Username, false);
-                        return Redirect(Url.RouteUrl(new
+                        // We'll have all sorts of issues if we try and set auths/redirects without http contexts
+                        if (this.HttpContext != null)
                         {
-                            area = "OuterSpace",
-                            controller = "LocalArea",
-                            action = "Display"
-                        }));
+                            FormsAuthentication.SetAuthCookie(createAccount.Username, false);
+                            return Redirect(Url.RouteUrl(new
+                            {
+                                area = "OuterSpace",
+                                controller = "LocalArea",
+                                action = "Display"
+                            }));
+                        }
+                    }
+                    else
+                    {
+                        createAccount.Errors = error;
                     }
                 }
-                else
+                catch(Exception ex)
                 {
-                    createAccount.Errors = error;
+                    logger.Error("Error registering user", ex);
+                    _sessionManager.GetCurrentUnitOfWork().Rollback();
                 }
             }
 
