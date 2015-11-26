@@ -16,6 +16,7 @@ namespace Liath.BigSpace.Session
         private IDbConnection _connection;
         private ConnectionStringSettings _connectionStringSettings;
         private IDbTransaction _transaction;
+        private bool _transactionRolledBack;
 
         public UnitOfWork(ConnectionStringSettings connectionStringSettings)
         {
@@ -28,6 +29,14 @@ namespace Liath.BigSpace.Session
             logger.Trace("Disposing of UnitOfWork");
             if(_connection != null)
             {
+                if(_transaction != null)
+                {
+                    if (!_transactionRolledBack)
+                    {
+                        _transaction.Commit();
+                    }
+                    _transaction.Dispose();
+                }
                 logger.Trace("Connection is not null disposing");
                 _connection.Dispose();
                 logger.Trace("Connection was disposed");
@@ -61,6 +70,7 @@ namespace Liath.BigSpace.Session
 		    _connection = new SqlConnection(_connectionStringSettings.ConnectionString);            
             _connection.Open();
             _transaction = _connection.BeginTransaction();
+            _transactionRolledBack = false;
             return _connection;
 	    }
 
@@ -70,6 +80,7 @@ namespace Liath.BigSpace.Session
             if(_transaction != null)
             {
                 _transaction.Rollback();
+                _transactionRolledBack = true;
             }
         }
     }
