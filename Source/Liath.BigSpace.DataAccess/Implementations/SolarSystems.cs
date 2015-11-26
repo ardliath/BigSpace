@@ -23,10 +23,12 @@ namespace Liath.BigSpace.DataAccess.Implementations
 			if (localAreaView == null) throw new ArgumentNullException("localAreaView");
 
 			var solarSystems = new List<SolarSystem>();
-			var minX = (localAreaView.FocusCoordinates.X - localAreaView.ScreenSize.Width - 1)/2;
-			var maxX = (localAreaView.FocusCoordinates.X + localAreaView.ScreenSize.Width + 1)/2;
-			var minY = (localAreaView.FocusCoordinates.Y - localAreaView.ScreenSize.Height - 1) / 2;
-			var maxY = (localAreaView.FocusCoordinates.Y + localAreaView.ScreenSize.Height + 1) / 2;
+            var xDiff = (localAreaView.ScreenSize.Width - 1) / 2; // either side of the focal point we show this many squares
+            var yDiff = (localAreaView.ScreenSize.Height - 1) / 2;
+            var minX = localAreaView.FocusCoordinates.X - xDiff;
+			var maxX = localAreaView.FocusCoordinates.X + xDiff;
+			var minY = localAreaView.FocusCoordinates.Y - yDiff;
+            var maxY = localAreaView.FocusCoordinates.Y + yDiff;
 
 			// This will need to change once we consider three dimensional space
 			var query = this.CreateQuery("X BETWEEN @MinX AND @MaxX and Y BETWEEN @MinY AND @MaxY AND Z = @Z");

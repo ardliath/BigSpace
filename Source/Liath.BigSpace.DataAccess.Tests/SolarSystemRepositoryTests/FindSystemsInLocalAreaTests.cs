@@ -49,7 +49,34 @@ namespace Liath.BigSpace.DataAccess.Tests.SolarSystemRepositoryTests
                 .AssertParameter("MaxY", 2)
                 .AssertParameter("Z", 0);
         }
+
+        [Test]
+        public void MoreComplex()
+        {
+            var parameters = new MockedParameters();
+            var cmd = new Mock<IDbCommand>();
+            cmd.Setup(x => x.CreateParameter()).Returns(() => new MockedParameter());
+            cmd.Setup(x => x.ExecuteReader()).Returns(Mock.Of<IDataReader>());
+            cmd.Setup(x => x.Parameters).Returns(parameters);
+            var sessionManager = new Mock<ISessionManager>();
+            sessionManager.SetupUoWCreateCommand(cmd.Object);
+            var mgr = DataAccessClasses.SolarSystems(sessionManager.Object);
+
+            var systems = mgr.FindSystemsInLocalArea(new LocalAreaView(new Coordinates
+            {
+                X = 1000,
+                Y = -170,
+                Z = 0
+            }, new ScreenSize(5, 5)));
+
+            cmd.Object.AssertParameter("MinX", 998)
+                .AssertParameter("MaxX", 1002)
+                .AssertParameter("MinY", -172)
+                .AssertParameter("MaxY", -168)
+                .AssertParameter("Z", 0);
+        }
     }
+
 
 
     public class MockedParameters : IDataParameterCollection
