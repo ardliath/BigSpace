@@ -10,12 +10,14 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.SolarSystem
         public int ID { get; set; }
         public string Name { get; set; }
         public bool IsSelected { get; set; }
+        public bool IsMine { get; set; }
 
         public string CellClass
         {
             get
             {
-                return this.IsSelected ? "SelectedShip" : "";
+                return string.Concat(this.IsSelected && this.IsMine ? "SelectedShip" : "", " ",
+                    this.IsMine ? "IsMine" : null);
             }
         }
     }

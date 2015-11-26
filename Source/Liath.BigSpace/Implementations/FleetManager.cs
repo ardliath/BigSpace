@@ -12,11 +12,15 @@ namespace Liath.BigSpace.Implementations
     public class FleetManager : IFleetManager
     {
         private IShips _ships;
+        private ISecurityManager _securityManager;
 
-        public FleetManager(IShips ships)
+        public FleetManager(IShips ships, ISecurityManager securityManager)
         {
             if (ships == null) throw new ArgumentNullException("ships");
+            if (securityManager == null) throw new ArgumentNullException("securityManager");
+
             _ships = ships;
+            _securityManager = securityManager;
         }
 
         public void SelectShip(int id)
@@ -27,7 +31,8 @@ namespace Liath.BigSpace.Implementations
         private void LoadShipAndSetSelectedTo(bool newSelectedValue, int shipID)
         {
             var ship = _ships.GetShip(shipID);
-            if(ship != null)
+            var me = _securityManager.GetCurrentUserAccount();
+            if(ship != null && me != null && me.UserAccountID == ship.UserAccountID)
             {
                 ship.IsSelected = newSelectedValue;
                 _ships.Save(ship);

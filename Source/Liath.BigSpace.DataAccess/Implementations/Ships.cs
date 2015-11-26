@@ -63,6 +63,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
             return new Ship
             {
                 ShipID = dr.GetInt32("ShipID"),
+                UserAccountID = dr.GetInt32("UserAccountID"),
                 Name = dr.GetString("Name"),
                 IsSelected = dr.GetBoolean("IsSelected"),
                 SolarSystemID = dr.GetNullableInt64("SolarSystemID"),

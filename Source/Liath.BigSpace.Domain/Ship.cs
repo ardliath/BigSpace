@@ -10,6 +10,7 @@ namespace Liath.BigSpace.Domain
         public int ShipID { get; set; }
         public string Name { get; set; }
         public bool IsSelected { get; set; }
+        public int UserAccountID { get; set; }
         public Int64? SolarSystemID { get; set; }
         public Int64? JobID { get; set; }
 
@@ -24,6 +25,6 @@ namespace Liath.BigSpace.Domain
             {
                 return 10;
             }
-        }
+        }        
     }
 }

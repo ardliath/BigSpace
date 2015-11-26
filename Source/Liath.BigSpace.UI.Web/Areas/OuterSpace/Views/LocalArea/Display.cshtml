@@ -67,7 +67,7 @@
             });
         });
 
-        $('#Details').on('click', '.ShipSummary', function () {
+        $('#Details').on('click', '.ShipSummary.IsMine', function () {
             var shipID = $(this).attr('ShipID');
             var url = '';
             if ($(this).hasClass('SelectedShip')) {
