@@ -12,5 +12,6 @@ namespace Liath.BigSpace.Domain.UserAccountDomain
 
 		public string Username { get; set; }
 		public Coordinates FocusCoordinates { get; set; }
-	}
+        public int EmpireID { get; set; }
+    }
 }

@@ -70,7 +70,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
             };
         }
 
-        public static string[] RequiredFields = new string[] { "Name", "SolarSystemID", "UserAccountID", "IsSelected", "JobID" };
+        public static string[] RequiredFields = new string[] { "Name", "SolarSystemID", "UserAccountID", "IsSelected", "JobID", "EmpireID" };
 
         private string CreateSelectQuery(string filter = null)
         {
@@ -176,6 +176,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
                 cmd.AddParameter("SolarSystemID", DbType.Int64, located.SolarSystemID);
                 cmd.AddParameter("IsSelected", DbType.Boolean, 0);
                 cmd.AddParameter("JobID", DbType.Int64, DBNull.Value);
+                cmd.AddParameter("EmpireID", DbType.Int32, owner.EmpireID);
 
                 id = (int)(decimal)cmd.ExecuteScalar();                
             }

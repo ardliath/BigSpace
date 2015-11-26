@@ -27,7 +27,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 		{
 			if (username == null) throw new ArgumentNullException("username");
 
-			using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("SELECT UserAccountID, Username, X, Y, Z FROM UserAccounts WHERE Username = @Username"))
+			using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("SELECT UserAccountID, Username, X, Y, Z, EmpireID FROM UserAccounts WHERE Username = @Username"))
 			{
 				cmd.AddParameter("Username", System.Data.DbType.String, username);
 				using (var dr = cmd.ExecuteReader())
@@ -38,6 +38,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 						{
 							UserAccountID = dr.GetInt32("UserAccountID"),
 							Username = dr.GetString("Username"),
+                            EmpireID = dr.GetInt32("EmpireID"),
 							FocusCoordinates = new Coordinates
 							{
 								X = dr.GetInt64("X"),
