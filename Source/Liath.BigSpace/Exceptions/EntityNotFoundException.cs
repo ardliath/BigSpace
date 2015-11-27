@@ -14,6 +14,14 @@ namespace Liath.BigSpace.Exceptions
             this.ID = id;
         }
 
+        public EntityNotFoundException(long id)
+            : base(string.Format("Entity of type '{0}' with ID {1} could not be found", typeof(T).FullName, id))
+        {
+            this.LongID = id;
+        }
+
         public int ID { get; set; }
+
+        public long LongID { get; set; }
     }
 }

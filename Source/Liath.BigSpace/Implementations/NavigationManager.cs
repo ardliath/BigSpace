@@ -23,20 +23,23 @@ namespace Liath.BigSpace.Implementations
         private IShips _ships;
         private IJourneyRepository _journeyRepository;
         private IConfigurationManager _configurationManager;
+        private IUsers _userRepository;
 
-        public NavigationManager(ISecurityManager securityManager, IConfigurationManager configurationManager, ISolarSystems solarSystems, IShips ships, IJourneyRepository journeyRepository)
+        public NavigationManager(ISecurityManager securityManager, IConfigurationManager configurationManager, ISolarSystems solarSystems, IShips ships, IJourneyRepository journeyRepository, IUsers userRepository)
         {
             if (securityManager == null) throw new ArgumentNullException("securityManager");
 	        if (solarSystems == null) throw new ArgumentNullException("solarSystems");
             if (ships == null) throw new ArgumentNullException("ships");
             if (journeyRepository == null) throw new ArgumentNullException("journeyRepository");
             if (configurationManager == null) throw new ArgumentNullException("configurationManager");
+            if (userRepository == null) throw new ArgumentNullException("userRepository");
 
 	        _securityManager = securityManager;
 	        _solarSystems = solarSystems;
             _ships = ships;
             _journeyRepository = journeyRepository;
             _configurationManager = configurationManager;
+            _userRepository = userRepository;
         }
 
 	    public LocalAreaViewResult FindLocalSystems(ScreenSize screenSize)
@@ -129,6 +132,22 @@ namespace Liath.BigSpace.Implementations
             var seconds = (int)(60 * (minutes - roundedMinutes));
 
             return new TimeSpan(0, roundedMinutes, seconds);
+        }
+
+
+        public void FocusCurrentUserAccountOnSolarSystem(long solarSystemID)
+        {
+            var solarSystem = _solarSystems.GetSolarSystem(solarSystemID);
+            if (solarSystem == null) throw new EntityNotFoundException<SolarSystem>(solarSystemID);
+
+            var user = _securityManager.GetCurrentUserAccount();
+            if (user == null) throw new CurrentUserNotFoundException();
+
+            user.FocusCoordinates.X = solarSystem.Coordinates.X;
+            user.FocusCoordinates.Y = solarSystem.Coordinates.Y;
+            user.FocusCoordinates.Z = solarSystem.Coordinates.Z;
+
+            _userRepository.Update(user);
         }
     }
 }

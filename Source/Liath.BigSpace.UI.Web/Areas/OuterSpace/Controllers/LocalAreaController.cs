@@ -35,6 +35,11 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 		{
 			using (_sessionManager.CreateUnitOfWork())
 			{
+                if(id.HasValue)
+                {
+                    _navigationManager.FocusCurrentUserAccountOnSolarSystem(id.Value);
+                }
+
 				var localSystems = _navigationManager.FindLocalSystems(new Liath.BigSpace.Domain.ScreenSize(21, 21));
                 return View(new Display
                     {
