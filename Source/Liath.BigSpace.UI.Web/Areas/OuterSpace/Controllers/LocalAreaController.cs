@@ -31,7 +31,7 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Display()
+        public ActionResult Display(Int64? id)
 		{
 			using (_sessionManager.CreateUnitOfWork())
 			{

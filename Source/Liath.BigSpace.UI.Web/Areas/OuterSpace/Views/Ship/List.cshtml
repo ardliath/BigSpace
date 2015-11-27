@@ -8,8 +8,13 @@
         <tr>
             <td>@ship.ShipName</td>
             <td>
-                @ship.SolarSystem
-                @ship.Job
+                @if (ship.SolarSystem.HasValue) { 
+                    @Html.RouteLink(ship.SolarSystemName, new {area = "OuterSpace", controller = "LocalArea", action = "Display", id = ship.SolarSystem.Value});
+                }
+                else
+                { 
+                    @Html.Raw(ship.Job)
+                }
             </td>
         </tr>
     }

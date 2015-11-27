@@ -60,7 +60,8 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
                     {
                         ShipID = s.ShipID,
                         ShipName = s.Name,
-                        SolarSystem = s.SolarSystemName,
+                        SolarSystem = s.SolarSystemID,
+                        SolarSystemName = s.SolarSystemName,
                         Job = s.JobDescription
                     })
                 };
