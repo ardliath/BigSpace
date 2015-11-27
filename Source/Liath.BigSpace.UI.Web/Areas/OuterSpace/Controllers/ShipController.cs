@@ -1,5 +1,6 @@
 ﻿using Liath.BigSpace.Definitions;
 using Liath.BigSpace.Session;
+using Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.Ship;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,9 +53,16 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
             {
                 var myEmpire = _empireManager.GetMyEmpire();
                 var allShipsInFleet = _fleetManager.ListAllShipsInMyEmpire();
-                var model = new Models.Ship.List
+                var model = new List
                 {
-                    EmpireName = myEmpire.Name
+                    EmpireName = myEmpire.Name,
+                    Ships = allShipsInFleet.Select(s => new ShipSummary
+                    {
+                        ShipID = s.ShipID,
+                        ShipName = s.Name,
+                        SolarSystem = s.SolarSystemName,
+                        Job = s.JobDescription
+                    })
                 };
                 return View(model);
             }

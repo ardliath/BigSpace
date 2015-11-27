@@ -155,6 +155,7 @@
     <Compile Include="Areas\OuterSpace\Models\LocalArea\SystemSummary.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\UpdateView.cs" />
     <Compile Include="Areas\OuterSpace\Models\Ship\List.cs" />
+    <Compile Include="Areas\OuterSpace\Models\Ship\ShipSummary.cs" />
     <Compile Include="Areas\OuterSpace\Models\SolarSystem\ShipSummary.cs" />
     <Compile Include="Areas\OuterSpace\Models\SolarSystem\SolarSystemSummary.cs" />
     <Compile Include="Areas\OuterSpace\OuterSpaceAreaRegistration.cs" />

@@ -1,3 +1,16 @@
 ﻿@model Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.Ship.List
 
 <h1>Listing all @Model.EmpireName ships</h1>
+
+<table>
+    @foreach (var ship in @Model.Ships)
+    {
+        <tr>
+            <td>@ship.ShipName</td>
+            <td>
+                @ship.SolarSystem
+                @ship.Job
+            </td>
+        </tr>
+    }
+</table>

@@ -8,6 +8,7 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.Ship
     public class List
     {
 
-        public object EmpireName { get; set; }
+        public string EmpireName { get; set; }
+        public IEnumerable<ShipSummary> Ships { get; set; }
     }
 }
