@@ -32,5 +32,27 @@ namespace Liath.BigSpace.DataAccess.Implementations
                 };
             }
         }
+
+
+        public Empire GetEmpire(int id)
+        {
+            using(var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("SELECT EmpireID, Name From Empires WHERE EmpireID = @ID"))
+            {
+                cmd.AddParameter("ID", System.Data.DbType.Int32, id);
+                using(var dr = cmd.ExecuteReader())
+                {
+                    if(dr.Read())
+                    {
+                        return new Empire
+                        {
+                            EmpireID = dr.GetInt32("EmpireID"),
+                            Name = dr.GetString("Name")
+                        };
+                    }
+
+                    return null;
+                }
+            }
+        }
     }
 }

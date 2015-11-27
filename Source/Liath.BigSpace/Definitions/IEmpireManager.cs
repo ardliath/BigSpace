@@ -10,5 +10,7 @@ namespace Liath.BigSpace.Definitions
     public interface IEmpireManager
     {
         Empire CreateEmpire(string name);
+
+        Empire GetMyEmpire();
     }
 }

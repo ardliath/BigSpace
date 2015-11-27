@@ -9,5 +9,7 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
     public interface IEmpires
     {
         Empire CreateEmpire(string name);
+
+        Empire GetEmpire(int id);
     }
 }

@@ -125,6 +125,7 @@
     <Content Include="Areas\Account\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Account\Views\Authentication\Login.cshtml" />
     <Content Include="Areas\Account\Views\Registration\CreateAccount.cshtml" />
+    <Content Include="Areas\OuterSpace\Views\Ship\List.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -153,6 +154,7 @@
     <Compile Include="Areas\OuterSpace\Models\LocalArea\ScreenSize.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\SystemSummary.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\UpdateView.cs" />
+    <Compile Include="Areas\OuterSpace\Models\Ship\List.cs" />
     <Compile Include="Areas\OuterSpace\Models\SolarSystem\ShipSummary.cs" />
     <Compile Include="Areas\OuterSpace\Models\SolarSystem\SolarSystemSummary.cs" />
     <Compile Include="Areas\OuterSpace\OuterSpaceAreaRegistration.cs" />
@@ -183,7 +185,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\OuterSpace\Views\Commands\" />
-    <Folder Include="Areas\OuterSpace\Views\Ship\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Liath.BigSpace.Configuration\Liath.BigSpace.Configuration.csproj">

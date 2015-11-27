@@ -52,6 +52,7 @@
     <Compile Include="Definitions\ISecurityManager.cs" />
     <Compile Include="Definitions\IUserManager.cs" />
     <Compile Include="Exceptions\CurrentUserNotFoundException.cs" />
+    <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\SecurityException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Implementations\CryptographyManager.cs" />
