@@ -1,6 +1,8 @@
 ﻿using Liath.BigSpace.DataAccess.Definitions;
 using Liath.BigSpace.Definitions;
+using Liath.BigSpace.Domain;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
+using Liath.BigSpace.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +44,15 @@ namespace Liath.BigSpace.Implementations
         public void DeSelectShip(int id)
         {
             this.LoadShipAndSetSelectedTo(false, id);
+        }
+
+
+        public IEnumerable<ShipWithCurrentStatus> ListAllShipsInMyEmpire()
+        {
+            var me = _securityManager.GetCurrentUserAccount();
+            if (me == null) throw new CurrentUserNotFoundException();
+
+            return _ships.ListAllShipsInEmpire(me.EmpireID);
         }
     }
 }

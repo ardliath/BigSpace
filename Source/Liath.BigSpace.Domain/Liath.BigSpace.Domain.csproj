@@ -64,6 +64,7 @@
     <Compile Include="ScreenOffSet.cs" />
     <Compile Include="ScreenSize.cs" />
     <Compile Include="Ship.cs" />
+    <Compile Include="ShipWithCurrentStatus.cs" />
     <Compile Include="SolarSystem.cs" />
     <Compile Include="SolarSystemDetails.cs" />
     <Compile Include="UserAccountDomain\SecurityUserAccount.cs" />

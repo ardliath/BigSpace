@@ -51,6 +51,7 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
             using(_sessionManager.CreateUnitOfWork())
             {
                 var myEmpire = _empireManager.GetMyEmpire();
+                var allShipsInFleet = _fleetManager.ListAllShipsInMyEmpire();
                 var model = new Models.Ship.List
                 {
                     EmpireName = myEmpire.Name

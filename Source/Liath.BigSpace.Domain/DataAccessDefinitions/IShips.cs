@@ -25,5 +25,7 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
         IEnumerable<Ship> ListSelectedShips(int userAccountID);
 
         Ship CreateShip(SolarSystem located, UserAccount owner, string name);
+
+        IEnumerable<ShipWithCurrentStatus> ListAllShipsInEmpire(int empireID);
     }
 }

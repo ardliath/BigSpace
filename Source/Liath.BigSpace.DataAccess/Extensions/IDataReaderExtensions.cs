@@ -19,6 +19,14 @@ namespace Liath.BigSpace.DataAccess.Extensions
             return dr.GetString(dr.GetOrdinal(name));
         }
 
+        public static string GetNullableString(this IDataReader dr, string name)
+        {
+            var ordinal = dr.GetOrdinal(name);
+            return dr.IsDBNull(ordinal)
+                ? null
+                : dr.GetString(name);
+        }
+
         public static byte[] GetBytes(this IDataReader dr, string name)
         {
             return (byte[])dr[dr.GetOrdinal(name)];
