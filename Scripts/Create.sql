@@ -64,6 +64,8 @@ create table Jobs
 	JobID bigint not null identity(1,1),
 	StartTime DateTime not null,
 	Duration bigint not null,
+	IsComplete bit not null,
+	Description nvarchar(255) not null,
 	TS timestamp not null
 	constraint PK_Jobs primary key (JobID)
 )

@@ -27,11 +27,11 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
             };
         }
 
-        public IEnumerable<Job> LoadCompletedJobs()
+        public IEnumerable<Job> LoadExpiredButIncompleteJobs()
         {
             var jobs = new List<Job>();
 
-            var whereAddition = string.Concat("DATEADD(second, (Duration / ", TimeSpan.TicksPerSecond, "), StartTime ) < @Now");
+            var whereAddition = string.Concat("IsComplete = 0 AND DATEADD(second, (Duration / ", TimeSpan.TicksPerSecond, "), StartTime ) < @Now");
 
             var query = this.CreateQuery(whereAddition);
             using(var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
@@ -57,6 +57,8 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
             job.JobID = dr.GetInt64("JobID");
             job.StartTime = dr.GetDateTime("StartTime");
             job.Duration = new TimeSpan(dr.GetInt64("Duration"));
+            job.IsComplete = dr.GetBoolean("IsComplete");
+            job.Desciption = dr.GetString("Description");
         }
 
         private string CreateAlias(IJobChildRepository childRepository)
@@ -115,6 +117,19 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
                 ? null
                 : string.Concat(" WHERE ", filter);
             return string.Concat(selectSB, joinSB, filterQuery);
+        }
+
+
+        public void MarkJobComplete(Job job)
+        {
+            using(var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("UPDATE Jobs SET IsComplete = @Complete WHERE JobID = @ID"))
+            {
+                cmd.AddParameter("Complete", DbType.Boolean, true);
+                cmd.AddParameter("ID", DbType.Int64, job.JobID);
+                cmd.ExecuteNonQuery();
+
+                job.IsComplete = true;
+            }
         }
     }    
 }

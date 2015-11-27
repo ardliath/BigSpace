@@ -21,10 +21,11 @@ namespace Liath.BigSpace.Implementations
 
         public void CompleteJobs()
         {
-            var completedJobs = _jobRepositories.LoadCompletedJobs();
+            var completedJobs = _jobRepositories.LoadExpiredButIncompleteJobs();
             foreach(var job in completedJobs)
             {
                 job.Complete();
+                _jobRepositories.MarkJobComplete(job);
             }
         }
     }

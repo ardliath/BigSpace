@@ -16,12 +16,14 @@ namespace Liath.BigSpace.DataAccess.Implementations.Jobs
 
         }
 
-        protected Int64 CreateJob(DateTime start, TimeSpan duration)
+        protected Int64 CreateJob(string description, DateTime start, TimeSpan duration)
         {
-            using(var cmd = SessionManager.GetCurrentUnitOfWork().CreateCommand("INSERT INTO Jobs(StartTime, Duration) VALUES (@StartTime, @Duration) SELECT SCOPE_IDENTITY()"))
+            using (var cmd = SessionManager.GetCurrentUnitOfWork().CreateCommand("INSERT INTO Jobs(StartTime, Duration, IsComplete, Description) VALUES (@StartTime, @Duration, @IsComplete, @Description) SELECT SCOPE_IDENTITY()"))
             {
                 cmd.AddParameter("StartTime", System.Data.DbType.DateTime, start);
                 cmd.AddParameter("Duration", System.Data.DbType.Int64, duration.Ticks);
+                cmd.AddParameter("IsComplete", System.Data.DbType.Boolean, false);
+                cmd.AddParameter("Description", System.Data.DbType.String, description);
 
                 return (Int64)(decimal)cmd.ExecuteScalar();
             }

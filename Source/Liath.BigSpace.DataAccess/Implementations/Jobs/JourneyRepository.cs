@@ -50,9 +50,9 @@ namespace Liath.BigSpace.DataAccess.Implementations.Jobs
             return journey;
         }
 
-        public Int64 CreateJourney(SolarSystem from, SolarSystem to, DateTime start, TimeSpan duration)
-        {
-            var jobID = this.CreateJob(start, duration);
+        public Int64 CreateJourney(SolarSystem from, SolarSystem to, string description, DateTime start, TimeSpan duration)
+        {            
+            var jobID = this.CreateJob(description, start, duration);
             using(var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("INSERT INTO Journeys (JobID, StartSolarSystemID, EndSolarSystemID) VALUES (@JobID, @StartSolarSystemID, @EndSolarSystemID)"))
             {
                 cmd.AddParameter("JobID", DbType.Int64, jobID);

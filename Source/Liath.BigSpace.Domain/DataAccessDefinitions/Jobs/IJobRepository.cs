@@ -9,6 +9,7 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions.Jobs
 {
     public interface IJobRepository
     {
-        IEnumerable<Job> LoadCompletedJobs();
+        IEnumerable<Job> LoadExpiredButIncompleteJobs();
+        void MarkJobComplete(Job job);
     }
 }

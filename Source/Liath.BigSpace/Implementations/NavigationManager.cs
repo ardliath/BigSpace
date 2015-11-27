@@ -99,8 +99,9 @@ namespace Liath.BigSpace.Implementations
                 var shipsAtThatLocation = selectedShips.Where(s => s.SolarSystemID == startLocationID);
                 var startSolarSystem = _solarSystems.GetSolarSystem(startLocationID);
                 var duration = this.GetDurationOfJourney(startSolarSystem, destinationSolarSystem, shipsAtThatLocation);
+                var description = string.Format("Travelling from {0} to {1}", startSolarSystem.Name, destinationSolarSystem.Name);
 
-                var job = _journeyRepository.CreateJourney(startSolarSystem, destinationSolarSystem, DateTime.UtcNow, duration);
+                var job = _journeyRepository.CreateJourney(startSolarSystem, destinationSolarSystem, description, DateTime.UtcNow, duration);
                 foreach(var ship in shipsAtThatLocation)
                 {
                     _ships.SetShipJob(ship.ShipID, job);

@@ -8,6 +8,6 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions.Jobs
 {
     public interface IJourneyRepository
     {
-        Int64 CreateJourney(SolarSystem from, SolarSystem to, DateTime start, TimeSpan duration);
+        Int64 CreateJourney(SolarSystem from, SolarSystem to, string description, DateTime start, TimeSpan duration);
     }
 }
