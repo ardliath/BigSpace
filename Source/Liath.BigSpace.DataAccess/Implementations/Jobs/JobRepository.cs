@@ -95,7 +95,7 @@ namespace Liath.BigSpace.DataAccess.Definitions.Jobs
             var selectSB = new StringBuilder();
             var joinSB = new StringBuilder();
 
-            selectSB.Append("SELECT b.JobID, b.StartTime, b.Duration");
+            selectSB.Append("SELECT b.JobID, b.StartTime, b.Duration, b.IsComplete, b.Description");
 
             foreach(var childRepository in _childJobRepositories)
             {
