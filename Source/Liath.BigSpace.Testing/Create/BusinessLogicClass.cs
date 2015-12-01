@@ -21,7 +21,8 @@ namespace Liath.BigSpace.Testing.Create
                 Mock.Of<IConfigurationManager>(),
                 solarSystems ?? Mock.Of<ISolarSystems>(),
                 Mock.Of<IShips>(),
-                Mock.Of<IJourneyRepository>());
+                Mock.Of<IJourneyRepository>(),
+								Mock.Of<IUsers>());
         }
 
         public static UserManager UserManager(ISecurityManager securityManager = null, IUsers userDataAccess = null)
