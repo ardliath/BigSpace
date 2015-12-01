@@ -59,6 +59,23 @@ create table SolarSystems
 
 GO
 
+
+create table Planets
+(
+	PlanetID bigint not null identity(1,1),
+	SolarSystemID bigint not null,
+	PositionIndex smallint not null,
+	Name nvarchar(255) null,
+	Image varchar(64) null,
+	Population bigint not null,
+	MaxPopulation bigint not null,
+	TS timestamp not null,
+	constraint PK_Planets primary key (PlanetID),
+	constraint FK_Planets_SolarSystems foreign key (SolarSystemID) references SolarSystems(SolarSystemID)
+)
+
+GO
+
 create table Jobs
 (
 	JobID bigint not null identity(1,1),

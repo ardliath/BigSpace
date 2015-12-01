@@ -1,0 +1,9 @@
+{
+	"name": "Terran System",
+	"stars":[
+		{"name": "Sol"},
+	],
+	"planets":[
+		{"name": "Mercury"},
+	]
+}
