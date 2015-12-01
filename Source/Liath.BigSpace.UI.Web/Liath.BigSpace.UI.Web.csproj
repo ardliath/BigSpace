@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -126,6 +127,7 @@
     <Content Include="Areas\Account\Views\Authentication\Login.cshtml" />
     <Content Include="Areas\Account\Views\Registration\CreateAccount.cshtml" />
     <Content Include="Areas\OuterSpace\Views\Ship\List.cshtml" />
+    <Content Include="Areas\OuterSpace\Views\Planet\Orbit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -148,12 +150,14 @@
     <Compile Include="Areas\Account\Models\Registration\CreateAccount.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\CommandsController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\LocalAreaController.cs" />
+    <Compile Include="Areas\OuterSpace\Controllers\PlanetController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\ShipController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\SolarSystemController.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\Display.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\ScreenSize.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\SystemSummary.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\UpdateView.cs" />
+    <Compile Include="Areas\OuterSpace\Models\Planet\Orbit.cs" />
     <Compile Include="Areas\OuterSpace\Models\Ship\List.cs" />
     <Compile Include="Areas\OuterSpace\Models\Ship\ShipSummary.cs" />
     <Compile Include="Areas\OuterSpace\Models\SolarSystem\ShipSummary.cs" />
