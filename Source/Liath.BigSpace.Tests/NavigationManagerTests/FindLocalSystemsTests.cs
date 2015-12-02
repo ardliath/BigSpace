@@ -15,6 +15,7 @@ using Liath.BigSpace.DataAccess.Definitions;
 using Liath.BigSpace.Implementations;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
 using Liath.BigSpace.Domain.UserAccountDomain;
+using Liath.BigSpace.Domain.SolarSystems;
 
 namespace Liath.BigSpace.Tests.NavigationManagerTests
 {

@@ -9,6 +9,7 @@ using Liath.BigSpace.DataAccess.Extensions;
 using Liath.BigSpace.Domain;
 using Liath.BigSpace.Session;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
+using Liath.BigSpace.Domain.SolarSystems;
 
 namespace Liath.BigSpace.DataAccess.Implementations
 {
@@ -133,5 +134,10 @@ namespace Liath.BigSpace.DataAccess.Implementations
                 }
             }
         }
-    }
+
+		public SolarSystemPlanetDetails GetSolarSystemDetails(long id)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

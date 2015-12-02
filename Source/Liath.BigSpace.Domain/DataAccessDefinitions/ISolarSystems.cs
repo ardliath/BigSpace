@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Liath.BigSpace.Domain;
+using Liath.BigSpace.Domain.SolarSystems;
 
 namespace Liath.BigSpace.Domain.DataAccessDefinitions
 {
@@ -14,5 +14,6 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
         SolarSystem CreateSolarSystem(SolarSystem solarSystem);
 
         SolarSystem GetRandomUnoccupiedSolarSystem();
-    }
+		SolarSystemPlanetDetails GetSolarSystemDetails(long id);
+	}
 }

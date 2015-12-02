@@ -11,6 +11,7 @@ using Liath.BigSpace.Domain.Jobs;
 using Liath.BigSpace.DataAccess.Implementations;
 using Liath.BigSpace.Session;
 using Liath.BigSpace.Domain;
+using Liath.BigSpace.Domain.SolarSystems;
 
 namespace Liath.BigSpace.DataAccess.Implementations.Jobs
 {

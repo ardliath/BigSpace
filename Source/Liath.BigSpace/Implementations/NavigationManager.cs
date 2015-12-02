@@ -12,6 +12,7 @@ using Liath.BigSpace.Exceptions;
 using Liath.BigSpace.Domain.DataAccessDefinitions;
 using Liath.BigSpace.Domain.DataAccessDefinitions.Jobs;
 using Liath.BigSpace.Configuration;
+using Liath.BigSpace.Domain.SolarSystems;
 
 namespace Liath.BigSpace.Implementations
 {
@@ -69,13 +70,13 @@ namespace Liath.BigSpace.Implementations
 		    return new LocalAreaViewResult(currentUser.FocusCoordinates, screenSize, relative);
 	    }
 
-        public SolarSystemDetails GetSolarSystemDetails(int id)
+        public SolarSystemShipDetails GetSolarSystemDetails(int id)
         {
             var solarSystem = _solarSystems.GetSolarSystem(id);
             if(solarSystem != null)
             {                
-                return new SolarSystemDetails
-                {
+                return new SolarSystemShipDetails
+								{
                     Coordinates = solarSystem.Coordinates,
                     Name = solarSystem.Name,
                     SolarSystemID = solarSystem.SolarSystemID,
