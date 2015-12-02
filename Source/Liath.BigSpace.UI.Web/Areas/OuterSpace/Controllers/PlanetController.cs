@@ -17,9 +17,9 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 
 		public PlanetController(ISessionManager sessionManager, IPlanets planetRespository, ISolarSystems solarSystemRepository)
 		{
-			if (sessionManager == null) throw new ArgumentNullException("sessionManager");
-			if (solarSystemRepository == null) throw new ArgumentNullException("solarSystemRepository");
-			if (planetRespository == null) throw new ArgumentNullException("planetRespository");
+			if (sessionManager == null) throw new ArgumentNullException(nameof(sessionManager));
+			if (solarSystemRepository == null) throw new ArgumentNullException(nameof(solarSystemRepository));
+			if (planetRespository == null) throw new ArgumentNullException(nameof(planetRespository));
 
 			_sessionManager = sessionManager;
 			_solarSystemRepository = solarSystemRepository;
