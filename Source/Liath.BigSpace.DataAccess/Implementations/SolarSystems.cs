@@ -15,8 +15,12 @@ namespace Liath.BigSpace.DataAccess.Implementations
 {
 	public class SolarSystems : DataAccessBase, ISolarSystems
 	{
-		public SolarSystems(ISessionManager sessionManager) : base(sessionManager)
+		private IPlanets _planets;
+
+		public SolarSystems(ISessionManager sessionManager, IPlanets planets) : base(sessionManager)
 		{
+			if (planets == null) throw new ArgumentNullException("planets");
+			_planets = planets;
 		}
 
 		public IEnumerable<SolarSystem> FindSystemsInLocalArea(LocalAreaView localAreaView)
@@ -56,20 +60,24 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
         private SolarSystem InflateSolarSystem(IDataReader dr)
         {
-            return new SolarSystem
-            {
-                SolarSystemID = dr.GetInt64("SolarSystemID"),
-                Name = dr.GetString("Name"),
-                Coordinates = new Coordinates
-                {
-                    X = dr.GetInt64("X"),
-                    Y = dr.GetInt64("Y"),
-                    Z = dr.GetInt64("Z")
-                }
-            };
+			var solarSystem = new SolarSystem();
+			this.CopyCoreProperties(solarSystem, dr);
+			return solarSystem;
         }
 
-        private string CreateQuery(string filter = null, int? top = null)
+		private void CopyCoreProperties(SolarSystem solarSystem, IDataReader dr)
+		{
+			solarSystem.SolarSystemID = dr.GetInt64("SolarSystemID");
+			solarSystem.Name = dr.GetString("Name");
+			solarSystem.Coordinates = new Coordinates
+			{
+				X = dr.GetInt64("X"),
+				Y = dr.GetInt64("Y"),
+				Z = dr.GetInt64("Z")
+			};
+		}
+
+		private string CreateQuery(string filter = null, int? top = null)
         {
             return string.Concat("SELECT ",
                 top.HasValue ? string.Concat("TOP ", top.Value, " ") : null,
@@ -137,7 +145,25 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
 		public SolarSystemPlanetDetails GetSolarSystemDetails(long id)
 		{
-			throw new NotImplementedException();
+			var solarSystem = new SolarSystemPlanetDetails();
+			var query = this.CreateQuery("SolarSystemID = @ID", 1);
+			using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
+			{
+				using (var dr = cmd.ExecuteReader())
+				{
+					if (dr.Read())
+					{
+						this.CopyCoreProperties(solarSystem, dr);
+					}
+					else
+					{
+						return null;
+					}
+				}
+			}
+
+			solarSystem.Planets = _planets.ListPlanetsInSolarSystem(id);
+			return solarSystem;
 		}
 	}
 }

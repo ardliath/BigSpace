@@ -47,6 +47,7 @@
     </Compile>
     <Compile Include="Coordinates.cs" />
     <Compile Include="DataAccessDefinitions\IEmpires.cs" />
+    <Compile Include="DataAccessDefinitions\IPlanets.cs" />
     <Compile Include="DataAccessDefinitions\IShips.cs" />
     <Compile Include="DataAccessDefinitions\ISolarSystems.cs" />
     <Compile Include="DataAccessDefinitions\IUsers.cs" />
