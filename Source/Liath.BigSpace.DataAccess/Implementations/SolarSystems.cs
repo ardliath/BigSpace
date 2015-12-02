@@ -149,6 +149,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 			var query = this.CreateQuery("SolarSystemID = @ID", 1);
 			using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
 			{
+				cmd.AddParameter("ID", DbType.Int64, id);
 				using (var dr = cmd.ExecuteReader())
 				{
 					if (dr.Read())

@@ -28,6 +28,8 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 		{
 			using (_sessionManager.CreateUnitOfWork())
 			{
+				// Minor issue to be resolved when this is completed - this is the solar system with the ID of the planet...
+				// need to load the planet then get the solar system it's associated with
 				var solarSystem = _solarSystemRepository.GetSolarSystemDetails(id);
 				var model = new Orbit();
 				return View();

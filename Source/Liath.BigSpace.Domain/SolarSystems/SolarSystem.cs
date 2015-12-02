@@ -22,5 +22,10 @@ namespace Liath.BigSpace.Domain.SolarSystems
         /// The name of the solar system
         /// </summary>
         public string Name { get; set; }
-    }
+
+		public override string ToString()
+		{
+			return this.Name;
+		}
+	}
 }
