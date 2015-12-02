@@ -74,5 +74,23 @@ namespace Liath.BigSpace.DataAccess.Implementations
 			planet.Population = dr.GetInt64("Population");
 			planet.MaxPopulation = dr.GetInt64("MaxPopulation");
 		}
+
+		public Planet GetPlanet(long id)
+		{
+			var query = this.CreateQuery("PlanetID = @ID");
+			using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
+			{
+				cmd.AddParameter("ID", DbType.Int64, id);
+				using (var dr = cmd.ExecuteReader())
+				{
+					if (dr.Read())
+					{
+						return this.InflatePlanet(dr);
+					}
+
+					return null;
+				}
+			}
+		}
 	}
 }

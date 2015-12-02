@@ -10,5 +10,6 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
 	public interface IPlanets
 	{
 		IEnumerable<Planet> ListPlanetsInSolarSystem(long id);
+		Planet GetPlanet(long id);
 	}
 }

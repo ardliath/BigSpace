@@ -11,16 +11,19 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 {
 	public class PlanetController : Controller
 	{
+		private IPlanets _planetRespository;
 		private ISessionManager _sessionManager;
 		private ISolarSystems _solarSystemRepository;
 
-		public PlanetController(ISessionManager sessionManager, ISolarSystems solarSystemRepository)
+		public PlanetController(ISessionManager sessionManager, IPlanets planetRespository, ISolarSystems solarSystemRepository)
 		{
 			if (sessionManager == null) throw new ArgumentNullException("sessionManager");
 			if (solarSystemRepository == null) throw new ArgumentNullException("solarSystemRepository");
+			if (planetRespository == null) throw new ArgumentNullException("planetRespository");
 
 			_sessionManager = sessionManager;
 			_solarSystemRepository = solarSystemRepository;
+			_planetRespository = planetRespository;
 		}
 
 		[HttpGet]
@@ -28,9 +31,11 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 		{
 			using (_sessionManager.CreateUnitOfWork())
 			{
-				// Minor issue to be resolved when this is completed - this is the solar system with the ID of the planet...
-				// need to load the planet then get the solar system it's associated with
-				var solarSystem = _solarSystemRepository.GetSolarSystemDetails(id);
+				var planet = _planetRespository.GetPlanet(id);
+				if (planet != null)
+				{
+					var solarSystem = _solarSystemRepository.GetSolarSystemDetails(planet.SolarSystemID);
+				}
 				var model = new Orbit();
 				return View();
 			}
