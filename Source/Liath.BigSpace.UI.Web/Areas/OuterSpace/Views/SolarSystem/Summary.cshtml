@@ -4,6 +4,7 @@
 <a class="SendShips" SolarSystemID="@Model.SolarSystemID">Send selected ships here</a>
 @if (Model.MostPopulatedPlanet.HasValue)
 {
+	<br/>
 	@Html.RouteLink("Enter Solar System", new {area = "OuterSpace", controller = "Planet", Action = "Orbit", id = Model.MostPopulatedPlanet.Value})
 }
 
