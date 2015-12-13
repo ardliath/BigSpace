@@ -39,6 +39,7 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 					{
 						Name = planet.Name,
 						Population = planet.Population,
+						SolarSystemID = planet.SolarSystemID,
 						Image = this.Url.Content($"~/Content/Themes/BigSpace/Images/{planet.Image}"),
 						Next = solarSystem.Planets.SingleOrDefault(p => p.PositionIndex == planet.PositionIndex + 1)?.PlanetID,
 						Previous = solarSystem.Planets.SingleOrDefault(p => p.PositionIndex == planet.PositionIndex - 1)?.PlanetID

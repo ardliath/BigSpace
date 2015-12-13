@@ -12,5 +12,6 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.Planet
 		public long? Previous { get; set; }
 		public string Name { get; set; }
 		public long Population { get; set; }
+		public long SolarSystemID { get; set; }
 	}
 }

@@ -18,4 +18,6 @@
 	{
 		@Html.RouteLink("Next", new { area = "OuterSpace", controller = "Planet", action = "Orbit", id = @Model.Next.Value })
 	}
+
+	@Html.RouteLink("View Local Area", new { area = "OuterSpace", controller = "LocalArea", action = "Display", id = @Model.SolarSystemID })
 </div>
