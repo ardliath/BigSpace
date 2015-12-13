@@ -4,6 +4,10 @@
 
 <p>
 	Population: @Html.Raw(Model.Population)
+	@if (Model.Race != null)
+	{
+		@Html.Raw(Model.Race)
+	}
 </p>
 
 <img src="@Model.Image" height="400" width="400"/>

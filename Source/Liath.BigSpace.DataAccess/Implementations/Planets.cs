@@ -13,12 +13,13 @@ namespace Liath.BigSpace.DataAccess.Implementations
 {
 	public class Planets : DataAccessBase, IPlanets
 	{
+		private readonly IRaces _races;
+
 		public Planets(ISessionManager sessionManager) : base(sessionManager)
 		{
-
 		}
 
-		public static IEnumerable<string> Fields = new string[] { "PlanetID", "SolarSystemID", "PositionIndex", "Name", "Image", "Population", "MaxPopulation" };
+		public static IEnumerable<string> Fields = new string[] { "PlanetID", "SolarSystemID", "PositionIndex", "Name", "Image", "Population", "MaxPopulation", "RaceID" };
 
 		private string CreateQuery(string filter = null, int? top = null, string orderBy = null)
 		{
@@ -78,6 +79,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 			planet.Image = dr.GetString("Image");
 			planet.Population = dr.GetInt64("Population");
 			planet.MaxPopulation = dr.GetInt64("MaxPopulation");
+			planet.RaceID = dr.GetNullableInt32("RaceID");
 		}
 
 		public Planet GetPlanet(long id)

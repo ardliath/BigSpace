@@ -16,6 +16,8 @@ namespace Liath.BigSpace.Domain.SolarSystems
 		public short PositionIndex { get; set; }
 		public long SolarSystemID { get; set; }
 
+		public int? RaceID { get; set; }
+
 		public override string ToString()
 		{
 			return this.Name;

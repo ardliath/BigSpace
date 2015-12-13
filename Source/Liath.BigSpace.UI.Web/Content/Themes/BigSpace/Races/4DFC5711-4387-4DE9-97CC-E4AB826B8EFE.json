@@ -1,0 +1,16 @@
+{
+  "Name": "Humans",
+  "Fluff": {
+    "History": "Humanity is a recent player on the galactic stage. Only recently recovered from their planet's Third World War they made contact with the Bindi after detecting one of their ships refuelling in their home sector. Since then humanity have assimilated themselves into the local political area bringing fresh ideas to a rather antiquated region of space.",    
+  },
+  "Technology": {
+    "Fleet": [
+      { "Name": "Scout" },
+      { "Name": "Cutter" },
+      { "Name": "Corvette" },
+      { "Name": "Frigate" },
+      { "Name": "Cruiser" },
+      { "Name": "Dreadnaught" }
+    ]
+  }
+}

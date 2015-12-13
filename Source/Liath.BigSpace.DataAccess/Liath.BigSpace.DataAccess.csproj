@@ -54,6 +54,7 @@
     <Compile Include="Implementations\Jobs\JobRepository.cs" />
     <Compile Include="Implementations\Jobs\JourneyRepository.cs" />
     <Compile Include="Implementations\Planets.cs" />
+    <Compile Include="Implementations\Races.cs" />
     <Compile Include="Implementations\Ships.cs" />
     <Compile Include="Implementations\SolarSystems.cs" />
     <Compile Include="Implementations\Users.cs" />

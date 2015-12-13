@@ -19,7 +19,12 @@ namespace Liath.BigSpace.DataAccess.Extensions
             return dr.GetString(dr.GetOrdinal(name));
         }
 
-        public static string GetNullableString(this IDataReader dr, string name)
+		public static Guid GetGuid(this IDataReader dr, string name)
+		{
+			return dr.GetGuid(dr.GetOrdinal(name));
+		}
+
+		public static string GetNullableString(this IDataReader dr, string name)
         {
             var ordinal = dr.GetOrdinal(name);
             return dr.IsDBNull(ordinal)
@@ -37,7 +42,14 @@ namespace Liath.BigSpace.DataAccess.Extensions
             return dr.GetInt64(dr.GetOrdinal(name));
         }
 
-		public static Int16 GetInt16(this IDataReader dr, string name)
+
+		public static int? GetNullableInt32(this IDataReader dr, string name)
+		{
+			var ordinal = dr.GetOrdinal(name);
+			return dr.IsDBNull(ordinal) ? null : (int?)dr.GetInt32(ordinal);
+		}
+
+	    public static Int16 GetInt16(this IDataReader dr, string name)
 		{
 			return dr.GetInt16(dr.GetOrdinal(name));
 		}
