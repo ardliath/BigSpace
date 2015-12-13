@@ -7,6 +7,19 @@ create table Empires
 )
 
 GO
+
+create table Races
+(
+	RaceID int not null identity(1,1),
+	Guid uniqueidentifier not null,
+	Name nvarchar(255) not null,
+	TS timestamp not null,
+	constraint PK_Races primary key(RaceID),
+	constraint UQ_Races_Guid unique(Guid)
+)
+
+GO
+
 /****** Object:  Table [dbo].[UserAccounts]    Script Date: 15/11/2015 15:57:50 ******/
 SET ANSI_NULLS ON
 GO
@@ -69,9 +82,11 @@ create table Planets
 	Image varchar(64) null,
 	Population bigint not null,
 	MaxPopulation bigint not null,
+	RaceID int null,
 	TS timestamp not null,
 	constraint PK_Planets primary key (PlanetID),
-	constraint FK_Planets_SolarSystems foreign key (SolarSystemID) references SolarSystems(SolarSystemID)
+	constraint FK_Planets_SolarSystems foreign key (SolarSystemID) references SolarSystems(SolarSystemID),
+	constraint FK_Planets_Races foreign key (RaceID) references Races(RaceID)
 )
 
 GO
@@ -108,10 +123,12 @@ create table Ships
 	JobID bigint null,
 	UserAccountID int not null,
 	EmpireID int not null,
+	RaceID int not null,
 	IsSelected bit not null,
 	TS timestamp not null,
 	constraint PK_Ships primary key (ShipID),
 	constraint FK_Ships_SolarSystems foreign key (SolarSystemID) references SolarSystems(SolarSystemID),
 	constraint FK_Ships_UserAccounts foreign key (UserAccountID) references UserAccounts(UserAccountID),
-	constraint FK_Ships_Empires foreign key (EmpireID) references Empires(EmpireID)
+	constraint FK_Ships_Empires foreign key (EmpireID) references Empires(EmpireID),
+	constraint FK_Ships_Races foreign key (RaceID) references Races(RaceID)
 )
