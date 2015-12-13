@@ -35,10 +35,19 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 				if (planet != null)
 				{
 					var solarSystem = _solarSystemRepository.GetSolarSystemDetails(planet.SolarSystemID);
-				}
-				var model = new Orbit();
-				return View();
+					var model = new Orbit
+					{
+						Name = planet.Name,
+						Population = planet.Population,
+						Image = this.Url.Content($"~/Content/Themes/BigSpace/Images/{planet.Image}"),
+						Next = solarSystem.Planets.SingleOrDefault(p => p.PositionIndex == planet.PositionIndex + 1)?.PlanetID,
+						Previous = solarSystem.Planets.SingleOrDefault(p => p.PositionIndex == planet.PositionIndex - 1)?.PlanetID
+					};
+					return View(model);
+				}				
 			}
+
+			return this.HttpNotFound();
 		}
 	}
 }

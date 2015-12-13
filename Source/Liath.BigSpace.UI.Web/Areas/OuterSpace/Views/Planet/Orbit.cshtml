@@ -1,3 +1,21 @@
 ﻿@model Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.Planet.Orbit
 
-<h1>Orbit</h1>
+<h1>@Model.Name</h1>
+
+<p>
+	Population: @Html.Raw(Model.Population)
+</p>
+
+<img src="@Model.Image" height="400" width="400"/>
+
+<div>
+	@if (Model.Previous.HasValue)
+	{
+		@Html.RouteLink("Previous", new { area = "OuterSpace", controller = "Planet", action = "Orbit", id = @Model.Previous.Value })
+	}
+
+	@if (Model.Next.HasValue)
+	{
+		@Html.RouteLink("Next", new { area = "OuterSpace", controller = "Planet", action = "Orbit", id = @Model.Next.Value })
+	}
+</div>
