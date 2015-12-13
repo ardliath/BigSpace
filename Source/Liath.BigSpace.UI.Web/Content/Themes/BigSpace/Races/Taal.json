@@ -1,0 +1,17 @@
+{
+  "Name": "The Taal",
+  "Fluff": {
+    "History" "Visits to Earth Taal workers visited Earth several times during the 20th century although less times than humanity believed at the time.",
+    "Biology": "Each taal caste has a distinct physiology and individuals from different families may differ slightly as their genetic code is tweaked from one generation to the next. Every member of the taal race has several similar features which help identify them.\n\nThe most striking feature of a taal is their grey colourless skin hue. Each taal caste has a pair of large black eyes and a slightly larger than average head.\n\nThe taal have long since evolved beyond sexual reproduction, instead each member of the species is grown and matured to adulthood before birth.",
+    "Culture": "The Taal race is divided into families which are made up of members from a variety of castes.\n\nFamilies\n\nTaal families are made up of a number of taal of a variety of castes. Each family is founded by a progenitor. The most recently formed family was a little over three thousand years ago when the 432nd family was formed.\n\n4th Family\n\nThe 4th family is the oldest surviving family in taal society with members numbering in the tens of billions all descended from the 4th progenitor. The three older families have since been lost over the millennia, each fading through war or extinction. Today the 4th family are the most powerful and highest regarded of all taal.\n\nCastes\n\nThe taal race is made up of a number of castes, each of these subspecies are specifically adapted to fill a specific role in Taal society.\n\nThe Progenitor\n\nFor a scholar to be granted permission to form their own family they must gain approval from the heads of the other families. They must also recruit a gene specialist to use their genetic material to form a new family.\n\nIf approved the scholar's genetic material is used to propagate the next generations.\n\nScholars\n\nScolars are the leaders of taal society, very few in number but extremely long lived the scholars shape the course of their houses for millenia.\n\nWarriors\n\nTaal warriors are among the most disciplined in the galaxy, they are built to defend taal interests across the universe. During times of war billions of taal warriors may be created, during peacetime only a standing army is maintained.\n\nTaal warriors wait until their services are required. They don't require food, rest or stimulation. A warrior can remain on guard for centuries, a quick blink of their double eyelids once or twice a decade is the only indication that the warrior is still attending his duties.\n\nWorkers\n\nDuring peacetime the workers are the most numerous of taal society. They are also the most diminutive of their species standing around one metre high. Each taal worker typically lives around a century which also makes them the shortest lived of their species.\n\nIt is the workers who most frequently travel the stars acting as diplomats, explorers and scientists for their longer lived counterparts."
+  },
+  "Technology": {
+    "Fleet": [
+      { "Name": "Cutter" },
+      { "Name": "Corvette" },
+      { "Name": "Frigate" },
+      { "Name": "Cruiser" },
+      { "Name": "Dreadnaught" }
+    ]
+  }
+}
