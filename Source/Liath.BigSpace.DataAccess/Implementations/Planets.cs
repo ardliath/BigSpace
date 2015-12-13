@@ -20,7 +20,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
 		public static IEnumerable<string> Fields = new string[] { "PlanetID", "SolarSystemID", "PositionIndex", "Name", "Image", "Population", "MaxPopulation" };
 
-		private string CreateQuery(string filter = null, int? top = null)
+		private string CreateQuery(string filter = null, int? top = null, string orderBy = null)
 		{
 			var sb = new StringBuilder("SELECT ");
 			if(top.HasValue)
@@ -33,6 +33,11 @@ namespace Liath.BigSpace.DataAccess.Implementations
 			if(!string.IsNullOrWhiteSpace(filter))
 			{
 				sb.AppendLine($" WHERE {filter}");
+			}
+
+			if (orderBy != null)
+			{
+				sb.AppendLine($"ORDER BY {orderBy}");
 			}
 
 			return sb.ToString();
@@ -81,6 +86,25 @@ namespace Liath.BigSpace.DataAccess.Implementations
 			using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
 			{
 				cmd.AddParameter("ID", DbType.Int64, id);
+				using (var dr = cmd.ExecuteReader())
+				{
+					if (dr.Read())
+					{
+						return this.InflatePlanet(dr);
+					}
+
+					return null;
+				}
+			}
+		}
+
+
+		public Planet GetMostPopulatedPlanetInSolarSystem(long solarSystemId)
+		{
+			var query = this.CreateQuery("SolarSystemID = @SolarSystemID", 1, "Population DESC");
+			using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
+			{
+				cmd.AddParameter("SolarSystemID", DbType.Int64, solarSystemId);
 				using (var dr = cmd.ExecuteReader())
 				{
 					if (dr.Read())

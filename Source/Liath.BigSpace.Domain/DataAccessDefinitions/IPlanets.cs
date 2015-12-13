@@ -11,5 +11,6 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
 	{
 		IEnumerable<Planet> ListPlanetsInSolarSystem(long id);
 		Planet GetPlanet(long id);
+		Planet GetMostPopulatedPlanetInSolarSystem(long solarSystemId);
 	}
 }
