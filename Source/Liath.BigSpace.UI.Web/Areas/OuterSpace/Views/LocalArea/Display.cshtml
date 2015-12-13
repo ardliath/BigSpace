@@ -107,7 +107,7 @@
                         ChangeZ: $(this).attr('z')
                     },
                     success: function () {
-                        location.href = '@Url.RouteUrl("Default", new { area = "OuterSpace", controller = "LocalArea", action = "Display" })';
+	                    location.href = '@Url.RouteUrl("Default", new { area = "OuterSpace", controller = "LocalArea", action = "Display", id=0 })';
                     }
                 });
             })
