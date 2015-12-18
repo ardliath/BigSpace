@@ -132,3 +132,11 @@ create table Ships
 	constraint FK_Ships_Empires foreign key (EmpireID) references Empires(EmpireID),
 	constraint FK_Ships_Races foreign key (RaceID) references Races(RaceID)
 )
+
+create table Commands
+(
+	CommandID int not null,
+	Code varchar(64) not null,
+	Description nvarchar(255) not null,
+	constraint PK_Commands primary key (CommandID)
+)

@@ -50,6 +50,7 @@
     <Compile Include="Definitions\INavigationManager.cs" />
     <Compile Include="Definitions\IRegistrationManager.cs" />
     <Compile Include="Definitions\ISecurityManager.cs" />
+    <Compile Include="Definitions\IUpgradeManager.cs" />
     <Compile Include="Definitions\IUserManager.cs" />
     <Compile Include="Exceptions\CurrentUserNotFoundException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Implementations\JobManager.cs" />
     <Compile Include="Implementations\NavigationManager.cs" />
     <Compile Include="Implementations\SecurityManager.cs" />
+    <Compile Include="Implementations\UpgradeManager.cs" />
     <Compile Include="Implementations\UserManager.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

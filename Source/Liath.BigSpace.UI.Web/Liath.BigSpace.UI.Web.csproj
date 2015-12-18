@@ -164,6 +164,7 @@
     <Compile Include="Areas\OuterSpace\Models\SolarSystem\SolarSystemSummary.cs" />
     <Compile Include="Areas\OuterSpace\OuterSpaceAreaRegistration.cs" />
     <Compile Include="Areas\Setup\Controllers\GalaxyController.cs" />
+    <Compile Include="Areas\Setup\Controllers\UpgradeController.cs" />
     <Compile Include="Areas\Setup\Models\Galaxy\Create.cs" />
     <Compile Include="Areas\Setup\SetupAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
