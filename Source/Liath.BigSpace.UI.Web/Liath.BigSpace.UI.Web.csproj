@@ -154,7 +154,7 @@
     <Compile Include="Areas\OuterSpace\Controllers\PlanetController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\ShipController.cs" />
     <Compile Include="Areas\OuterSpace\Controllers\SolarSystemController.cs" />
-    <Compile Include="Areas\OuterSpace\Models\Details.cs" />
+    <Compile Include="Areas\OuterSpace\Models\Ship\Details.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\Display.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\ScreenSize.cs" />
     <Compile Include="Areas\OuterSpace\Models\LocalArea\SystemSummary.cs" />
