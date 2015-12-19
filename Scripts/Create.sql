@@ -140,3 +140,12 @@ create table Commands
 	Description nvarchar(255) not null,
 	constraint PK_Commands primary key (CommandID)
 )
+
+create table ShipCommands
+(
+	ShipID int not null,
+	CommandID int not null,
+	constraint PK_ShipCommands primary key (ShipID, CommandID),
+	constraint FK_ShipCommands_Ships foreign key (ShipID) references Ships(ShipID),
+	constraint FK_ShipCommands_Commands foreign key (CommandID) references Commands(CommandID)
+)

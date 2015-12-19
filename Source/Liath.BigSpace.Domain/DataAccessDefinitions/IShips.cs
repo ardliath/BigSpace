@@ -9,26 +9,30 @@ using System.Threading.Tasks;
 
 namespace Liath.BigSpace.Domain.DataAccessDefinitions
 {
-    public interface IShips
-    {
-        IEnumerable<Ship> ListShipsAtSolarSystem(Int64 solarSystemID);
+	public interface IShips
+	{
+		IEnumerable<Ship> ListShipsAtSolarSystem(Int64 solarSystemID);
 
-        Ship GetShip(int shipID);
+		Ship GetShip(int shipID);
 
-	    ShipWithCurrentStatus GetShipWithCurrentStatus(int shipID);
+		ShipWithCurrentStatus GetShipWithCurrentStatus(int shipID);
 
-				void Save(Ship ship);
+		void Save(Ship ship);
 
-        IEnumerable<Ship> ListShipsDoingJob(long jobID);
+		IEnumerable<Ship> ListShipsDoingJob(long jobID);
 
-        void SetShipLocation(int shipID, Int64? solarSystemID);
+		void SetShipLocation(int shipID, Int64? solarSystemID);
 
-        void SetShipJob(int shipID, Int64? jobID);
+		void SetShipJob(int shipID, Int64? jobID);
 
-        IEnumerable<Ship> ListSelectedShips(int userAccountID);
+		IEnumerable<Ship> ListSelectedShips(int userAccountID);
 
-        Ship CreateShip(SolarSystem located, UserAccount owner, string name);
+		Ship CreateShip(SolarSystem located, UserAccount owner, string name);
 
-        IEnumerable<ShipWithCurrentStatus> ListAllShipsInEmpire(int empireID);
-    }
+		IEnumerable<ShipWithCurrentStatus> ListAllShipsInEmpire(int empireID);
+
+		IEnumerable<Command> ListAllCommands();
+
+		IEnumerable<Command> ListCommandsForShip(int shipID);
+	}
 }

@@ -45,6 +45,7 @@
     <Compile Include="..\Liath.BigSpace\Properties\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Command.cs" />
     <Compile Include="Commands.cs" />
     <Compile Include="Coordinates.cs" />
     <Compile Include="DataAccessDefinitions\IEmpires.cs" />

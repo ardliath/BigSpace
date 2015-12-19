@@ -232,6 +232,53 @@ namespace Liath.BigSpace.DataAccess.Implementations
             return ships;
         }
 
+	    public IEnumerable<Command> ListAllCommands()
+	    {
+		    var commands = new List<Command>();
+		    using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand("SELECT CommandID, Code, Description FROM Commands"))
+		    {
+			    using (var dr = cmd.ExecuteReader())
+			    {
+				    while (dr.Read())
+				    {
+					    commands.Add(this.InflateCommand(dr));
+				    }
+			    }
+		    }
+
+		    return commands;
+	    }
+
+	    private Command InflateCommand(IDataReader dr)
+	    {
+		    return new Command
+		    {
+			    CommandID = dr.GetInt32("CommandID"),
+			    Code = dr.GetString("Code"),
+			    Description = dr.GetString("Description")
+		    };
+	    }
+
+	    public IEnumerable<Command> ListCommandsForShip(int shipID)
+	    {
+		    var commands = new List<Command>();
+		    var query =
+			    "SELECT CommandID, Code, Description FROM Commands c JOIN ShipCommands sc on c.CommandID = sc.CommandID and s.ShipID = @ShipID";
+		    using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
+		    {
+			    cmd.AddParameter("ShipID", DbType.Int32, shipID);
+			    using (var dr = cmd.ExecuteReader())
+			    {
+				    while (dr.Read())
+				    {
+					    commands.Add(this.InflateCommand(dr));
+				    }
+			    }
+		    }
+
+		    return commands;
+	    }
+
 	    private ShipWithCurrentStatus InflateShipWithCurrentStatus(IDataReader dr)
 	    {
 		    var ship = new ShipWithCurrentStatus();
