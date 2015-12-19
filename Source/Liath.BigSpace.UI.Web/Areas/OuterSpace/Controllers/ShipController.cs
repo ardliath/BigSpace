@@ -15,16 +15,19 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 		private ISessionManager _sessionManager;
 		private IFleetManager _fleetManager;
 		private IEmpireManager _empireManager;
+		private readonly IShips _ships;
 
-		public ShipController(ISessionManager sessionManager, IFleetManager fleetManager, IEmpireManager empireManager)
+		public ShipController(ISessionManager sessionManager, IFleetManager fleetManager, IEmpireManager empireManager, IShips ships)
 		{
 			if (sessionManager == null) throw new ArgumentNullException(nameof(sessionManager));
 			if (fleetManager == null) throw new ArgumentNullException(nameof(fleetManager));
 			if (empireManager == null) throw new ArgumentNullException(nameof(empireManager));
+			if (ships == null) throw new ArgumentNullException(nameof(ships));
 
 			_sessionManager = sessionManager;
 			_fleetManager = fleetManager;
 			_empireManager = empireManager;
+			_ships = ships;
 		}
 
 		[HttpPost]
@@ -76,6 +79,8 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 			using (_sessionManager.CreateUnitOfWork())
 			{
 				var ship = _fleetManager.GetShipFromMyFleet(id);
+				var allCommands = _ships.ListAllCommands();
+				var commandsForThisShip = _ships.ListCommandsForShip(ship.ShipID);
 				var model = new Details
 				{
 					ShipID = ship.ShipID,

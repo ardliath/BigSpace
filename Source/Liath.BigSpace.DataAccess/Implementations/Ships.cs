@@ -263,7 +263,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 	    {
 		    var commands = new List<Command>();
 		    var query =
-			    "SELECT CommandID, Code, Description FROM Commands c JOIN ShipCommands sc on c.CommandID = sc.CommandID and s.ShipID = @ShipID";
+					"SELECT c.CommandID, c.Code, c.Description FROM Commands c JOIN ShipCommands sc on c.CommandID = sc.CommandID and sc.ShipID = @ShipID";
 		    using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
 		    {
 			    cmd.AddParameter("ShipID", DbType.Int32, shipID);
