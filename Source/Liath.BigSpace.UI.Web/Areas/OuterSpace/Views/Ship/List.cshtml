@@ -6,7 +6,7 @@
     @foreach (var ship in @Model.Ships)
     {
         <tr>
-            <td>@ship.ShipName</td>
+            <td>@Html.RouteLink(@ship.ShipName, new { area = "OuterSpace", controller = "Ship", action = "Details", id = ship.ShipID})</td>
             <td>
                 @if (ship.SolarSystem.HasValue) { 
                     @Html.RouteLink(ship.SolarSystemName, new {area = "OuterSpace", controller = "LocalArea", action = "Display", id = ship.SolarSystem.Value});

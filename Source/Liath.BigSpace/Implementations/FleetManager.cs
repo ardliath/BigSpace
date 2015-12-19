@@ -54,5 +54,18 @@ namespace Liath.BigSpace.Implementations
 
             return _ships.ListAllShipsInEmpire(me.EmpireID);
         }
+
+	    public ShipWithCurrentStatus GetShipFromMyFleet(int shipID)
+	    {
+		    var ship = _ships.GetShipWithCurrentStatus(shipID);
+		    if (ship == null) throw new EntityNotFoundException<Ship>(shipID);
+
+		    var me = _securityManager.GetCurrentUserAccount();
+		    if (me == null) throw new CurrentUserNotFoundException();
+
+		    if (ship.UserAccountID != me.UserAccountID) throw new UnauthorisedException<ShipWithCurrentStatus>(me, ship);
+
+		    return ship;
+	    }
     }
 }

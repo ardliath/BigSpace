@@ -12,5 +12,6 @@ namespace Liath.BigSpace.Definitions
         void SelectShip(int id);
         void DeSelectShip(int id);
         IEnumerable<ShipWithCurrentStatus> ListAllShipsInMyEmpire();
+	    ShipWithCurrentStatus GetShipFromMyFleet(int shipID);
     }
 }

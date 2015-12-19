@@ -55,6 +55,7 @@
     <Compile Include="Exceptions\CurrentUserNotFoundException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\SecurityException.cs" />
+    <Compile Include="Exceptions\UnauthorisedException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Implementations\CryptographyManager.cs" />
     <Compile Include="Implementations\EmpireManager.cs" />

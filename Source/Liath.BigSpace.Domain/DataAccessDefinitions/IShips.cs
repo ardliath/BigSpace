@@ -15,7 +15,9 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
 
         Ship GetShip(int shipID);
 
-        void Save(Ship ship);
+	    ShipWithCurrentStatus GetShipWithCurrentStatus(int shipID);
+
+				void Save(Ship ship);
 
         IEnumerable<Ship> ListShipsDoingJob(long jobID);
 

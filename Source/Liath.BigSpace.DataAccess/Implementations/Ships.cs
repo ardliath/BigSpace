@@ -59,14 +59,33 @@ namespace Liath.BigSpace.DataAccess.Implementations
             }
         }
 
-        private Ship InflateShip(IDataReader dr)
+	    public ShipWithCurrentStatus GetShipWithCurrentStatus(int shipID)
+	    {
+			var query = CreateQueryForShipWithCurrentStatus("s.ShipID = @ShipID");			
+			using (var cmd = this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
+			{
+				cmd.AddParameter("ShipID", DbType.Int32, shipID);
+
+				using (var dr = cmd.ExecuteReader())
+				{
+					if(dr.Read())
+					{
+						return InflateShipWithCurrentStatus(dr);						
+					}
+				}
+			}
+
+			return null;
+		}
+
+	    private Ship InflateShip(IDataReader dr)
         {
             var ship = new Ship();
-            this.PopulareCoreFields(ship, dr);
+            this.PopulateCoreFields(ship, dr);
             return ship;
         }
 
-        private void PopulareCoreFields(Ship ship, IDataReader dr)
+        private void PopulateCoreFields(Ship ship, IDataReader dr)
         {
             ship.ShipID = dr.GetInt32("ShipID");
             ship.UserAccountID = dr.GetInt32("UserAccountID");
@@ -193,10 +212,7 @@ namespace Liath.BigSpace.DataAccess.Implementations
 
         public IEnumerable<ShipWithCurrentStatus> ListAllShipsInEmpire(int empireID)
         {
-            var query = string.Concat("SELECT ", string.Join(", ", RequiredFields.Select(f => string.Concat("s.", f))), @",ss.SolarSystemID, ss.Name SolarSystemName, j.JobID, j.Description JobDescription FROM Ships s
-LEFT JOIN SolarSystems ss on s.SolarSystemID = ss.SolarSystemID
-LEFT JOIN Jobs j on s.JobID = j.JobID
-WHERE s.EmpireID = @EmpireID");
+						var query = CreateQueryForShipWithCurrentStatus("s.EmpireID = @EmpireID");
             var ships = new List<ShipWithCurrentStatus>();
             using(var cmd =this.SessionManager.GetCurrentUnitOfWork().CreateCommand(query))
             {
@@ -206,19 +222,35 @@ WHERE s.EmpireID = @EmpireID");
                 {
                     while(dr.Read())
                     {
-                        var ship = new ShipWithCurrentStatus();
-                        this.PopulareCoreFields(ship, dr);
-                        ship.SolarSystemID = dr.GetNullableInt64("SolarSystemID");
-                        ship.SolarSystemName = dr.GetNullableString("SolarSystemName");
-                        ship.JobID = dr.GetNullableInt64("JobID");
-                        ship.JobDescription = dr.GetNullableString("JobDescription");
+	                    var ship = InflateShipWithCurrentStatus(dr);
 
-                        ships.Add(ship);
+	                    ships.Add(ship);
                     }
                 }
             }
 
             return ships;
         }
+
+	    private ShipWithCurrentStatus InflateShipWithCurrentStatus(IDataReader dr)
+	    {
+		    var ship = new ShipWithCurrentStatus();
+		    this.PopulateCoreFields(ship, dr);
+		    ship.SolarSystemID = dr.GetNullableInt64("SolarSystemID");
+		    ship.SolarSystemName = dr.GetNullableString("SolarSystemName");
+		    ship.JobID = dr.GetNullableInt64("JobID");
+		    ship.JobDescription = dr.GetNullableString("JobDescription");
+		    return ship;
+	    }
+
+	    private string CreateQueryForShipWithCurrentStatus(string filter = null)
+	    {
+		    return string.Concat("SELECT ", string.Join(", ", RequiredFields.Select(f => string.Concat("s.", f))),
+			    @",ss.SolarSystemID, ss.Name SolarSystemName, j.JobID, j.Description JobDescription FROM Ships s
+LEFT JOIN SolarSystems ss on s.SolarSystemID = ss.SolarSystemID
+LEFT JOIN Jobs j on s.JobID = j.JobID",
+					filter == null ? null : " WHERE ",
+					filter);
+	    }
     }
 }
