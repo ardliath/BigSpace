@@ -1,4 +1,6 @@
-﻿namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.Ship
+﻿using System.Collections.Generic;
+
+namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Models.Ship
 {
 	public class Details
 	{
@@ -10,5 +12,7 @@
 		public string LocationName { get; set; }
 
 		public string CurrentTask { get; set; }
+
+		public IEnumerable<ShipCommandSummary> ShipCommands { get; set; }
 	}
 }

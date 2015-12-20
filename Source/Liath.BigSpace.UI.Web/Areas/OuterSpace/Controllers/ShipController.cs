@@ -50,6 +50,16 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 			}
 		}
 
+		[HttpPost]
+		public ActionResult UpdateOrder(UpdateOrder order)
+		{
+			using (_sessionManager.CreateUnitOfWork())
+			{
+				_fleetManager.GiveOrder(order.ShipID, order.OrderID, order.Applied);
+				return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+			}
+		}
+
 		[HttpGet]
 		public ActionResult List()
 		{
@@ -87,7 +97,13 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 					Name =  ship.Name,
 					CurrentLocationID = ship.SolarSystemID,
 					LocationName = ship.SolarSystemName,
-					CurrentTask = ship.JobDescription
+					CurrentTask = ship.JobDescription,
+					ShipCommands = allCommands.Select(c => new ShipCommandSummary
+					{
+						Value = c.CommandID,
+						Description = c.Description,
+						IsApplied = commandsForThisShip.Any(tsc => tsc.CommandID == c.CommandID)
+					}).ToArray()
 				};
 
 				return View(model);

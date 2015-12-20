@@ -2,7 +2,7 @@
 
 <h1>@Model.Name</h1>
 
-<p>View the rest of @Html.RouteLink("the fleet", new { area = "OuterSpace", controller = "Ship", action = "List"})</p>
+<p>View the rest of @Html.RouteLink("the fleet", new { area = "OuterSpace", controller = "Ship", action = "List" })</p>
 
 @if (@Model.CurrentLocationID.HasValue)
 {
@@ -14,3 +14,36 @@ else
 }
 
 <h4>Orders</h4>
+<table>
+	@foreach (var order in Model.ShipCommands)
+	{
+		<tr>
+			<td>@order.Description</td>
+			<td>@Html.CheckBoxFor(x => order.IsApplied, new { orderID = order.Value, @class = "OrderCheckbox" })</td>
+		</tr>
+	}
+</table>
+
+
+@section Scripts
+{
+	<script>
+		$(document).ready(function () {
+			$('.OrderCheckbox').on('click', function () {
+				var orderID = $(this).attr('orderID');
+				var checked = $(this).is(':checked');
+				
+
+				$.ajax({
+					type: "POST",
+					url: '@Url.RouteUrl("Default", new {area = "OuterSpace", controller = "Ship", action = "UpdateOrder"})',
+					data: {
+						ShipID: @Model.ShipID,
+						OrderID: orderID,
+						Applied: checked
+					}
+				});
+			});
+		})
+	</script>
+}

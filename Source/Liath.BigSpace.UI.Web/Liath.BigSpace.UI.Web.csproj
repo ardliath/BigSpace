@@ -161,7 +161,9 @@
     <Compile Include="Areas\OuterSpace\Models\LocalArea\UpdateView.cs" />
     <Compile Include="Areas\OuterSpace\Models\Planet\Orbit.cs" />
     <Compile Include="Areas\OuterSpace\Models\Ship\List.cs" />
+    <Compile Include="Areas\OuterSpace\Models\Ship\ShipCommandSummary.cs" />
     <Compile Include="Areas\OuterSpace\Models\Ship\ShipSummary.cs" />
+    <Compile Include="Areas\OuterSpace\Models\Ship\UpdateOrder.cs" />
     <Compile Include="Areas\OuterSpace\Models\SolarSystem\ShipSummary.cs" />
     <Compile Include="Areas\OuterSpace\Models\SolarSystem\SolarSystemSummary.cs" />
     <Compile Include="Areas\OuterSpace\OuterSpaceAreaRegistration.cs" />
