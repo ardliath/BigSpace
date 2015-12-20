@@ -12,9 +12,9 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 {
 	public class ShipController : Controller
 	{
-		private ISessionManager _sessionManager;
-		private IFleetManager _fleetManager;
-		private IEmpireManager _empireManager;
+		private readonly ISessionManager _sessionManager;
+		private readonly IFleetManager _fleetManager;
+		private readonly IEmpireManager _empireManager;
 		private readonly IShips _ships;
 
 		public ShipController(ISessionManager sessionManager, IFleetManager fleetManager, IEmpireManager empireManager, IShips ships)
