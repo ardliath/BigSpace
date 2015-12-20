@@ -10,6 +10,13 @@ namespace Liath.BigSpace.Domain
 	{
 		[HumanFriendlyName("Flee when attacked")]
 		FleeWhenAttacked,
+
+		[HumanFriendlyName("Retaliate when someone from my empire attacked")]
+		RetaliateWhenMyEmpireIsAttacked,
+
+		[HumanFriendlyName("Flee when damaged")]
+		FleeWhenDamaged,
+
 		[HumanFriendlyName("Attack ships from other empires I encounter")]
 		AttackShipsNotInMyEmpire
 	}
