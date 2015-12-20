@@ -34,5 +34,7 @@ namespace Liath.BigSpace.Domain.DataAccessDefinitions
 		IEnumerable<Command> ListAllCommands();
 
 		IEnumerable<Command> ListCommandsForShip(int shipID);
+		void GiveCommand(int shipId, int commandID);
+		void CancelCommand(int shipId, int commandID);
 	}
 }

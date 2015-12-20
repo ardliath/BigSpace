@@ -55,7 +55,7 @@ namespace Liath.BigSpace.UI.Web.Areas.OuterSpace.Controllers
 		{
 			using (_sessionManager.CreateUnitOfWork())
 			{
-				_fleetManager.GiveOrder(order.ShipID, order.OrderID, order.Applied);
+				_fleetManager.GiveCommand(order.ShipID, order.OrderID, order.Applied);
 				return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
 			}
 		}

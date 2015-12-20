@@ -13,6 +13,6 @@ namespace Liath.BigSpace.Definitions
         void DeSelectShip(int id);
         IEnumerable<ShipWithCurrentStatus> ListAllShipsInMyEmpire();
 	    ShipWithCurrentStatus GetShipFromMyFleet(int shipID);
-	    void GiveOrder(int shipId, int orderId, bool applied);
+	    void GiveCommand(int shipId, int commandID, bool applied);
     }
 }

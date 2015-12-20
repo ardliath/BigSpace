@@ -279,6 +279,30 @@ namespace Liath.BigSpace.DataAccess.Implementations
 		    return commands;
 	    }
 
+	    public void GiveCommand(int shipId, int commandID)
+	    {
+		    using (var cmd = this.SessionManager.GetCurrentUnitOfWork()
+			    .CreateCommand("INSERT INTO ShipCommands (ShipID, CommandID) VALUES (@ShipID, @CommandID)"))
+		    {
+			    cmd.AddParameter("ShipID", DbType.Int32, shipId);
+			    cmd.AddParameter("CommandID", DbType.Int32, commandID);
+
+			    cmd.ExecuteNonQuery();
+		    }
+	    }
+
+	    public void CancelCommand(int shipId, int commandID)
+	    {
+			using (var cmd = this.SessionManager.GetCurrentUnitOfWork()
+				.CreateCommand("DELETE FROM ShipCommands WHERE ShipID = @ShipID AND CommandID = @CommandID"))
+			{
+				cmd.AddParameter("ShipID", DbType.Int32, shipId);
+				cmd.AddParameter("CommandID", DbType.Int32, commandID);
+
+				cmd.ExecuteNonQuery();
+			}
+		}
+
 	    private ShipWithCurrentStatus InflateShipWithCurrentStatus(IDataReader dr)
 	    {
 		    var ship = new ShipWithCurrentStatus();
